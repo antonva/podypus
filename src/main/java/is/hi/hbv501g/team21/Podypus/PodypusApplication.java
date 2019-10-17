@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PodypusApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(PodypusApplication.class, args);
 	}
 

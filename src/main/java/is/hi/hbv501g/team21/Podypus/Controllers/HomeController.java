@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
+
 @Controller
 public class HomeController {
 
     private PodcastService podcastService;
     @Autowired
     public HomeController(PodcastService podcastService) {
+
         this.podcastService = podcastService;
     }
 
@@ -28,12 +30,13 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
-    public String addPodcast(@Valid Podcast podcast, BindingResult result, Model model) {
+        public String addPodcast(@Valid Podcast podcast, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            // model.addAttribute("error");
+            model.addAttribute("error");
             return "add-podcast";
         }
         else {
+            model.addAttribute("podcast", podcast);
             podcastService.save(podcast);
 
             model.addAttribute("podcasts", podcastService.findAll());
@@ -42,7 +45,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.GET)
-    public String addPodcatForm(Model model) {
+    public String addPodcastForm(Model model) {
+
         return "add-podcast";
     }
 

@@ -1,11 +1,9 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "podcasts")
 public class Podcast {
 
     @Id
