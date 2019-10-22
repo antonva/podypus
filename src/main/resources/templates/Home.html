@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Podypus - Home</title>
+        <link rel="stylesheet" type="text/css" href="./static/css/homeStyle.css">
+    </head>
+    <body>
+    <div th:switch="${podcasts}">
+        <h2 th:case="null">No podcasts yet!</h2>
+        <div th:case="*">
+            <h2>Podcasts</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="podcast : ${podcasts}">
+                    <td th:text="${podcast.title}"></td>
+                    <td th:text="${podcast.description}"></td>
+                    <td th:text="${podcast.rating}"></td>
+                    <td><a th:href="@{/delete/{id}(id=${podcast.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/addpodcast">Add a new podcast</a></p>
+    </div>
+    </body>
+</html>
