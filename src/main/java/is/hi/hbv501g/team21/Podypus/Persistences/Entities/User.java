@@ -3,6 +3,7 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
