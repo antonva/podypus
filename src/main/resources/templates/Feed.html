@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Simple feed example</title>
 </head>
 <body>
-
+    <form action="#" th:action="@{/feed}" th:object="${query}" method="post">
+        Search for feed:<br>
+        <input type="text" id="query" th:field="*{term}"/>
+        <input type="submit" value="Search"/>
+    </form>
 </body>
 </html>
