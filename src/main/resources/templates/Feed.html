@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Simple feed example</title>
+</head>
+<body>
+    <form action="#" th:action="@{/feed}" th:object="${query}" method="post">
+        Search for feed:<br>
+        <input type="text" id="query" th:field="*{term}"/>
+        <input type="submit" value="Search"/>
+    </form>
+    <h1 th:text="${results.getResultCount()}">0</h1>
+    <ul>
+        <li th:each="item:${results.getResults()}" th:text="${item.getArtistName()}">podcast name</li>
+    </ul>
+</body>
+</html>
