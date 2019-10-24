@@ -30,7 +30,6 @@ build/
 ### VS Code ###
 .vscode/
 
-
 # Created by https://www.gitignore.io/api/git,java,maven,intellij
 # Edit at https://www.gitignore.io/?templates=git,java,maven,intellij
 
