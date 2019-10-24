@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.validation.Valid;
 
@@ -29,25 +31,23 @@ public class HomeController {
         return "Home";
     }
 
-    @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
-        public String addPodcast(@Valid Podcast podcast, BindingResult result, Model model) {
-        if(result.hasErrors()) {
-            model.addAttribute("error");
-            return "add-podcast";
-        }
-        else {
-            model.addAttribute("podcast", podcast);
-            podcastService.save(podcast);
-
-            model.addAttribute("podcasts", podcastService.findAll());
-            return "Home";
-        }
-    }
-
     @RequestMapping(value = "/addpodcast", method = RequestMethod.GET)
     public String addPodcastForm(Model model) {
-
+        model.addAttribute("podcast", new Podcast());
         return "add-podcast";
+    }
+
+    @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
+        public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            //model.addAttribute("error");
+            return "add-podcast";
+        }
+
+        model.addAttribute("podcast", podcast);
+        podcastService.save(podcast);
+        model.addAttribute("podcasts", podcastService.findAll());
+        return "Home";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
