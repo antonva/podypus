@@ -1,4 +1,4 @@
-package is.hi.hbv501g.team21.podypus;
+package is.hi.hbv501g.team21.Podypus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

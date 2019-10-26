@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Podypus - Home</title>
-        <link rel="stylesheet" type="text/css" href="./static/css/homeStyle.css">
+        <link rel="stylesheet" href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/homeStyle.css">
     </head>
     <body>
     <div th:switch="${podcasts}">
         <h2 th:case="null">No podcasts yet!</h2>
         <div th:case="*">
             <h2>Podcasts</h2>
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Title</th>
@@ -29,7 +30,7 @@
                 </tbody>
             </table>
         </div>
-        <p><a href="/addpodcast">Add a new podcast</a></p>
+        <button class="btn"><a href="/addpodcast">Add a new podcast</a></button></div>
     </div>
     </body>
 </html>
