@@ -1,7 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 // As per iTunes search query 2019-10-24
-public class ItunesSearchItem {
+public class SearchItem {
     private String wrapperType;
     private String kind;
     private String artistId;
@@ -37,7 +37,7 @@ public class ItunesSearchItem {
     private String[] genreIds;
     private String[] genres;
 
-    public ItunesSearchItem() {
+    public SearchItem() {
         super();
     }
 
