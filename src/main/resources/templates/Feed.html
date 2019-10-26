@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
     <title>Simple feed example</title>
 </head>
 <body>
@@ -13,11 +13,16 @@
     </form>
     <div th:if="${results != null}">
         <h1 th:text="${results.getResultCount()}">0</h1>
-        <div th:each="item: ${results.getResults()}">
-            <img th:src="${item.getArtworkUrl100()}"/>
-            <div th:text="${item.getCollectionName() }">Podcast Name</div>
-            <div th:text="${item.getArtistName() }">Artist Name</div>
-            <div th:text="${item.getReleaseDate() }">Last updated</div>
+        <div class="container" style="width:30%; display: grid; grid-template-columns: repeat(3, 1fr);" th:if="${results != null}">
+            <div class="card" th:each="item: ${results.getResults()}">
+                <img class="card-img-top" th:src="${item.getArtworkUrl600()}" />
+                <div class="card-body">
+                    <div class="card-title" th:text="${item.getCollectionName() }">Podcast Name</div>
+                    <div class="card-subtitle" th:text="${item.getArtistName() }">Artist Name</div>
+                    <div class="card-subtitle" th:text="${item.getReleaseDate() }">Last updated</div>
+                    <a class="card-link btn btn-light" th:href="${item.getFeedUrl()}">RSS</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
