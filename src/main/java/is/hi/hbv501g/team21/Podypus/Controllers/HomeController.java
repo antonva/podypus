@@ -3,6 +3,7 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 
@@ -18,6 +22,7 @@ import javax.validation.Valid;
 public class HomeController {
 
     private PodcastService podcastService;
+
     @Autowired
     public HomeController(PodcastService podcastService) {
 
@@ -37,8 +42,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
-        public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
-        if(result.hasErrors()) {
+    public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             //model.addAttribute("error");
             return "add-podcast";
         }
@@ -60,3 +65,4 @@ public class HomeController {
         return "Home";
     }
 }
+
