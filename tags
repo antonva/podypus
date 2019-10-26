@@ -1,0 +1,315 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+.home	src/main/resources/static/css/homeStyle.css	/^.home {$/;"	c
+.home	target/classes/static/css/homeStyle.css	/^.home {$/;"	c
+0	src/main/resources/templates/Feed.html	/^        <h1 th:text="${results.getResultCount()}">0<\/h1>$/;"	h
+0	target/classes/templates/Feed.html	/^        <h1 th:text="${results.getResultCount()}">0<\/h1>$/;"	h
+A podcast player	README.md	/^### A podcast player$/;"	S
+ACTION	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    ACTION,$/;"	e	enum:Genre	file:
+ADVENTURE	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    ADVENTURE,$/;"	e	enum:Genre	file:
+ANIMATION	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    ANIMATION,$/;"	e	enum:Genre	file:
+COMEDY	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    COMEDY,$/;"	e	enum:Genre	file:
+CRIME	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    CRIME,$/;"	e	enum:Genre	file:
+Contributing	README.md	/^## Contributing$/;"	s
+DEFAULT_DOWNLOAD_URL	.mvn/wrapper/MavenWrapperDownloader.java	/^    private static final String DEFAULT_DOWNLOAD_URL =$/;"	f	class:MavenWrapperDownloader	file:
+DOWNLOAD_URL	mvnw.cmd	/^set DOWNLOAD_URL="https:\/\/repo.maven.apache.org\/maven2\/io\/takari\/maven-wrapper\/0.4.2\/mav/;"	v
+DRAMA	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    DRAMA,$/;"	e	enum:Genre	file:
+ERROR_CODE	mvnw.cmd	/^@endlocal & set ERROR_CODE=%ERROR_CODE%$/;"	v
+ERROR_CODE	mvnw.cmd	/^set ERROR_CODE=0$/;"	v
+ERROR_CODE	mvnw.cmd	/^set ERROR_CODE=1$/;"	v
+EXEC_DIR	mvnw.cmd	/^set EXEC_DIR=%CD%$/;"	v
+Episode	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Episode.java	/^public class Episode {$/;"	c
+FANTASY	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    FANTASY,$/;"	e	enum:Genre	file:
+Genre	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^public enum Genre {$/;"	g
+Getting Started	HELP.md	/^# Getting Started$/;"	c
+Guides	HELP.md	/^### Guides$/;"	S
+HORROR	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    HORROR,$/;"	e	enum:Genre	file:
+Home	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^    public String Home(Model model) {$/;"	m	class:HomeController
+HomeController	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^    public HomeController(PodcastService podcastService) {$/;"	m	class:HomeController
+HomeController	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^public class HomeController {$/;"	c
+ItunesSearchItem	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public ItunesSearchItem() {$/;"	m	class:ItunesSearchItem
+ItunesSearchItem	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^public class ItunesSearchItem {$/;"	c
+ItunesSearchResult	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    public ItunesSearchResult() {$/;"	m	class:ItunesSearchResult
+ItunesSearchResult	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^public class ItunesSearchResult {$/;"	c
+JVM_CONFIG_MAVEN_PROPS	mvnw.cmd	/^@endlocal & set JVM_CONFIG_MAVEN_PROPS=%JVM_CONFIG_MAVEN_PROPS%$/;"	v
+JVM_CONFIG_MAVEN_PROPS	mvnw.cmd	/^for \/F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\\.mvn\\jvm.config") do set JVM_CONFIG/;"	v
+MAVEN_OPTS	mvnw.cmd	/^@REM set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000$/;"	v
+MAVEN_PROJECTBASEDIR	mvnw.cmd	/^set MAVEN_PROJECTBASEDIR=%EXEC_DIR%$/;"	v
+MAVEN_PROJECTBASEDIR	mvnw.cmd	/^set MAVEN_PROJECTBASEDIR=%MAVEN_BASEDIR%$/;"	v
+MAVEN_PROJECTBASEDIR	mvnw.cmd	/^set MAVEN_PROJECTBASEDIR=%WDIR%$/;"	v
+MAVEN_WRAPPER_JAR_PATH	.mvn/wrapper/MavenWrapperDownloader.java	/^    private static final String MAVEN_WRAPPER_JAR_PATH =$/;"	f	class:MavenWrapperDownloader	file:
+MAVEN_WRAPPER_PROPERTIES_PATH	.mvn/wrapper/MavenWrapperDownloader.java	/^    private static final String MAVEN_WRAPPER_PROPERTIES_PATH =$/;"	f	class:MavenWrapperDownloader	file:
+MYSTERY	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    MYSTERY,$/;"	e	enum:Genre	file:
+MavenWrapperDownloader	.mvn/wrapper/MavenWrapperDownloader.java	/^public class MavenWrapperDownloader {$/;"	c
+No podcasts yet!	src/main/resources/templates/Home.html	/^        <h2 th:case="null">No podcasts yet!<\/h2>$/;"	i
+No podcasts yet!	target/classes/templates/Home.html	/^        <h2 th:case="null">No podcasts yet!<\/h2>$/;"	i
+OkJHome	mvnw.cmd	/^:OkJHome$/;"	l
+PROPERTY_NAME_WRAPPER_URL	.mvn/wrapper/MavenWrapperDownloader.java	/^    private static final String PROPERTY_NAME_WRAPPER_URL = "wrapperUrl";$/;"	f	class:MavenWrapperDownloader	file:
+Podcast	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public Podcast() {$/;"	m	class:Podcast
+Podcast	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public Podcast(String title, String description, Double rating) {$/;"	m	class:Podcast
+Podcast	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^public class Podcast {$/;"	c
+PodcastRepository	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^public interface PodcastRepository extends JpaRepository<Podcast, Long> {$/;"	i
+PodcastService	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^public interface PodcastService {$/;"	i
+PodcastServiceImplementation	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public PodcastServiceImplementation(PodcastRepository podcastRepository) {$/;"	m	class:PodcastServiceImplementation
+PodcastServiceImplementation	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^public class PodcastServiceImplementation implements PodcastService {$/;"	c
+Podcasts	src/main/resources/templates/Home.html	/^            <h2>Podcasts<\/h2>$/;"	i
+Podcasts	target/classes/templates/Home.html	/^            <h2>Podcasts<\/h2>$/;"	i
+Podypus	pom.xml	/^	<artifactId>Podypus<\/artifactId>$/;"	a	groupId:is.hi.hbv501g.team21
+PodypusApplication	src/main/java/is/hi/hbv501g/team21/Podypus/PodypusApplication.java	/^public class PodypusApplication {$/;"	c
+PodypusApplicationTests	src/test/java/is/hi/hbv501g/team21/Podypus/PodypusApplicationTests.java	/^public class PodypusApplicationTests {$/;"	c
+PodypusApplicationTests	src/test/java/is/hi/hbv501g/team21/podypus/PodypusApplicationTests.java	/^public class PodypusApplicationTests {$/;"	c
+ROMANCE	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    ROMANCE,$/;"	e	enum:Genre	file:
+Reference Documentation	HELP.md	/^### Reference Documentation$/;"	S
+SCIFI	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    SCIFI,$/;"	e	enum:Genre	file:
+SUPERHERO	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    SUPERHERO$/;"	e	enum:Genre	file:
+SearchQuery	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/SearchQuery.java	/^public class SearchQuery {$/;"	c
+SimpleFeedController	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^public class SimpleFeedController {$/;"	c
+THRILLER	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^    THRILLER,$/;"	e	enum:Genre	file:
+User	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public User(){$/;"	m	class:User
+User	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public User(String userName, String email, String password){$/;"	m	class:User
+User	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^public class User {$/;"	c
+WDIR	mvnw.cmd	/^set WDIR=%CD%$/;"	v
+WDIR	mvnw.cmd	/^set WDIR=%EXEC_DIR%$/;"	v
+WRAPPER_JAR	mvnw.cmd	/^set WRAPPER_JAR="%MAVEN_PROJECTBASEDIR%\\.mvn\\wrapper\\maven-wrapper.jar"$/;"	v
+WRAPPER_LAUNCHER	mvnw.cmd	/^set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain$/;"	v
+addPodcast	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^        public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResul/;"	m	class:HomeController
+addPodcastForm	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^    public String addPodcastForm(Model model) {$/;"	m	class:HomeController
+artistId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artistId;$/;"	f	class:ItunesSearchItem	file:
+artistName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artistName;$/;"	f	class:ItunesSearchItem	file:
+artistViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artistViewUrl;$/;"	f	class:ItunesSearchItem	file:
+artworkUrl100	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artworkUrl100;$/;"	f	class:ItunesSearchItem	file:
+artworkUrl30	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artworkUrl30;$/;"	f	class:ItunesSearchItem	file:
+artworkUrl60	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artworkUrl60;$/;"	f	class:ItunesSearchItem	file:
+artworkUrl600	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String artworkUrl600;$/;"	f	class:ItunesSearchItem	file:
+baseDirFound	mvnw.cmd	/^:baseDirFound$/;"	l
+baseDirNotFound	mvnw.cmd	/^:baseDirNotFound$/;"	l
+collectionCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionCensoredName;$/;"	f	class:ItunesSearchItem	file:
+collectionExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionExplicitness;$/;"	f	class:ItunesSearchItem	file:
+collectionHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionHdPrice;$/;"	f	class:ItunesSearchItem	file:
+collectionId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionId;$/;"	f	class:ItunesSearchItem	file:
+collectionName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionName;$/;"	f	class:ItunesSearchItem	file:
+collectionPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionPrice;$/;"	f	class:ItunesSearchItem	file:
+collectionViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String collectionViewUrl;$/;"	f	class:ItunesSearchItem	file:
+concat_lines	mvnw	/^concat_lines() {$/;"	f
+contentAdvisoryRating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String contentAdvisoryRating;$/;"	f	class:ItunesSearchItem	file:
+contextLoads	src/test/java/is/hi/hbv501g/team21/Podypus/PodypusApplicationTests.java	/^	public void contextLoads() {$/;"	m	class:PodypusApplicationTests
+contextLoads	src/test/java/is/hi/hbv501g/team21/podypus/PodypusApplicationTests.java	/^	public void contextLoads() {$/;"	m	class:PodypusApplicationTests
+country	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String country;$/;"	f	class:ItunesSearchItem	file:
+currency	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String currency;$/;"	f	class:ItunesSearchItem	file:
+delete	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^    void delete(Podcast podcast);$/;"	m	interface:PodcastRepository
+delete	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public void delete(Podcast podcast) {$/;"	m	class:PodcastServiceImplementation
+delete	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^    void delete(Podcast podcast);$/;"	m	interface:PodcastService
+deletePodcast	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^    public String deletePodcast(@PathVariable("id") long id, Model model) {$/;"	m	class:HomeController
+description	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    private String description;$/;"	f	class:Podcast	file:
+description	src/main/resources/templates/add-podcast.html	/^    <input type="text" th:field="*{description}" id="description" placeholder="Description">$/;"	I
+description	target/classes/templates/add-podcast.html	/^    <input type="text" th:field="*{description}" id="description" placeholder="Description">$/;"	I
+directory	.idea/artifacts/Podypus_war_exploded.xml	/^        <element id="directory" name="classes">$/;"	i
+directory	.idea/artifacts/Podypus_war_exploded.xml	/^      <element id="directory" name="WEB-INF">$/;"	i
+distributionUrl	.mvn/wrapper/maven-wrapper.properties	/^distributionUrl=https:\/\/repo.maven.apache.org\/maven2\/org\/apache\/maven\/apache-maven\/3.6.0/;"	k
+downloadFileFromURL	.mvn/wrapper/MavenWrapperDownloader.java	/^    private static void downloadFileFromURL(String urlString, File destination) throws Exception/;"	m	class:MavenWrapperDownloader	file:
+email	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    private String email;$/;"	f	class:User	file:
+end	mvnw.cmd	/^:end$/;"	l
+endDetectBaseDir	mvnw.cmd	/^:endDetectBaseDir$/;"	l
+endReadAdditionalConfig	mvnw.cmd	/^:endReadAdditionalConfig$/;"	l
+error	mvnw.cmd	/^:error$/;"	l
+feedHandler	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^    public String feedHandler(Model model) {$/;"	m	class:SimpleFeedController
+feedSubmit	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^    public String feedSubmit(@Valid SearchQuery query, BindingResult result, Model model) throws/;"	m	class:SimpleFeedController
+feedUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String feedUrl;$/;"	f	class:ItunesSearchItem	file:
+findAll	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^    List<Podcast> findAll();$/;"	m	interface:PodcastRepository
+findAll	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public List<Podcast> findAll() {$/;"	m	class:PodcastServiceImplementation
+findAll	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^    List<Podcast> findAll();$/;"	m	interface:PodcastService
+findBaseDir	mvnw.cmd	/^:findBaseDir$/;"	l
+findById	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^    Optional<Podcast> findById(long id);$/;"	m	interface:PodcastRepository
+findById	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public Optional<Podcast> findById(long id) {$/;"	m	class:PodcastServiceImplementation
+findById	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^    Optional<Podcast> findById(long id);$/;"	m	interface:PodcastService
+findByTitle	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^    List<Podcast> findByTitle(String title);$/;"	m	interface:PodcastRepository
+findByTitle	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public List<Podcast> findByTitle(String title) {$/;"	m	class:PodcastServiceImplementation
+findByTitle	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^    List<Podcast> findByTitle(String title);$/;"	m	interface:PodcastService
+find_maven_basedir	mvnw	/^find_maven_basedir() {$/;"	f
+genreIds	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String[] genreIds;$/;"	f	class:ItunesSearchItem	file:
+genres	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String[] genres;$/;"	f	class:ItunesSearchItem	file:
+getArtistId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtistId() {$/;"	m	class:ItunesSearchItem
+getArtistName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtistName() {$/;"	m	class:ItunesSearchItem
+getArtistViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtistViewUrl() {$/;"	m	class:ItunesSearchItem
+getArtworkUrl100	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtworkUrl100() {$/;"	m	class:ItunesSearchItem
+getArtworkUrl30	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtworkUrl30() {$/;"	m	class:ItunesSearchItem
+getArtworkUrl60	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtworkUrl60() {$/;"	m	class:ItunesSearchItem
+getArtworkUrl600	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getArtworkUrl600() {$/;"	m	class:ItunesSearchItem
+getCollectionCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionCensoredName() {$/;"	m	class:ItunesSearchItem
+getCollectionExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionExplicitness() {$/;"	m	class:ItunesSearchItem
+getCollectionHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionHdPrice() {$/;"	m	class:ItunesSearchItem
+getCollectionId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionId() {$/;"	m	class:ItunesSearchItem
+getCollectionName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionName() {$/;"	m	class:ItunesSearchItem
+getCollectionPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionPrice() {$/;"	m	class:ItunesSearchItem
+getCollectionViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCollectionViewUrl() {$/;"	m	class:ItunesSearchItem
+getContentAdvisoryRating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getContentAdvisoryRating() {$/;"	m	class:ItunesSearchItem
+getCountry	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCountry() {$/;"	m	class:ItunesSearchItem
+getCurrency	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getCurrency() {$/;"	m	class:ItunesSearchItem
+getDescription	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public String getDescription() {$/;"	m	class:Podcast
+getEmail	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public String getEmail() {return email;}$/;"	m	class:User
+getFeedUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getFeedUrl() {$/;"	m	class:ItunesSearchItem
+getGenreIds	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String[] getGenreIds() {$/;"	m	class:ItunesSearchItem
+getGenres	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String[] getGenres() {$/;"	m	class:ItunesSearchItem
+getId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public long getId() {$/;"	m	class:Podcast
+getId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public long getId(){return id;}$/;"	m	class:User
+getKind	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getKind() {$/;"	m	class:ItunesSearchItem
+getName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public String getName() { return this.userName; }$/;"	m	class:User
+getPassword	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public String getPassword(){return password;}$/;"	m	class:User
+getPrimaryGenreName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getPrimaryGenreName() {$/;"	m	class:ItunesSearchItem
+getRating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public Double getRating() {$/;"	m	class:Podcast
+getReleaseDate	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getReleaseDate() {$/;"	m	class:ItunesSearchItem
+getResultCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    public String getResultCount() {$/;"	m	class:ItunesSearchResult
+getResults	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    public List<ItunesSearchItem> getResults() {$/;"	m	class:ItunesSearchResult
+getTerm	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/SearchQuery.java	/^    public String getTerm() {$/;"	m	class:SearchQuery
+getTitle	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public String getTitle() {$/;"	m	class:Podcast
+getTrackCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackCensoredName() {$/;"	m	class:ItunesSearchItem
+getTrackCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackCount() {$/;"	m	class:ItunesSearchItem
+getTrackExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackExplicitness() {$/;"	m	class:ItunesSearchItem
+getTrackHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackHdPrice() {$/;"	m	class:ItunesSearchItem
+getTrackHdRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackHdRentalPrice() {$/;"	m	class:ItunesSearchItem
+getTrackId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackId() {$/;"	m	class:ItunesSearchItem
+getTrackName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackName() {$/;"	m	class:ItunesSearchItem
+getTrackPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackPrice() {$/;"	m	class:ItunesSearchItem
+getTrackRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackRentalPrice() {$/;"	m	class:ItunesSearchItem
+getTrackViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getTrackViewUrl() {$/;"	m	class:ItunesSearchItem
+getWrapperType	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public String getWrapperType() {$/;"	m	class:ItunesSearchItem
+id	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    private long id;$/;"	f	class:Podcast	file:
+id	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    private long id;$/;"	f	class:User	file:
+init	mvnw.cmd	/^:init$/;"	l
+is.hi.hbv501g.team21	pom.xml	/^	<groupId>is.hi.hbv501g.team21<\/groupId>$/;"	g
+is.hi.hbv501g.team21.Podypus	src/main/java/is/hi/hbv501g/team21/Podypus/PodypusApplication.java	/^package is.hi.hbv501g.team21.Podypus;$/;"	p
+is.hi.hbv501g.team21.Podypus	src/test/java/is/hi/hbv501g/team21/Podypus/PodypusApplicationTests.java	/^package is.hi.hbv501g.team21.Podypus;$/;"	p
+is.hi.hbv501g.team21.Podypus	src/test/java/is/hi/hbv501g/team21/podypus/PodypusApplicationTests.java	/^package is.hi.hbv501g.team21.Podypus;$/;"	p
+is.hi.hbv501g.team21.Podypus.Controllers	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^package is.hi.hbv501g.team21.Podypus.Controllers;$/;"	p
+is.hi.hbv501g.team21.Podypus.Controllers	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^package is.hi.hbv501g.team21.Podypus.Controllers;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Episode.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Genre.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/SearchQuery.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Entities	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Entities;$/;"	p
+is.hi.hbv501g.team21.Podypus.Persistences.Repositories	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^package is.hi.hbv501g.team21.Podypus.Persistences.Repositories;$/;"	p
+is.hi.hbv501g.team21.Podypus.Services	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^package is.hi.hbv501g.team21.Podypus.Services;$/;"	p
+is.hi.hbv501g.team21.Podypus.Services.Implementations	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^package is.hi.hbv501g.team21.Podypus.Services.Implementations;$/;"	p
+java.version	pom.xml	/^		<java.version>8<\/java.version>$/;"	p
+javaee-facet-resources	.idea/artifacts/Podypus_war_exploded.xml	/^      <element id="javaee-facet-resources" facet="Podypus\/web\/Web" \/>$/;"	i
+kind	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String kind;$/;"	f	class:ItunesSearchItem	file:
+logging.level.org.springframework	src/main/resources/application.properties	/^logging.level.org.springframework=ERROR$/;"	k
+logging.level.org.springframework	target/classes/application.properties	/^logging.level.org.springframework=ERROR$/;"	k
+main	.mvn/wrapper/MavenWrapperDownloader.java	/^    public static void main(String args[]) {$/;"	m	class:MavenWrapperDownloader
+main	src/main/java/is/hi/hbv501g/team21/Podypus/PodypusApplication.java	/^	public static void main(String[] args) {$/;"	m	class:PodypusApplication
+module-output	.idea/artifacts/Podypus_war_exploded.xml	/^          <element id="module-output" name="Podypus" \/>$/;"	i
+ns8b93d7460101	web/WEB-INF/web.xml	/^         version="4.0">$/;"	n	uri:http://xmlns.jcp.org/xml/ns/javaee
+password	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    private String password;$/;"	f	class:User	file:
+podcastService	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/HomeController.java	/^    private PodcastService podcastService;$/;"	f	class:HomeController	file:
+podypus	README.md	/^# podypus$/;"	c
+primaryGenreName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String primaryGenreName;$/;"	f	class:ItunesSearchItem	file:
+query	src/main/resources/templates/Feed.html	/^        <input type="text" id="query" th:field="*{term}"\/>$/;"	I
+query	target/classes/templates/Feed.html	/^        <input type="text" id="query" th:field="*{term}"\/>$/;"	I
+rating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    private Double rating;$/;"	f	class:Podcast	file:
+rating	src/main/resources/templates/add-podcast.html	/^    <input type="text" th:field="*{rating}" id="rating" placeholder="Rating">$/;"	I
+rating	target/classes/templates/add-podcast.html	/^    <input type="text" th:field="*{rating}" id="rating" placeholder="Rating">$/;"	I
+releaseDate	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String releaseDate;$/;"	f	class:ItunesSearchItem	file:
+repository	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    private PodcastRepository repository;$/;"	f	class:PodcastServiceImplementation	file:
+resultCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    private String resultCount;$/;"	f	class:ItunesSearchResult	file:
+results	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    private List<ItunesSearchItem> results;$/;"	f	class:ItunesSearchResult	file:
+root	.idea/artifacts/Podypus_war_exploded.xml	/^    <root id="root">$/;"	i
+save	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Repositories/PodcastRepository.java	/^    Podcast save(Podcast podcast);$/;"	m	interface:PodcastRepository
+save	src/main/java/is/hi/hbv501g/team21/Podypus/Services/Implementations/PodcastServiceImplementation.java	/^    public Podcast save(Podcast podcast) {$/;"	m	class:PodcastServiceImplementation
+save	src/main/java/is/hi/hbv501g/team21/Podypus/Services/PodcastService.java	/^    Podcast save(Podcast podcast);$/;"	m	interface:PodcastService
+searchItunes	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^    private static ItunesSearchResult searchItunes(String querystring) throws IOException {$/;"	m	class:SimpleFeedController	file:
+setArtistId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtistId(String artistId) {$/;"	m	class:ItunesSearchItem
+setArtistName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtistName(String artistName) {$/;"	m	class:ItunesSearchItem
+setArtistViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtistViewUrl(String artistViewUrl) {$/;"	m	class:ItunesSearchItem
+setArtworkUrl100	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtworkUrl100(String artworkUrl100) {$/;"	m	class:ItunesSearchItem
+setArtworkUrl30	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtworkUrl30(String artworkUrl30) {$/;"	m	class:ItunesSearchItem
+setArtworkUrl60	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtworkUrl60(String artworkUrl60) {$/;"	m	class:ItunesSearchItem
+setArtworkUrl600	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setArtworkUrl600(String artworkUrl600) {$/;"	m	class:ItunesSearchItem
+setCollectionCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionCensoredName(String collectionCensoredName) {$/;"	m	class:ItunesSearchItem
+setCollectionExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionExplicitness(String collectionExplicitness) {$/;"	m	class:ItunesSearchItem
+setCollectionHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionHdPrice(String collectionHdPrice) {$/;"	m	class:ItunesSearchItem
+setCollectionId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionId(String collectionId) {$/;"	m	class:ItunesSearchItem
+setCollectionName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionName(String collectionName) {$/;"	m	class:ItunesSearchItem
+setCollectionPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionPrice(String collectionPrice) {$/;"	m	class:ItunesSearchItem
+setCollectionViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCollectionViewUrl(String collectionViewUrl) {$/;"	m	class:ItunesSearchItem
+setContentAdvisoryRating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setContentAdvisoryRating(String contentAdvisoryRating) {$/;"	m	class:ItunesSearchItem
+setCountry	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCountry(String country) {$/;"	m	class:ItunesSearchItem
+setCurrency	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setCurrency(String currency) {$/;"	m	class:ItunesSearchItem
+setDescription	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public void setDescription(String description) {$/;"	m	class:Podcast
+setEmail	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public void setEmail(String email) {$/;"	m	class:User
+setFeedUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setFeedUrl(String feedUrl) {$/;"	m	class:ItunesSearchItem
+setGenreIds	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setGenreIds(String[] genreIds) {$/;"	m	class:ItunesSearchItem
+setGenres	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setGenres(String[] genres) {$/;"	m	class:ItunesSearchItem
+setId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public void setId(long id) {$/;"	m	class:Podcast
+setId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public void setId(long id) {$/;"	m	class:User
+setKind	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setKind(String kind) {$/;"	m	class:ItunesSearchItem
+setName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public void setName(String name) {this.userName = name;}$/;"	m	class:User
+setPassword	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    public void setPassword(String password) {$/;"	m	class:User
+setPrimaryGenreName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setPrimaryGenreName(String primaryGenreName) {$/;"	m	class:ItunesSearchItem
+setRating	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public void setRating(Double rating) {$/;"	m	class:Podcast
+setReleaseDate	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setReleaseDate(String releaseDate) {$/;"	m	class:ItunesSearchItem
+setResultCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    public void setResultCount(String resultCount) {$/;"	m	class:ItunesSearchResult
+setResults	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchResult.java	/^    public void setResults(List<ItunesSearchItem> results) {$/;"	m	class:ItunesSearchResult
+setTerm	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/SearchQuery.java	/^    public void setTerm(String term) {$/;"	m	class:SearchQuery
+setTitle	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    public void setTitle(String title) {$/;"	m	class:Podcast
+setTrackCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackCensoredName(String trackCensoredName) {$/;"	m	class:ItunesSearchItem
+setTrackCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackCount(String trackCount) {$/;"	m	class:ItunesSearchItem
+setTrackExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackExplicitness(String trackExplicitness) {$/;"	m	class:ItunesSearchItem
+setTrackHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackHdPrice(String trackHdPrice) {$/;"	m	class:ItunesSearchItem
+setTrackHdRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackHdRentalPrice(String trackHdRentalPrice) {$/;"	m	class:ItunesSearchItem
+setTrackId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackId(String trackId) {$/;"	m	class:ItunesSearchItem
+setTrackName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackName(String trackName) {$/;"	m	class:ItunesSearchItem
+setTrackPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackPrice(String trackPrice) {$/;"	m	class:ItunesSearchItem
+setTrackRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackRentalPrice(String trackRentalPrice) {$/;"	m	class:ItunesSearchItem
+setTrackViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setTrackViewUrl(String trackViewUrl) {$/;"	m	class:ItunesSearchItem
+setWrapperType	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    public void setWrapperType(String wrapperType) {$/;"	m	class:ItunesSearchItem
+skipRcPost	mvnw.cmd	/^:skipRcPost$/;"	l
+skipRcPre	mvnw.cmd	/^:skipRcPre$/;"	l
+spring.datasource.driver-class-name	src/main/resources/application.properties	/^spring.datasource.driver-class-name=org.postgresql.Driver$/;"	k
+spring.datasource.driver-class-name	target/classes/application.properties	/^spring.datasource.driver-class-name=org.postgresql.Driver$/;"	k
+spring.datasource.initialization-mode	src/main/resources/application.properties	/^spring.datasource.initialization-mode=always$/;"	k
+spring.datasource.initialization-mode	target/classes/application.properties	/^spring.datasource.initialization-mode=always$/;"	k
+spring.datasource.password	src/main/resources/application.properties	/^spring.datasource.password=lykilord$/;"	k
+spring.datasource.password	target/classes/application.properties	/^spring.datasource.password=lykilord$/;"	k
+spring.datasource.platform	src/main/resources/application.properties	/^spring.datasource.platform=postgres$/;"	k
+spring.datasource.platform	target/classes/application.properties	/^spring.datasource.platform=postgres$/;"	k
+spring.datasource.url	src/main/resources/application.properties	/^spring.datasource.url=jdbc:postgresql:\/\/localhost:5432\/podypus$/;"	k
+spring.datasource.url	target/classes/application.properties	/^spring.datasource.url=jdbc:postgresql:\/\/localhost:5432\/podypus$/;"	k
+spring.datasource.username	src/main/resources/application.properties	/^spring.datasource.username=notandi$/;"	k
+spring.datasource.username	target/classes/application.properties	/^spring.datasource.username=notandi$/;"	k
+spring.jpa.hibernate.ddl-auto	src/main/resources/application.properties	/^spring.jpa.hibernate.ddl-auto=update$/;"	k
+spring.jpa.hibernate.ddl-auto	target/classes/application.properties	/^spring.jpa.hibernate.ddl-auto=update$/;"	k
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation	src/main/resources/application.properties	/^spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true$/;"	k
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation	target/classes/application.properties	/^spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true$/;"	k
+spring.jpa.show-sql	src/main/resources/application.properties	/^spring.jpa.show-sql=true$/;"	k
+spring.jpa.show-sql	target/classes/application.properties	/^spring.jpa.show-sql=true$/;"	k
+spring.main.banner-mode	src/main/resources/application.properties	/^spring.main.banner-mode=off$/;"	k
+spring.main.banner-mode	target/classes/application.properties	/^spring.main.banner-mode=off$/;"	k
+spring.mvc.view.prefix	src/main/resources/application.properties	/^spring.mvc.view.prefix=\/WEB-INF\/jsp\/$/;"	k
+spring.mvc.view.prefix	target/classes/application.properties	/^spring.mvc.view.prefix=\/WEB-INF\/jsp\/$/;"	k
+spring.mvc.view.suffix	src/main/resources/application.properties	/^spring.mvc.view.suffix=.jsp$/;"	k
+spring.mvc.view.suffix	target/classes/application.properties	/^spring.mvc.view.suffix=.jsp$/;"	k
+term	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/SearchQuery.java	/^    private String term;$/;"	f	class:SearchQuery	file:
+title	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/Podcast.java	/^    private String title;$/;"	f	class:Podcast	file:
+title	src/main/resources/templates/add-podcast.html	/^    <input type="text" th:field="*{title}" id="title" placeholder="Title">$/;"	I
+title	target/classes/templates/add-podcast.html	/^    <input type="text" th:field="*{title}" id="title" placeholder="Title">$/;"	I
+trackCensoredName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackCensoredName;$/;"	f	class:ItunesSearchItem	file:
+trackCount	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackCount;$/;"	f	class:ItunesSearchItem	file:
+trackExplicitness	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackExplicitness;$/;"	f	class:ItunesSearchItem	file:
+trackHdPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackHdPrice;$/;"	f	class:ItunesSearchItem	file:
+trackHdRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackHdRentalPrice;$/;"	f	class:ItunesSearchItem	file:
+trackId	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackId;$/;"	f	class:ItunesSearchItem	file:
+trackName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackName;$/;"	f	class:ItunesSearchItem	file:
+trackPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackPrice;$/;"	f	class:ItunesSearchItem	file:
+trackRentalPrice	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackRentalPrice;$/;"	f	class:ItunesSearchItem	file:
+trackViewUrl	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String trackViewUrl;$/;"	f	class:ItunesSearchItem	file:
+urlEncode	src/main/java/is/hi/hbv501g/team21/Podypus/Controllers/SimpleFeedController.java	/^    private static String urlEncode(String value) {$/;"	m	class:SimpleFeedController	file:
+userName	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/User.java	/^    private String userName;$/;"	f	class:User	file:
+wrapperType	src/main/java/is/hi/hbv501g/team21/Podypus/Persistences/Entities/ItunesSearchItem.java	/^    private String wrapperType;$/;"	f	class:ItunesSearchItem	file:
+xsi	web/WEB-INF/web.xml	/^         version="4.0">$/;"	n	uri:http://www.w3.org/2001/XMLSchema-instance
