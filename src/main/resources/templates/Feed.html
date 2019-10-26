@@ -7,10 +7,13 @@
 </head>
 <body>
     <form action="#" th:action="@{/feed}" th:object="${query}" method="post">
-        Search for feed:<br>
-        <input type="text" id="query" th:field="*{term}"/>
-        <input type="submit" value="Search"/>
+        <div class="form-group">
+            <label>Search</label>
+            <input type="text" id="query" th:field="*{term}"/>
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
     </form>
+
     <div th:if="${results != null}">
         <h1 th:text="${results.getResultCount()}">0</h1>
         <div class="container" style="width:30%; display: grid; grid-template-columns: repeat(3, 1fr);" th:if="${results != null}">

@@ -1,7 +1,10 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
+@XmlRootElement(name = "channel")
 @Entity
 @Table(name = "podcasts")
 public class Podcast {
@@ -10,33 +13,39 @@ public class Podcast {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String title;
+    private String copyright;
+    private String styleSheet;
+    private String link;
     private String description;
-    private Double rating;
+    private String language;
+    private String title;
+    private String imageUrl;
+    private String author;
+    private List<String> authors;
+    private List<Episode> episodeList;
 
-    public Podcast() {
+    public String getCopyright() {
+        return copyright;
     }
 
-    public Podcast(String title, String description, Double rating) {
-        this.title = title;
-        this.description = description;
-        this.rating = rating;
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
     }
 
-    public long getId() {
-        return id;
+    public String getStyleSheet() {
+        return styleSheet;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStyleSheet(String styleSheet) {
+        this.styleSheet = styleSheet;
     }
 
-    public String getTitle() {
-        return title;
+    public String getLink() {
+        return link;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getDescription() {
@@ -47,11 +56,51 @@ public class Podcast {
         this.description = description;
     }
 
-    public Double getRating() {
-        return rating;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setRating(Double rating) {
-        this.rating = rating;
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public List<Episode> getEpisodeList() {
+        return episodeList;
+    }
+
+    public void setEpisodeList(List<Episode> episodeList) {
+        this.episodeList = episodeList;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<String> authors) {
+        this.authors = authors;
     }
 }
