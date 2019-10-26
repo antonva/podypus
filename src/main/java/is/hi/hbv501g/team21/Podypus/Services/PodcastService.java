@@ -11,4 +11,5 @@ public interface PodcastService {
     List<Podcast> findAll();
     Optional<Podcast> findById(long id);
     List<Podcast> findByTitle(String title);
+
 }

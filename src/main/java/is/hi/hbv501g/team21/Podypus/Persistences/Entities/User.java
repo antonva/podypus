@@ -13,8 +13,9 @@ public class User {
     private String userName;
     private String email;
     private String password;
+    private String passwordConfirm;
 
-    public User(){
+    public User() {
     }
 
     public User(String userName, String email, String password){
@@ -29,7 +30,7 @@ public class User {
         this.id = id;
     }
 
-    public String getName() { return this.userName; }
+    public String getUsername() { return this.userName; }
 
     public void setName(String name) {this.userName = name;}
 
@@ -43,5 +44,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }
