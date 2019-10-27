@@ -1,7 +1,24 @@
 body {
-    /*Test styles*/
-    background:orange;
-    color:blue;
-    
+    background: #D1E5E3;
+    color:black;
 }
 
+.myNav{
+    background: #78BAAC;
+}
+
+
+.btn {
+    color: black;
+    background-color: #78BAAC;
+
+}
+
+.btn:hover {
+    background-color: #4B818D ;
+}
+
+.btn a {
+    text-decoration: none;
+    text-decoration: red;
+}
