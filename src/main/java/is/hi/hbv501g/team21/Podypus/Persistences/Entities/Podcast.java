@@ -1,10 +1,14 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "channel")
+@XmlRootElement(name = "rss")
 @Entity
 @Table(name = "podcasts")
 public class Podcast {
@@ -13,31 +17,60 @@ public class Podcast {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String copyright;
-    private String styleSheet;
-    private String link;
-    private String description;
-    private String language;
     private String title;
+    private String pubDate;
+    private String lastBuildDate;
+    private String generator;
+    private String link;
+    private String language;
+    private String copyright;
+    private String docs;
+    private String managingEditor;
+    private String description;
+    //itunes prefix
+    private String summary;
+    private String[] categoryText;
     private String imageUrl;
-    private String author;
-    private List<String> authors;
-    private List<Episode> episodeList;
+    private String explicit;
+    private String ownerName;
+    private String ownerEmail;
+    @OneToMany(
+            mappedBy = "podcast",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Episode> episodeList = new ArrayList<>();
 
-    public String getCopyright() {
-        return copyright;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getStyleSheet() {
-        return styleSheet;
+    public String getPubDate() {
+        return pubDate;
     }
 
-    public void setStyleSheet(String styleSheet) {
-        this.styleSheet = styleSheet;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
+
+    public String getLastBuildDate() {
+        return lastBuildDate;
+    }
+
+    public void setLastBuildDate(String lastBuildDate) {
+        this.lastBuildDate = lastBuildDate;
+    }
+
+    public String getGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(String generator) {
+        this.generator = generator;
     }
 
     public String getLink() {
@@ -48,14 +81,6 @@ public class Podcast {
         this.link = link;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLanguage() {
         return language;
     }
@@ -64,12 +89,52 @@ public class Podcast {
         this.language = language;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCopyright() {
+        return copyright;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
+    public String getDocs() {
+        return docs;
+    }
+
+    public void setDocs(String docs) {
+        this.docs = docs;
+    }
+
+    public String getManagingEditor() {
+        return managingEditor;
+    }
+
+    public void setManagingEditor(String managingEditor) {
+        this.managingEditor = managingEditor;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String[] getCategoryText() {
+        return categoryText;
+    }
+
+    public void setCategoryText(String[] categoryText) {
+        this.categoryText = categoryText;
     }
 
     public String getImageUrl() {
@@ -80,27 +145,36 @@ public class Podcast {
         this.imageUrl = imageUrl;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getExplicit() {
+        return explicit;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setExplicit(String explicit) {
+        this.explicit = explicit;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
     }
 
     public List<Episode> getEpisodeList() {
         return episodeList;
     }
 
+    @XmlElement(name="item")
     public void setEpisodeList(List<Episode> episodeList) {
         this.episodeList = episodeList;
-    }
-
-    public List<String> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
     }
 }

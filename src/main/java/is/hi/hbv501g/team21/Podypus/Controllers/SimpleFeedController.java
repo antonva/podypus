@@ -43,6 +43,7 @@ public class SimpleFeedController {
             List<SearchItem> si = s.getResults();
             Podcast p = rssService.parseFeed(si.get(0).getFeedUrl());
             model.addAttribute("results", s);
+            model.addAttribute("podcast", p);
         }
         return "Feed";
     }

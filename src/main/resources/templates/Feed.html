@@ -28,5 +28,16 @@
             </div>
         </div>
     </div>
+
+    <div th:if="${podcast != null}">
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${podcast.getTitle()}"></h1>
+                <p class="lead" th:text="${podcast.getSummary()}"></p>
+                <hr class="my-4">
+                <p th:text="${podcast.getDescription()}"></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
