@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "rss")
+@XmlRootElement(name = "channel")
 @Entity
 @Table(name = "podcasts")
 public class Podcast {
