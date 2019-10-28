@@ -175,3 +175,4 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.gitignore.io/api/git,java,maven,intellij
+/tags

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class PodcastServiceImplementation implements PodcastService {
 
-    private PodcastRepository repository;
+        private PodcastRepository repository;
 
     @Autowired
     public PodcastServiceImplementation(PodcastRepository podcastRepository) {
