@@ -18,9 +18,9 @@ import javax.validation.Valid;
 public class HomeController {
 
     private PodcastService podcastService;
+
     @Autowired
     public HomeController(PodcastService podcastService) {
-
         this.podcastService = podcastService;
     }
 
@@ -37,8 +37,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
-        public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
-        if(result.hasErrors()) {
+    public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             //model.addAttribute("error");
             return "add-podcast";
         }
@@ -60,3 +60,4 @@ public class HomeController {
         return "Home";
     }
 }
+
