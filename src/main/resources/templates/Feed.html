@@ -36,6 +36,9 @@
                 <p class="lead" th:text="${podcast.getSummary()}"></p>
                 <hr class="my-4">
                 <p th:text="${podcast.getDescription()}"></p>
+                <ul class="list-group" th:each="ep : ${podcast.getEpisodeList()}">
+                    <li class="list-group-item" th:text="${ep.getTitle()}"></li>
+                </ul>
             </div>
         </div>
     </div>

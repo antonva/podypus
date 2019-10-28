@@ -44,6 +44,7 @@ public class SimpleFeedController {
             Podcast p = rssService.parseFeed(si.get(0).getFeedUrl());
             model.addAttribute("results", s);
             model.addAttribute("podcast", p);
+            System.out.println(p.toString());
         }
         return "Feed";
     }

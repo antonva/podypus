@@ -177,4 +177,31 @@ public class Podcast {
     public void setEpisodeList(List<Episode> episodeList) {
         this.episodeList = episodeList;
     }
+
+    @Override
+    public String toString() {
+        int i = this.episodeList.size();
+        String s = "Title: " + this.title + "\n" +
+                "Number of episodes: " + i + "\n" +
+                "Publication Date: " + this.pubDate + "\n" +
+                "Last Build Date: " + this.lastBuildDate + "\n" +
+                "Generator: " + this.generator + "\n" +
+                "Link: " + this.link + "\n" +
+                "Language: " + this.language + "\n" +
+                "Copyright: " + this.copyright + "\n" +
+                "Docs: " + this.docs + "\n" +
+                "Managing Editor: " + this.managingEditor + "\n" +
+                "Description: " + this.description + "\n" +
+                "Image Url: " + this.imageUrl + "\n" +
+                "Explicit: " + this.explicit + "\n" +
+                "Owner Name: " + this.ownerName + "\n" +
+                "Owner Email: " + this.ownerEmail + "\n" +
+                "Categories:\n";
+        if (this.categoryText != null) {
+            for (String t : this.categoryText) {
+                s = s + "\t" + t + "\n";
+            }
+        }
+        return s;
+    }
 }
