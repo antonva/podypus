@@ -6,31 +6,44 @@
     <title>Podypus - a podcast player</title>
 </head>
 <body>
-<div th:fragment="search">
-    <div class="container">
-        <br/>
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg 8">
-                <form class="card card-sm">
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
+    <div th:fragment="search">
+        <div class="container">
+            <br/>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg 8">
+                    <form class="card card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fas fa-search h4 text-body"></i>
+                            </div>
+                            <div class="col">
+                                <input id="searchTxt" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for podcast">
+                            </div>
+                            <div class="col-auto">
+                                <button id="searchBtn" class="btn btn-lg btn-success" type="submit">Search</button>
+                            </div>
                         </div>
-                        <div class="col">
-                            <input id="searchTxt" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for podcast">
-                        </div>
-                        <div class="col-auto">
-                            <button id="searchBtn" class="btn btn-lg btn-success" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div th:fragment="searchResults">
-
-</div>
+    <th:block th:fragment="searchResults">
+        <div th:if="${results != null}">
+            <h1 th:text="${results.getResultCount()}">0</h1>
+            <div class="container" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);" th:if="${results != null}">
+                <div class="card" th:each="item: ${results.getResults()}">
+                    <img class="card-img-top" th:src="${item.getArtworkUrl600()}" />
+                    <div class="card-body">
+                        <div class="card-title" th:text="${item.getCollectionName() }">Podcast Name</div>
+                        <div class="card-subtitle" th:text="${item.getArtistName() }">Artist Name</div>
+                        <div class="card-subtitle" th:text="${item.getReleaseDate() }">Last updated</div>
+                        <a class="card-link btn btn-light" th:href="${item.getFeedUrl()}">RSS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
 </body>
 </html>
