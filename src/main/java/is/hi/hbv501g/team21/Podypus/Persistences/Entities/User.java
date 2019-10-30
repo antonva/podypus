@@ -11,17 +11,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String userName;
+    private String username;
     @Email
     private String email;
     private String password;
-    //private String passwordConfirm;
 
     public User() {
     }
 
-    public User(String userName, String email, String password) {
-        this.userName = userName;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -32,9 +31,9 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() { return this.userName; }
+    public String getUsername() { return this.username; }
 
-    public void setName(String name) {this.userName = name;}
+    public void setName(String name) {this.username = name;}
 
     public String getEmail() {return email;}
 
@@ -47,13 +46,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    /*@Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }*/
 }

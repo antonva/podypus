@@ -28,12 +28,12 @@ public class UserController {
         return "Login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
         return "Login";
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
+    @RequestMapping(value="/login/signup", method = RequestMethod.POST)
     public String signUpPOST(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "Login";
@@ -46,7 +46,7 @@ public class UserController {
         //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/get-user", method = RequestMethod.GET)
     public String loginGET(User user){
         return "login";
     }
@@ -65,7 +65,7 @@ public class UserController {
         return "redirect:/";
     }
     //birta profile fyrir notanda sem er loggaður inn
-    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         //model.addAttribute("users", userService.findAll());
         User sessionUser = (User) session.getAttribute("LoggedInUser");
