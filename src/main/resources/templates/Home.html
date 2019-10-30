@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Podypus - Home</title>
-        <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-        <link rel="stylesheet"  href="../static/css/homeStyle.css" th:href="@{/css/homeStyle.css}" />
-    </head>
-    <body>
-        <nav class="myNav navbar navbar-expand-sm navbar-dark">
-            <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-            </ul>
-        </nav>
-        <div th:switch="${podcasts}">
-        <h2 th:case="null">No podcasts yet!</h2>
-        <div th:case="*">
-            <h2>Podcasts</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Rating</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="podcast : ${podcasts}">
-                    <td th:text="${podcast.title}"></td>
-                    <td th:text="${podcast.description}"></td>
-                    <td th:text="${podcast.rating}"></td>
-                    <td><a th:href="@{/delete/{id}(id=${podcast.id})}">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <a href="/addpodcast"><button class="btn">Add a new podcast</button></a></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Podypus - Home</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/homeStyle.css" th:href="@{/css/homeStyle.css}"/>
+</head>
+<script type="text/javascript" src="../scripts/home.js"></script>
+<body>
+<nav class="myNav navbar navbar-expand-sm navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+    </ul>
+</nav>
+<div th:switch="${podcasts}">
+    <h2 th:case="null">No podcasts yet!</h2>
+    <div th:case="*">
+        <h2>Podcasts</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="card-body" th:each="podcast : ${podcasts}">
+                <td><img class="card-img-top" th:src="${podcast.getImageUrl()}" /></td>
+                <td class="card-title" th:text="${podcast.getTitle() }">Podcast Name</td>
+                <td class="card-subtitle" th:text="${podcast.getGenerator()}">Artist Name</td>
+                <td class="card-subtitle" th:text="${podcast.getPubDate()}"></td>
+                <td><a th:href="@{/delete/{id}(id=${podcast.getId()})}">Unsubscribe</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    </body>
+    <a href="/feed">
+        <button class="btn">Add a new podcast</button>
+    </a>
+</div>
+</body>
 </html>

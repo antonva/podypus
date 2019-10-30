@@ -14,6 +14,9 @@
         <button type="submit" class="btn-primary">Submit</button>
     </form>
 
+    <a href="/">Back to Home</a>
+
+    <!--
     <div th:if="${results != null}">
         <h1 th:text="${results.getResultCount()}">0</h1>
         <div class="container" style="width:30%; display: grid; grid-template-columns: repeat(3, 1fr);" th:if="${results != null}">
@@ -28,17 +31,22 @@
             </div>
         </div>
     </div>
+    -->
 
     <div th:if="${podcast != null}">
         <div class="container">
             <div class="jumbotron">
+                <img class="image" th:src="${podcast.getImageUrl()}"/>
                 <h1 class="display-4" th:text="${podcast.getTitle()}"></h1>
                 <p class="lead" th:text="${podcast.getSummary()}"></p>
                 <hr class="my-4">
                 <p th:text="${podcast.getDescription()}"></p>
+                <!--
                 <ul class="list-group" th:each="ep : ${podcast.getEpisodeList()}">
                     <li class="list-group-item" th:text="${ep.getTitle()}"></li>
                 </ul>
+                -->
+                <p th:text="${podcast.getEpisodeList()[0].getTitle()}"></p>
             </div>
         </div>
     </div>

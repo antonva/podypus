@@ -17,6 +17,10 @@ public class Podcast {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    public long getId() {
+        return id;
+    }
+
     private String title;
     private String pubDate;
     private String lastBuildDate;
