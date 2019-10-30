@@ -9,7 +9,7 @@
     <head>
         <title>Postit Notes</title>
 
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/postitnote.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/src/main/static/css/postitnote.css"/>"/>
     </head>
     <body>
 

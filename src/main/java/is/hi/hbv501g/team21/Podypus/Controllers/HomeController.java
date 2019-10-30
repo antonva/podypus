@@ -27,7 +27,7 @@ public class HomeController {
     @RequestMapping("/")
     public String Home(Model model) {
         model.addAttribute("podcasts", podcastService.findAll());
-        return "Home";
+        return "Index";
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.GET)
