@@ -1,4 +1,4 @@
-package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
+/*package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
@@ -32,3 +32,4 @@ public class PodcastOwner {
     }
 
 }
+*/

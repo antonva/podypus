@@ -1,9 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchItem;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
 import is.hi.hbv501g.team21.Podypus.Services.SearchService;
@@ -54,7 +51,12 @@ public class SimpleFeedController {
             p = rssService.parseManyFeeds(si);
             model.addAttribute("results", s);
             if (!p.isEmpty()) {
-                System.out.println(p.get(0).toString());
+                Podcast px = p.get(0);
+                System.out.println(px.toString());
+                if (!p.get(0).getEpisodeList().isEmpty()) {
+                    Episode ex = px.getEpisodeList().get(0);
+                    System.out.println(ex.toString());
+                }
             }
         }
         return "Feed";

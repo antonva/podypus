@@ -5,6 +5,11 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entity class for a podcast channel
+ * Created with JAXB & stored in a repository
+ */
+//TODO: Refactor to 'Channel'
 @XmlRootElement(name = "channel")
 @Entity
 @Table(name = "podcasts")
@@ -13,9 +18,11 @@ public class Podcast {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    public long getId() {return id;}
 
     private String atomNs = "http://www.w3.org/2005/Atom\n";
     private String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
+
     private String title;
     private String pubDate;
     private String lastBuildDate;
@@ -33,8 +40,8 @@ public class Podcast {
     private String explicit;
     //@OneToOne
     //private PodcastOwner owner;
-    @OneToOne
-    private PodcastImage image;
+    //@OneToOne
+    //private PodcastImage image;
     @OneToMany(
             mappedBy = "podcast",
             cascade = CascadeType.ALL,
@@ -166,7 +173,7 @@ public class Podcast {
     public void setExplicit(String explicit) {
         this.explicit = explicit;
     }
-
+    /*
     public PodcastImage getImage() {
         return image;
     }
@@ -174,7 +181,7 @@ public class Podcast {
     public void setImage(PodcastImage image) {
         this.image = image;
     }
-
+    */
     public List<Episode> getEpisodeList() {
         return episodeList;
     }
@@ -202,8 +209,8 @@ public class Podcast {
                 "Explicit: " + this.explicit + "\n" +
                 //"Owner Name: " + this.owner.getName() + "\n" +
                 //"Owner Email: " + this.owner.getEmail() + "\n" +
-                "Image title: " + this.image.getTitle() + "\n" +
-                "Image url: " + this.image.getUrl() + "\n" +
+                //"Image title: " + this.image.getTitle() + "\n" +
+                //"Image url: " + this.image.getUrl() + "\n" +
                 "Categories:\n";
         if (this.categoryText != null) {
             for (String t : this.categoryText) {
