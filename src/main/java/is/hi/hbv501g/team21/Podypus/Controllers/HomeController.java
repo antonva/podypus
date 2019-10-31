@@ -60,5 +60,11 @@ public class HomeController {
         model.addAttribute("podcasts", podcastService.findAll());
         return "Home";
     }
+
+    @RequestMapping("/home")
+    public String homeTest(Model model){
+        model.addAttribute("podcasts", podcastService.findAll());
+        return "Home";
+    }
 }
 

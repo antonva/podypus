@@ -1,0 +1,19 @@
+/*The style guide for the navbar*/
+.myNav{
+    background: #78BAAC;
+}
+
+.btn {
+    color: black;
+    background-color: #78BAAC;
+
+}
+
+.btn:hover {
+    background-color: #4B818D ;
+}
+
+.btn a {
+    text-decoration: none;
+    text-decoration: red;
+}

@@ -1,28 +1,4 @@
-body {
-    background: #D1E5E3;
-    color:black;
-}
-
-.myNav{
-    background: #78BAAC;
-}
-
-
-.btn {
-    color: black;
-    background-color: #78BAAC;
-
-}
-
-.btn:hover {
-    background-color: #4B818D ;
-}
-
-.btn a {
-    text-decoration: none;
-    text-decoration: red;
-}
-
+/*Styleguide for the core website*/
 .form-control-borderless {
     border: none;
 }

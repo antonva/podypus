@@ -1,3 +1,4 @@
+<!--Search bar fragment html-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -13,9 +14,10 @@
                 <div class="col-12 col-md-10 col-lg 8">
                     <form class="card card-sm">
                         <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
+                            <!--Image dissapears when navbar added, feature will be fixed later-->
+                            <!--<div class="col-auto">
                                 <i class="fas fa-search h4 text-body"></i>
-                            </div>
+                            </div>-->
                             <div class="col">
                                 <input id="searchTxt" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search for podcast">
                             </div>
@@ -43,6 +45,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div th:unless="${results == null}">
+            <h3>No results</h3>
         </div>
     </th:block>
 </body>
