@@ -21,10 +21,10 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Rating</th>
-                <th>Delete</th>
+                <th>Podcast Name</th>
+                <th>Artist Name</th>
+                <th>Last Updated</th>
+                <th>Unsubscribe</th>
             </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 <td><img class="card-img-top" th:src="${podcast.getImageUrl()}" /></td>
                 <td class="card-title" th:text="${podcast.getTitle() }">Podcast Name</td>
                 <td class="card-subtitle" th:text="${podcast.getGenerator()}">Artist Name</td>
-                <td class="card-subtitle" th:text="${podcast.getPubDate()}"></td>
+                <td class="card-subtitle" th:text="${podcast.getPubDate()}">Last Updated</td>
                 <td><a th:href="@{/delete/{id}(id=${podcast.getId()})}">Unsubscribe</a></td>
             </tr>
             </tbody>
