@@ -29,6 +29,7 @@ public class RssServiceImplementation implements RssService {
                 StringReader rdr = new StringReader(response.getBody());
                 JAXBContext ctx = JAXBContext.newInstance(Rss.class);
                 Unmarshaller unmarshaller = ctx.createUnmarshaller();
+                //unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
                 Rss r = (Rss) unmarshaller.unmarshal(rdr);
 
                 return r.podcast;
