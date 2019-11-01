@@ -1,13 +1,15 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entity class for a podcast channel
+ * Created with JAXB & stored in a repository
+ */
+//TODO: Refactor to 'Channel'
 @XmlRootElement(name = "channel")
 @Entity
 @Table(name = "podcasts")
@@ -16,6 +18,10 @@ public class Podcast {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    public long getId() {return id;}
+
+    private String atomNs = "http://www.w3.org/2005/Atom\n";
+    private String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
 
     private String title;
     private String pubDate;
@@ -32,8 +38,10 @@ public class Podcast {
     private String[] categoryText;
     private String imageUrl;
     private String explicit;
-    private String ownerName;
-    private String ownerEmail;
+    //@OneToOne
+    //private PodcastOwner owner;
+    //@OneToOne
+    //private PodcastImage image;
     @OneToMany(
             mappedBy = "podcast",
             cascade = CascadeType.ALL,
@@ -125,6 +133,7 @@ public class Podcast {
         return summary;
     }
 
+    @XmlElement(name = "itunes:summary")
     public void setSummary(String summary) {
         this.summary = summary;
     }
@@ -141,6 +150,7 @@ public class Podcast {
         return imageUrl;
     }
 
+    @XmlElement(name = "itunes:image")
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -149,26 +159,29 @@ public class Podcast {
         return explicit;
     }
 
+    //public PodcastOwner getOwner() {
+    //    return owner;
+    //}
+
+    //@XmlElement(namespace = "itunes", name = "owner")
+    //public void setOwner(PodcastOwner owner) {
+    //    this.owner = owner;
+    //}
+
+
+    @XmlElement(namespace = "itunes", name = "explicit")
     public void setExplicit(String explicit) {
         this.explicit = explicit;
     }
-
-    public String getOwnerName() {
-        return ownerName;
+    /*
+    public PodcastImage getImage() {
+        return image;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setImage(PodcastImage image) {
+        this.image = image;
     }
-
-    public String getOwnerEmail() {
-        return ownerEmail;
-    }
-
-    public void setOwnerEmail(String ownerEmail) {
-        this.ownerEmail = ownerEmail;
-    }
-
+    */
     public List<Episode> getEpisodeList() {
         return episodeList;
     }
@@ -194,8 +207,10 @@ public class Podcast {
                 "Description: " + this.description + "\n" +
                 "Image Url: " + this.imageUrl + "\n" +
                 "Explicit: " + this.explicit + "\n" +
-                "Owner Name: " + this.ownerName + "\n" +
-                "Owner Email: " + this.ownerEmail + "\n" +
+                //"Owner Name: " + this.owner.getName() + "\n" +
+                //"Owner Email: " + this.owner.getEmail() + "\n" +
+                //"Image title: " + this.image.getTitle() + "\n" +
+                //"Image url: " + this.image.getUrl() + "\n" +
                 "Categories:\n";
         if (this.categoryText != null) {
             for (String t : this.categoryText) {

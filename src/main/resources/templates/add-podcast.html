@@ -19,5 +19,8 @@
     <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
     <input type="submit" value="Add Podcast">
 </form>
+<div th:if="${error}">
+    <h3>Error</h3>
+</div>
 </body>
 </html>
