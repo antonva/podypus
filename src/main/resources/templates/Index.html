@@ -6,6 +6,8 @@
         <!--Css-->
         <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.min.css" />
+        <link rel="stylesheet" href="/static/css/playerStyle.css"/>
+        <link rel="stylesheet" href="/static/css/navbarStyle.css"/>
         <link rel="stylesheet" href="/static/css/homeStyle.css"/>
         <!--Js-->
         <script type="text/javascript" src="/static/js/src/podypus.js"></script>
@@ -18,5 +20,7 @@
         <nav th:insert="fragments/Nav.html" :: navbar></nav>
         <search th:insert="fragments/Search.html :: search"></search>
         <searchResults th:insert="fragments/Search.html :: searchResults"></searchResults>
+        <!--Delete comment brackets below to see changes-->
+        <!--<div th:insert="fragments/player.html :: player"></div>-->
     </body>
 </html>
