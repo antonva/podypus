@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "users")
@@ -10,28 +11,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String userName;
+    private String username;
+    @Email
     private String email;
     private String password;
 
-    public User(){
+    public User() {
     }
 
-    public User(String userName, String email, String password){
-        this.userName = userName;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public long getId(){return id;}
+    public long getId() {return id;}
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() { return this.userName; }
+    public String getUsername() { return this.username; }
 
-    public void setName(String name) {this.userName = name;}
+    public void setUsername(String username) {this.username = username;}
 
     public String getEmail() {return email;}
 
