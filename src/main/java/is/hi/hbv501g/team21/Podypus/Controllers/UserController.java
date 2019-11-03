@@ -39,12 +39,14 @@ public class UserController {
             return "Login";
         }
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
-        //System.out.println(user.getEmail());
-        //System.out.println(exists.getEmail());
         if (exists == null) {
-            userService.save(user); //Virkar ekki, user alltaf null.
+            userService.save(user);
+            return "Home";
         }
-        return "Home";
+        if (exists != null) {
+            result.rejectValue("email", null, "There is already an account registered with that email");
+        }
+        return "Login";
         //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
     }
 
@@ -77,6 +79,7 @@ public class UserController {
         }
         return "redirect:/";
     }
+    //aðferð til að testa signup
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String usersGET(Model model){
         model.addAttribute("users", userService.findAll());
