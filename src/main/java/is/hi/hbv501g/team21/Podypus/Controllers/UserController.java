@@ -28,58 +28,60 @@ public class UserController {
         return "Login";
     }
 
-    @RequestMapping(value = "/login/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
         return "Login";
     }
 
-    @RequestMapping(value="/login/signup", method = RequestMethod.POST)
+    @RequestMapping(value="/signup", method = RequestMethod.POST)
     public String signUpPOST(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "Login";
         }
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
-        if (exists != null) {
-            userService.save(user);
+        System.out.println(user.getEmail());
+        System.out.println(exists.getEmail());
+        if (exists == null) {
+            userService.save(user); //Virkar ekki, user alltaf null.
         }
-        return "Login";
+        return "Home";
         //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
     }
 
     @RequestMapping(value = "/login/get-user", method = RequestMethod.GET)
     public String loginGET(User user){
-        return "login";
+        return "Login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(@Valid User user, BindingResult result, Model model, HttpSession session){
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "Login";
         }
         //model.addAttribute("users", userService.findAll());
         User exists = userService.loginUser(user);
-        if (exists != null){
+        if (exists != null) {
             session.setAttribute("LoggedInUser", user);
-            return "redirect:/";
+            return "redirect:/login/profile";
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model){
         //model.addAttribute("users", userService.findAll());
         User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if(sessionUser  != null){
+        if (sessionUser != null){
             model.addAttribute("loggedinuser", sessionUser);
             return "UserProfile";
         }
         return "redirect:/";
     }
-    /*@RequestMapping(value="/login", method=RequestMethod.POST)
-    public String loginSubmit(@ModelAttribute User userInfo, Model model) {
-        model.addAttribute("user", userInfo);
-        return "InfoResult";
-    }*/
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String usersGET(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "Users";
+    }
 }
 
 //TODO ViewUserProfile Method

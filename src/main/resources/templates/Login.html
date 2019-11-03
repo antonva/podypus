@@ -1,28 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" />
     <title>Welcome to Podypus</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <h1>User SignUp</h1>
-<form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input type="text" th:field="*{id}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p>E-mail: <input type="text" th:field="*{email}" /></p>
-    <p><input type="submit" value="Submit" /></p>
+<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+    <p>Username: <input placeholder="Choose username" type="text" name="username" th:field="*{username}" /></p>
+    <p>Password: <input placeholder="Password" type="password" name="password" th:value="*{password}" /></p>
+    <p>E-mail: <input placeholder="E-mail Address" type="text" th:value="*{email}" /></p>
+    <p><input type="submit" value="Sign up" /></p>
 </form>
 <h1>User Login</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input type="text" th:field="*{id}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p>Username: <input placeholder="Username" type="text" th:field="*{username}" /></p>
+    <p>Password: <input placeholder="Password" type="password" th:value="*{password}" /></p>
+    <p><input type="submit" value="Login" /></p>
 </form>
 <h1>Change User Password</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input type="text" th:field="*{id}" /></p>
-    <p>E-mail: <input type="text" th:field="*{email}" /></p>
+    <p>Username: <input placeholder="Username" type="text" th:field="*{username}" /></p>
+    <p>E-mail: <input placeholder="E-mail Address" type="text" th:value="*{email}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
