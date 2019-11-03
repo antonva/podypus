@@ -33,7 +33,7 @@ public class User {
 
     public String getUsername() { return this.username; }
 
-    public void setName(String name) {this.username = name;}
+    public void setUsername(String username) {this.username = username;}
 
     public String getEmail() {return email;}
 
