@@ -35,13 +35,15 @@
         <div th:if="${results != null}">
             <h1 th:text="${results.getResultCount()}">0</h1>
             <div class="container" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);" th:if="${results != null}">
-                <div class="card" th:each="item: ${results.getResults()}">
+                <div class="card" th:each="item, iterStat: ${results.getResults()}">
                     <img class="card-img-top" th:src="${item.getArtworkUrl600()}" />
                     <div class="card-body">
                         <div class="card-title" th:text="${item.getCollectionName() }">Podcast Name</div>
                         <div class="card-subtitle" th:text="${item.getArtistName() }">Artist Name</div>
                         <div class="card-subtitle" th:text="${item.getReleaseDate() }">Last updated</div>
                         <a class="card-link btn btn-light" th:href="${item.getFeedUrl()}">RSS</a>
+                        <a class="card-link btn btn-light"
+                           th:href="@{/subscribe/{nr}(nr=${iterStat.index})}">Subscribe</a>
                     </div>
                 </div>
             </div>
