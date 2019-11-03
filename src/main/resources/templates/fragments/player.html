@@ -1,0 +1,24 @@
+<!--Thymeleaf player fragment-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div th:fragment="player">
+            <div class="playerContent">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="top">
+                        <h2>demosong</h2>
+                        <p>demo artist</p>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <audio name="media" _autoplay="false" controls=""><source type="audio/mpeg"></audio>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

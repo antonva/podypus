@@ -1,24 +1,10 @@
-body {
-    background: #D1E5E3;
-    color:black;
+/*Styleguide for the core website*/
+.form-control-borderless {
+    border: none;
 }
 
-.myNav{
-    background: #78BAAC;
-}
-
-
-.btn {
-    color: black;
-    background-color: #78BAAC;
-
-}
-
-.btn:hover {
-    background-color: #4B818D ;
-}
-
-.btn a {
-    text-decoration: none;
-    text-decoration: red;
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
 }

@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class HomeController {
     @RequestMapping("/")
     public String Home(Model model) {
         model.addAttribute("podcasts", podcastService.findAll());
-        return "Home";
+        return "Index";
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.GET)
@@ -56,6 +57,12 @@ public class HomeController {
         );
         podcastService.delete(podcast);
 
+        model.addAttribute("podcasts", podcastService.findAll());
+        return "Home";
+    }
+
+    @RequestMapping("/home")
+    public String homeTest(Model model){
         model.addAttribute("podcasts", podcastService.findAll());
         return "Home";
     }

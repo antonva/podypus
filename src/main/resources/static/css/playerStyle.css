@@ -1,0 +1,41 @@
+/*The player stylesheet*/
+
+.playerContent{
+    z-index: 10;
+    min-height: 80px;
+    max-height: 80px;
+    display: flex;
+    flex-direction: row;
+    background: black;
+    color: white;
+}
+
+.playerContent .left{
+    display: flex;
+    width: 80px;
+    height:80px;
+    background-size: cover;
+    background-image: url(https://i.scdn.co/image/9ca53beeb365f468b023a8360634f309325b5487);
+}
+
+.playerContent .right {
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.playerContent .right .top {
+    display:flex;
+    flex-direction:column;
+    padding-left: 10px;
+}
+
+.playerContent .bottom {
+    display: flex;
+    flex-grow: 1;
+}
+
+.playerContent .bottom audio {
+    height: 75%;
+    width: 100%;
+}
