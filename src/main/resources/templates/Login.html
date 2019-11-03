@@ -10,18 +10,18 @@
 <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
     <p>Username: <input placeholder="Choose username" type="text" name="username" th:field="*{username}" /></p>
     <p>Password: <input placeholder="Password" type="password" name="password" th:value="*{password}" /></p>
-    <p>E-mail: <input placeholder="E-mail Address" type="text" th:value="*{email}" /></p>
+    <p>E-mail: <input placeholder="E-mail Address" type="text" th:field="*{email}" /></p>
     <p><input type="submit" value="Sign up" /></p>
 </form>
 <h1>User Login</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input placeholder="Username" type="text" th:field="*{username}" /></p>
+    <p>E-mail: <input placeholder="E-mail address" type="text" th:field="*{email}" /></p> <!--username ekki email?-->
     <p>Password: <input placeholder="Password" type="password" th:value="*{password}" /></p>
     <p><input type="submit" value="Login" /></p>
 </form>
 <h1>Change User Password</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input placeholder="Username" type="text" th:field="*{username}" /></p>
+    <p>Username: <input placeholder="Username" type="text" id="cusername" th:field="*{username}" /></p>
     <p>E-mail: <input placeholder="E-mail Address" type="text" th:value="*{email}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>

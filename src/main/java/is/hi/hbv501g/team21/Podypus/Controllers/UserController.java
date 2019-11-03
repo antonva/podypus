@@ -34,13 +34,13 @@ public class UserController {
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
-    public String signUpPOST(@Valid User user, BindingResult result, Model model) {
+    public String signUpPOST(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "Login";
         }
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
-        System.out.println(user.getEmail());
-        System.out.println(exists.getEmail());
+        //System.out.println(user.getEmail());
+        //System.out.println(exists.getEmail());
         if (exists == null) {
             userService.save(user); //Virkar ekki, user alltaf null.
         }

@@ -45,7 +45,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User loginUser(User user) {
-        User exists = findByUsername(user.getUsername());
+        User exists = findByEmail(user.getEmail());
         if (exists != null) {
             if (exists.getPassword().equals(user.getPassword())) {
                 return user;
