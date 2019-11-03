@@ -2,11 +2,11 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import java.util.List;
 
-public class ItunesSearchResult {
+public class SearchResult {
     private String resultCount;
-    private List<ItunesSearchItem> results;
+    private List<SearchItem> results;
 
-    public ItunesSearchResult() {
+    public SearchResult() {
         super();
     }
 
@@ -18,11 +18,11 @@ public class ItunesSearchResult {
         this.resultCount = resultCount;
     }
 
-    public List<ItunesSearchItem> getResults() {
+    public List<SearchItem> getResults() {
         return results;
     }
 
-    public void setResults(List<ItunesSearchItem> results) {
+    public void setResults(List<SearchItem> results) {
         this.results = results;
     }
 }
