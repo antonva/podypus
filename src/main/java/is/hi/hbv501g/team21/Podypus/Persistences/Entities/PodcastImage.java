@@ -1,4 +1,4 @@
-/*package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
+package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 
@@ -29,4 +29,3 @@ public class PodcastImage {
         this.title = title;
     }
 }
-*/

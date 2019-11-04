@@ -20,8 +20,8 @@ public class Podcast {
     private long id;
     public long getId() {return id;}
 
-    private String atomNs = "http://www.w3.org/2005/Atom\n";
-    private String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
+    private final String atomNs = "http://www.w3.org/2005/Atom\n";
+    private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
 
     private String title;
     private String pubDate;
@@ -35,13 +35,24 @@ public class Podcast {
     private String description;
     //itunes prefix
     private String summary;
-    private String[] categoryText;
     private String imageUrl;
     private String explicit;
+    private String type;
+    private String keywords;
+
+
     //@OneToOne
     //private PodcastOwner owner;
-    //@OneToOne
-    //private PodcastImage image;
+    @OneToOne
+    private PodcastImage image;
+
+    @OneToMany(
+            mappedBy = "podcast",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ChannelCategory> category;
+
     @OneToMany(
             mappedBy = "podcast",
             cascade = CascadeType.ALL,
@@ -138,19 +149,11 @@ public class Podcast {
         this.summary = summary;
     }
 
-    public String[] getCategoryText() {
-        return categoryText;
-    }
-
-    public void setCategoryText(String[] categoryText) {
-        this.categoryText = categoryText;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
 
-    @XmlElement(name = "itunes:image")
+    @XmlElement(namespace = itunesNs, name = "image")
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -159,7 +162,15 @@ public class Podcast {
         return explicit;
     }
 
-    //public PodcastOwner getOwner() {
+    public List<ChannelCategory> getCategory() {
+        return category;
+    }
+
+    @XmlElement(namespace = itunesNs, name = "category")
+    public void setCategory(List<ChannelCategory> category) {
+        this.category = category;
+    }
+//public PodcastOwner getOwner() {
     //    return owner;
     //}
 
@@ -169,11 +180,21 @@ public class Podcast {
     //}
 
 
-    @XmlElement(namespace = "itunes", name = "explicit")
+    @XmlElement(namespace = itunesNs, name = "explicit")
     public void setExplicit(String explicit) {
         this.explicit = explicit;
     }
-    /*
+
+    public String getType() {
+        return type;
+    }
+
+    @XmlElement(namespace = itunesNs, name = "type")
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
     public PodcastImage getImage() {
         return image;
     }
@@ -181,7 +202,7 @@ public class Podcast {
     public void setImage(PodcastImage image) {
         this.image = image;
     }
-    */
+
     public List<Episode> getEpisodeList() {
         return episodeList;
     }
@@ -189,6 +210,15 @@ public class Podcast {
     @XmlElement(name="item")
     public void setEpisodeList(List<Episode> episodeList) {
         this.episodeList = episodeList;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    @XmlElement(namespace = itunesNs, name = "keywords")
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
     @Override
@@ -211,10 +241,18 @@ public class Podcast {
                 //"Owner Email: " + this.owner.getEmail() + "\n" +
                 //"Image title: " + this.image.getTitle() + "\n" +
                 //"Image url: " + this.image.getUrl() + "\n" +
-                "Categories:\n";
-        if (this.categoryText != null) {
-            for (String t : this.categoryText) {
-                s = s + "\t" + t + "\n";
+                "Type: " + this.type + "\n";
+        if (this.category != null) {
+            s = s + "Categories:\n";
+            for (ChannelCategory t : this.category) {
+                s = s + "\t" + t.text + "\n";
+            }
+        }
+        if (this.keywords != null) {
+            s = s + "Keywords:\n";
+            String[] kwarr  = this.keywords.split(",");
+            for (String kw : kwarr) {
+                s = s + "\t" + kw + "\n";
             }
         }
         return s;

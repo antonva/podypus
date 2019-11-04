@@ -1,5 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchItem;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SearchController {
@@ -29,15 +33,20 @@ public class SearchController {
     public String searchForPodcast(Model model) {
         return "fragments/Search";
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public @ResponseBody ModelAndView searchForPodcast(@Valid @RequestBody SearchQuery query, BindingResult result, Model model) {
         ModelAndView mav = new ModelAndView("fragments/Search :: searchResults");
         SearchResult s = new SearchResult();
+
         if (result.hasErrors()) {
             //TODO: Better error handling.
             System.out.println("Error in search.");
         } else {
             s = searchService.searchByTitle(query.getTerm());
+            List<Podcast> p = rssService.parseManyFeeds(s.getResults());
+            System.out.println(p.get(0));
+
             mav.addObject("results", s);
         }
         return mav;
