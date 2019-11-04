@@ -20,8 +20,8 @@ public class Podcast {
     private long id;
     public long getId() {return id;}
 
-    private final String atomNs = "http://www.w3.org/2005/Atom\n";
-    private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
+    private final String atomNs = "http://www.w3.org/2005/Atom";
+    private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
     private String title;
     private String pubDate;
@@ -41,8 +41,8 @@ public class Podcast {
     private String keywords;
 
 
-    //@OneToOne
-    //private PodcastOwner owner;
+    @OneToOne
+    private PodcastOwner owner;
     @OneToOne
     private PodcastImage image;
 
@@ -96,6 +96,7 @@ public class Podcast {
         return link;
     }
 
+    @XmlAttribute(namespace = atomNs, name = "href")
     public void setLink(String link) {
         this.link = link;
     }
@@ -144,7 +145,7 @@ public class Podcast {
         return summary;
     }
 
-    @XmlElement(name = "itunes:summary")
+    @XmlElement(namespace = itunesNs, name = "summary")
     public void setSummary(String summary) {
         this.summary = summary;
     }
@@ -170,14 +171,14 @@ public class Podcast {
     public void setCategory(List<ChannelCategory> category) {
         this.category = category;
     }
-//public PodcastOwner getOwner() {
-    //    return owner;
-    //}
+    public PodcastOwner getOwner() {
+        return owner;
+    }
 
-    //@XmlElement(namespace = "itunes", name = "owner")
-    //public void setOwner(PodcastOwner owner) {
-    //    this.owner = owner;
-    //}
+    @XmlElement(namespace = itunesNs, name = "owner")
+    public void setOwner(PodcastOwner owner) {
+        this.owner = owner;
+    }
 
 
     @XmlElement(namespace = itunesNs, name = "explicit")
@@ -237,8 +238,9 @@ public class Podcast {
                 "Description: " + this.description + "\n" +
                 "Image Url: " + this.imageUrl + "\n" +
                 "Explicit: " + this.explicit + "\n" +
-                //"Owner Name: " + this.owner.getName() + "\n" +
-                //"Owner Email: " + this.owner.getEmail() + "\n" +
+                "Summary: " + this.summary + "\n" +
+                "Owner Name: " + this.owner.getName() + "\n" +
+                "Owner Email: " + this.owner.getEmail() + "\n" +
                 //"Image title: " + this.image.getTitle() + "\n" +
                 //"Image url: " + this.image.getUrl() + "\n" +
                 "Type: " + this.type + "\n";
