@@ -1,6 +1,8 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Entity class for a podcast episode
@@ -17,28 +19,31 @@ public class Episode {
     @ManyToOne(fetch = FetchType.LAZY)
     private Podcast podcast;
 
-    private String atomNs = "http://www.w3.org/2005/Atom\n";
-    private String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
+    // XML Namespaces hardcoded.
+    private final String atomNs = "http://www.w3.org/2005/Atom\n";
+    private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
 
+    // Episode Sub entitities
+    @OneToOne
+    private EpisodeEnclosure enclosure;
+    @OneToOne
+    private EpisodeGuid guid;
+    @OneToOne
+    private EpisodeImage image;
+
+    // Episode data
     private String title;
     private String pubDate;
-    private String guid;
     private boolean guidIsPermanent;
     private String link;
-    private String imageUrl;
-
-    //@Column(name = "description", columnDefinition = "TEXT")
-    //private String description;
-    //private String contentEncoded;
-    private String enclosureLength;
-    private String enclosureType;
-    private String enclosureUrl;
+    private String description;
+    private String contentEncoded;
     private String duration;
     private String explicit;
     private String keywords;
-    //private String subtitle;
+    private String subtitle;
     private String summary;
-    private int episode; // Episode number
+    private String episode; // Episode number
     private String episodeType;
 
     public Episode() {
@@ -60,11 +65,11 @@ public class Episode {
         this.pubDate = pubDate;
     }
 
-    public String getGuid() {
+    public EpisodeGuid getGuid() {
         return guid;
     }
 
-    public void setGuid(String guid) {
+    public void setGuid(EpisodeGuid guid) {
         this.guid = guid;
     }
 
@@ -84,14 +89,15 @@ public class Episode {
         this.link = link;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public EpisodeImage getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    @XmlElement(namespace = itunesNs, name="image")
+    public void setImageUrl(EpisodeImage image) {
+        this.image = image;
     }
-    /*
+
     public String getDescription() {
         return description;
     }
@@ -107,35 +113,12 @@ public class Episode {
     public void setContentEncoded(String contentEncoded) {
         this.contentEncoded = contentEncoded;
     }
-    */
-    public String getEnclosureLength() {
-        return enclosureLength;
-    }
-
-    public void setEnclosureLength(String enclosureLength) {
-        this.enclosureLength = enclosureLength;
-    }
-
-    public String getEnclosureType() {
-        return enclosureType;
-    }
-
-    public void setEnclosureType(String enclosureType) {
-        this.enclosureType = enclosureType;
-    }
-
-    public String getEnclosureUrl() {
-        return enclosureUrl;
-    }
-
-    public void setEnclosureUrl(String enclosureUrl) {
-        this.enclosureUrl = enclosureUrl;
-    }
 
     public String getDuration() {
         return duration;
     }
 
+    @XmlElement(namespace = itunesNs)
     public void setDuration(String duration) {
         this.duration = duration;
     }
@@ -144,6 +127,7 @@ public class Episode {
         return explicit;
     }
 
+    @XmlElement(namespace = itunesNs)
     public void setExplicit(String explicit) {
         this.explicit = explicit;
     }
@@ -152,10 +136,11 @@ public class Episode {
         return keywords;
     }
 
+    @XmlElement(namespace = itunesNs)
     public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
-    /*
+
     public String getSubtitle() {
         return subtitle;
     }
@@ -163,7 +148,7 @@ public class Episode {
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
-    */
+
     public String getSummary() {
         return summary;
     }
@@ -172,11 +157,12 @@ public class Episode {
         this.summary = summary;
     }
 
-    public int getEpisode() {
+    public String getEpisode() {
         return episode;
     }
 
-    public void setEpisode(int episode) {
+    @XmlElement(namespace = itunesNs, name = "episode")
+    public void setEpisode(String episode) {
         this.episode = episode;
     }
 
@@ -184,8 +170,17 @@ public class Episode {
         return episodeType;
     }
 
+    @XmlElement(namespace = itunesNs)
     public void setEpisodeType(String episodeType) {
         this.episodeType = episodeType;
+    }
+
+    public EpisodeEnclosure getEnclosure() {
+        return enclosure;
+    }
+
+    public void setEnclosure(EpisodeEnclosure enclosure) {
+        this.enclosure = enclosure;
     }
 
     @Override
@@ -195,7 +190,7 @@ public class Episode {
                 "Link: " + this.link + "\n" +
                 //"Description: " + this.description + "\n" +
                 "Duration: " + this.duration + "\n" +
-                "Image Url: " + this.imageUrl + "\n" +
+                "Image Url: " + this.image.getHref()+ "\n" +
                 "Explicit: " + this.explicit + "\n" +
                 //"Owner Name: " + this.owner.getName() + "\n" +
                 //"Owner Email: " + this.owner.getEmail() + "\n" +
@@ -205,6 +200,17 @@ public class Episode {
                 //"Subtitle: " + this.subtitle + "\n" +
                 "Episode #: " + this.episode + "\n" +
                 "Episode Type: " + this.episodeType;
+
+        if (this.enclosure != null) {
+            s = s + "\nEnclosure url: " +  this.enclosure.getUrl();
+            s = s + "\nEnclosure type: " +  this.enclosure.getType();
+            s = s + "\nEnclosure length: " +  this.enclosure.getLength();
+        }
+
+        if (this.guid != null) {
+            s = s + "\nguid is permanent: " +  this.guid.getIsPermaLink();
+            s = s + "\nguid: " +  this.guid.getGuid();
+        }
         return s;
     }
 
