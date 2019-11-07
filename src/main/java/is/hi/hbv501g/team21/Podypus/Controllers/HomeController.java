@@ -1,7 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,29 +32,29 @@ public class HomeController {
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.GET)
     public String addPodcastForm(Model model) {
-        model.addAttribute("podcast", new Podcast());
+        model.addAttribute("podcast", new Channel());
         return "add-podcast";
     }
 
     @RequestMapping(value = "/addpodcast", method = RequestMethod.POST)
-    public String addPodcast(@Valid @ModelAttribute("podcast") Podcast podcast, BindingResult result, Model model) {
+    public String addPodcast(@Valid @ModelAttribute("podcast") Channel channel, BindingResult result, Model model) {
         if (result.hasErrors()) {
             //model.addAttribute("error");
             return "add-podcast";
         }
 
-        model.addAttribute("podcast", podcast);
-        podcastService.save(podcast);
+        model.addAttribute("podcast", channel);
+        podcastService.save(channel);
         model.addAttribute("podcasts", podcastService.findAll());
         return "Home";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deletePodcast(@PathVariable("id") long id, Model model) {
-        Podcast podcast = podcastService.findById(id).orElseThrow(
+        Channel channel = podcastService.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Invalid Podcast ID")
         );
-        podcastService.delete(podcast);
+        podcastService.delete(channel);
 
         model.addAttribute("podcasts", podcastService.findAll());
         return "Home";

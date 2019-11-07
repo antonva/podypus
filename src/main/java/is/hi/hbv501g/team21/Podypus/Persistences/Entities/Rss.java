@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "rss")
 public class Rss {
     @XmlElement(name = "channel")
-    public Podcast podcast;
+    public Channel channel;
 
     @XmlAttribute
     public String version;
