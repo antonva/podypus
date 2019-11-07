@@ -1,6 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Services.Implementations;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Rss;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchItem;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -24,7 +24,7 @@ public class RssServiceImplementation implements RssService {
         super();
     }
 
-    public Podcast parseFeed(String feedUrl) {
+    public Channel parseFeed(String feedUrl) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> response = restTemplate.getForEntity(feedUrl, String.class);
@@ -35,18 +35,18 @@ public class RssServiceImplementation implements RssService {
                 //unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
                 Rss r = (Rss) unmarshaller.unmarshal(rdr);
 
-                return r.podcast;
+                return r.channel;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Podcast();
+        return new Channel();
     }
 
-    public List<Podcast> parseManyFeeds(List<SearchItem> si) {
-        List<Podcast> pl = new ArrayList<>();
+    public List<Channel> parseManyFeeds(List<SearchItem> si) {
+        List<Channel> pl = new ArrayList<>();
         for (SearchItem search : si) {
-            Podcast p = parseFeed(search.getFeedUrl());
+            Channel p = parseFeed(search.getFeedUrl());
             pl.add(p);
         }
         return pl;

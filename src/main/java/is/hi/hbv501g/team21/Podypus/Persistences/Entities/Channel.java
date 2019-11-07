@@ -12,8 +12,8 @@ import java.util.List;
 //TODO: Refactor to 'Channel'
 @XmlRootElement(name = "channel")
 @Entity
-@Table(name = "podcasts")
-public class Podcast {
+@Table(name = "channels")
+public class Channel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,19 +42,19 @@ public class Podcast {
 
 
     @OneToOne
-    private PodcastOwner owner;
+    private ChannelOwner owner;
     @OneToOne
-    private PodcastImage image;
+    private ChannelImage image;
 
     @OneToMany(
-            mappedBy = "podcast",
+            mappedBy = "channel",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<ChannelCategory> category;
 
     @OneToMany(
-            mappedBy = "podcast",
+            mappedBy = "channel",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -171,12 +171,12 @@ public class Podcast {
     public void setCategory(List<ChannelCategory> category) {
         this.category = category;
     }
-    public PodcastOwner getOwner() {
+    public ChannelOwner getOwner() {
         return owner;
     }
 
     @XmlElement(namespace = itunesNs, name = "owner")
-    public void setOwner(PodcastOwner owner) {
+    public void setOwner(ChannelOwner owner) {
         this.owner = owner;
     }
 
@@ -196,11 +196,11 @@ public class Podcast {
     }
 
 
-    public PodcastImage getImage() {
+    public ChannelImage getImage() {
         return image;
     }
 
-    public void setImage(PodcastImage image) {
+    public void setImage(ChannelImage image) {
         this.image = image;
     }
 

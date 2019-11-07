@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 @Entity
 @Table(name = "podcastowners")
-public class PodcastOwner {
+public class ChannelOwner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

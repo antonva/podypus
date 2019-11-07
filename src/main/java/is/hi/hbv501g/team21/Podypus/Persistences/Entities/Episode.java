@@ -1,7 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
@@ -17,7 +16,7 @@ public class Episode {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Podcast podcast;
+    private Channel channel;
 
     // XML Namespaces hardcoded.
     private final String atomNs = "http://www.w3.org/2005/Atom\n";

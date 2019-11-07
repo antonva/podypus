@@ -1,7 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Podcast;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchItem;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,7 +42,7 @@ public class SearchController {
             System.out.println("Error in search.");
         } else {
             s = searchService.searchByTitle(query.getTerm());
-            List<Podcast> p = rssService.parseManyFeeds(s.getResults());
+            List<Channel> p = rssService.parseManyFeeds(s.getResults());
             System.out.println(p.get(0));
             System.out.println(p.get(0).getEpisodeList().get(0));
 

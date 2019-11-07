@@ -13,7 +13,7 @@ public class ChannelCategory {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Podcast podcast;
+    private Channel channel;
 
     @XmlAttribute
     public String text;

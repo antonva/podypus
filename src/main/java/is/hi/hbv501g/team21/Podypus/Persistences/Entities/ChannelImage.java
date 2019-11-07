@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
-public class PodcastImage {
+public class ChannelImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

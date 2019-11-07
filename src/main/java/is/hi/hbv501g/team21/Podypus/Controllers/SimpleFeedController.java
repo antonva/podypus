@@ -23,7 +23,7 @@ public class SimpleFeedController {
     private SearchService searchService;
     private RssService rssService;
     private PodcastService podcastService;
-    private List<Podcast> p;
+    private List<Channel> p;
 
     @Autowired
     public SimpleFeedController(SearchService searchService, RssService rssService,
@@ -51,7 +51,7 @@ public class SimpleFeedController {
             p = rssService.parseManyFeeds(si);
             model.addAttribute("results", s);
             if (!p.isEmpty()) {
-                Podcast px = p.get(0);
+                Channel px = p.get(0);
                 System.out.println(px.toString());
                 if (!p.get(0).getEpisodeList().isEmpty()) {
                     Episode ex = px.getEpisodeList().get(0);
@@ -64,9 +64,9 @@ public class SimpleFeedController {
 
     @RequestMapping(value = "/subscribe/{nr}", method = RequestMethod.GET)
     public String addPodcast(@PathVariable("nr") int nr, Model model) {
-        Podcast podcast = p.get(nr);
-        model.addAttribute("podcast", podcast);
-        podcastService.save(podcast);
+        Channel channel = p.get(nr);
+        model.addAttribute("podcast", channel);
+        podcastService.save(channel);
 
         model.addAttribute("podcasts", podcastService.findAll());
         return "Home";
