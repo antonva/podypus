@@ -46,6 +46,7 @@ public class SearchController {
             s = searchService.searchByTitle(query.getTerm());
             List<Podcast> p = rssService.parseManyFeeds(s.getResults());
             System.out.println(p.get(0));
+            System.out.println(p.get(0).getEpisodeList().get(0));
 
             mav.addObject("results", s);
         }
