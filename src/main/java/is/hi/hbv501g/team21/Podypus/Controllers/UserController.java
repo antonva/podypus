@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
@@ -11,7 +12,6 @@ import is.hi.hbv501g.team21.Podypus.Services.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -52,16 +52,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(User user){
-        return "Login";
+    public String loginGET(Model model){
+        model.addAttribute("user", new User());
+        return "fragments/Login :: login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(@Valid User user, BindingResult result, Model model, HttpSession session){
+    public String loginPOST(@Valid @ModelAttribute User user, BindingResult result, Model model, HttpSession session){
         if (result.hasErrors()) {
             return "Login";
         }
-        //model.addAttribute("users", userService.findAll());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
         User exists = userService.loginUser(user);
         if (exists != null) {
             session.setAttribute("LoggedInUser", user);
