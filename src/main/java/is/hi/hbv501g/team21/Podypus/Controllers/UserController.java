@@ -11,6 +11,7 @@ import is.hi.hbv501g.team21.Podypus.Services.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -22,11 +23,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value="/login", method=RequestMethod.GET)
+    /*@RequestMapping(value="/login", method=RequestMethod.GET)
     public String loginForm(Model model) {
         model.addAttribute("user", new User());
         return "Login";
-    }
+    }*/
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
@@ -50,7 +51,7 @@ public class UserController {
         //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
     }
 
-    @RequestMapping(value = "/login/get-user", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGET(User user){
         return "Login";
     }
@@ -86,5 +87,3 @@ public class UserController {
         return "Users";
     }
 }
-
-//TODO ViewUserProfile Method
