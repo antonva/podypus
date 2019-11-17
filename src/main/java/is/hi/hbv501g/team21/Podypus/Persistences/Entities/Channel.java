@@ -3,7 +3,9 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entity class for a podcast channel
@@ -17,8 +19,11 @@ public class Channel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    public long getId() {return id;}
+    private long channel_id;
+    public long getChannel_id() {return channel_id;}
+
+    @ManyToMany(mappedBy = "channels")
+    private Set<User> users =  new HashSet<>();
 
     private final String atomNs = "http://www.w3.org/2005/Atom";
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
