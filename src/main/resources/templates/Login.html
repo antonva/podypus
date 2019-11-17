@@ -15,7 +15,7 @@
 </form>
 <h1>User Login</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input placeholder="Username" type="text"  id="lusername" th:value="*{username}" /></p> <!--username ekki email?-->
+    <p>Username: <input placeholder="Username" type="text"  id="lusername" th:value="*{username}" /></p>
     <p>Password: <input placeholder="Password" type="password" th:field="*{password}" /></p>
     <p><input type="submit" value="Login" /></p>
 </form>
