@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -52,6 +55,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
+<<<<<<< HEAD
     public String loginGET(Model model){
         model.addAttribute("user", new User());
         return "fragments/Login :: login";
@@ -62,21 +66,21 @@ public class UserController {
         if (result.hasErrors()) {
             return "Login";
         }
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
+
         User exists = userService.loginUser(user);
         if (exists != null) {
-            session.setAttribute("LoggedInUser", user);
+            System.out.println("Húrra");
+            session.setAttribute("LoggedInUser", exists);
             return "redirect:/login/profile";
         }
+        System.out.println("foj");
         return "redirect:/login";
     }
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
-    public String loggedinGET(HttpSession session, Model model){
-        //model.addAttribute("users", userService.findAll());
+    public String loggedinGET(HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if (sessionUser != null){
+        if (sessionUser != null) {
             model.addAttribute("loggedinuser", sessionUser);
             return "UserProfile";
         }
@@ -88,4 +92,11 @@ public class UserController {
         model.addAttribute("users", userService.findAll());
         return "Users";
     }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPOST(HttpSession session) {
+        session.invalidate();
+        return "/";
+    }
 }
+//TODO: logout - button on profile page
+//TODO: get username on user/profile page
