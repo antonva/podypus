@@ -42,5 +42,15 @@
         <p><input type="reset" value="Reset" /></p>
     </form>
 </th:block>
+<th:block th:fragment="noUser">
+    <p>There is no user with username, sorry.</p>
+    <button type="submit" class="btn-primary">Try again</button>
+</th:block>
+<th:block th:fragment="userExists">
+    <p>There is already a user signed up with this e-mail address.</p>
+    <a href="/signup"><button>Try Again</button></a>
+    <!--<button type="submit" class="btn-primary" href="/login">Try again</button>-->
+    <button type="submit" class="btn-primary">Change Password</button>
+</th:block>
 </body>
 </html>

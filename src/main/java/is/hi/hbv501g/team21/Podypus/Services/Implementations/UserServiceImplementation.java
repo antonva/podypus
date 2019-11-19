@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -47,11 +48,12 @@ public class UserServiceImplementation implements UserService {
     public User loginUser(User user) {
         User exists = findByUsername(user.getUsername());
         if (exists != null) {
-            System.out.println(exists.getUsername());
+            //System.out.println(exists.getUsername());
             if (exists.getPassword().equals(user.getPassword())) {
                 return user;
             }
         }
-        return null; //skila skilaboðum ef notandi er ekki til?
+        return null;
+        //return "fragments/Login :: noUser"; TODO: ÞARF AÐ SKILA ÞESSU
     }
 }

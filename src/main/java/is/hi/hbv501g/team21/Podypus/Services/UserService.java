@@ -4,6 +4,7 @@ import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 
 import java.util.List;
 
+
 public interface UserService {
   User save(User user);
   void delete(User user);
@@ -11,5 +12,4 @@ public interface UserService {
   User findByUsername(String username);
   User findByEmail(String email);
   User loginUser(User user);
-
 }

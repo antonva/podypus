@@ -2,6 +2,7 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users", uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
@@ -11,10 +12,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotNull
     @Column(name="username", unique=true)
     private String username;
+    @NotNull
     @Email
     private String email;
+    @NotNull
     private String password;
 
     public User() {
