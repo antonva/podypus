@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -54,6 +53,13 @@ public class UserServiceImplementation implements UserService {
             }
         }
         return null;
-        //return "fragments/Login :: noUser"; TODO: ÞARF AÐ SKILA ÞESSU
+    }
+    //This is for demonstration purposes only, we will implement e-mail verification step.
+    @Override
+    public void resetPassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user != null)
+            user.setPassword(newPassword);
+        //else eitthvað og villa af því það er enginn notandi með þetta e-mail til
     }
 }

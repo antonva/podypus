@@ -45,7 +45,6 @@ public class UserController {
         if (exists != null) {
         }
         return "fragments/Login :: userExists";
-        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail. Gera þetta í fragment í Login.
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -88,5 +87,18 @@ public class UserController {
         session.invalidate();
         return "/";
     }
+    @RequestMapping(value = "/login/changePassword", method = RequestMethod.GET)
+    public String changePasswordGET(User user){
+        return "fragments/Login :: changePassword";
+    }
+    @RequestMapping(value = "/login/changePassword", method = RequestMethod.POST)
+    public String changePassword(String email, String newpassword) {
+        User exists = userService.findByEmail(email); //returns a User object with that e-mail address that has been entered.
+        if (exists != null) {
+            userService.resetPassword(exists.getEmail(), newpassword);
+            return "fragments/Login :: login";
+        }
+        else return "fragments/Login :: notExists";
+    }
 }
-//TODO: logout - button on profile page
+
