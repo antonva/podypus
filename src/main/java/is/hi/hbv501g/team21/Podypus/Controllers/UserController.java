@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
-        return "Login";
+        return "fragments/Login :: signup";
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
@@ -45,17 +45,15 @@ public class UserController {
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
         if (exists == null) {
             userService.save(user);
-            return "Home";
+            return "redirect:/";
         }
         if (exists != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
         }
         return "Login";
-        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
+        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail. Gera þetta í fragment í Login.
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-<<<<<<< HEAD
     public String loginGET(Model model){
         model.addAttribute("user", new User());
         return "fragments/Login :: login";
@@ -69,11 +67,9 @@ public class UserController {
 
         User exists = userService.loginUser(user);
         if (exists != null) {
-            System.out.println("Húrra");
             session.setAttribute("LoggedInUser", exists);
             return "redirect:/login/profile";
         }
-        System.out.println("foj");
         return "redirect:/login";
     }
     //birta profile fyrir notanda sem er loggaður inn
@@ -99,4 +95,3 @@ public class UserController {
     }
 }
 //TODO: logout - button on profile page
-//TODO: get username on user/profile page
