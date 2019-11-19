@@ -10,6 +10,7 @@ public interface UserService {
   List<User> findAll();
   User findByUsername(String username);
   User findByEmail(String email);
-  User loginUser(User user);
-
+  boolean loginUser(User user);
+  void logOutUser(String username);
+  boolean isAuthenticated(User user);
 }
