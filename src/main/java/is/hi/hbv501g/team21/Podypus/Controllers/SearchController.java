@@ -46,15 +46,8 @@ public class SearchController {
             System.out.println(p.get(0));
             System.out.println(p.get(0).getEpisodeList().get(0));
 
-            /*for(int i = 0; i < p.size() && !p.isEmpty(); i++){
-                Channel ch = p.get(i);
-                if(!ch.getEpisodeList().isEmpty()){
-                    Episode ep = ch.getEpisodeList().get(0);
-                    System.out.println(ep.toString());
-                }
-            }*/
             mav.addObject("results", s);
-            mav.addObject("episodes", p);
+            mav.addObject("channel", p.get(0));
         }
         return mav;
     }
