@@ -48,6 +48,18 @@
                         <a class="card-link btn btn-light" th:href="${item.getFeedUrl()}">RSS</a>
                         <a class="card-link btn btn-light"
                            th:href="@{/subscribe/{nr}(nr=${iterStat.index})}">Subscribe</a>
+                        <div th:if="${channel != null}">
+                            <div>
+                                <div th:if="${channel.getEpisodeList().get(0).getEnclosure() != null}">
+                                    <a class="card-link btn btn-light"
+                                       th:href="${channel.getEpisodeList().get(0).getEnclosure().getUrl()}">Play first episode</a>
+                                </div>
+                                <div th:unless="${channel.getEpisodeList().get(0).getEnclosure() != null}">
+                                    <a class="card-link btn btn-light"
+                                       th:href="${channel.getEpisodeList().get(0).getEnclosure().getLink()}">Play first episode</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
