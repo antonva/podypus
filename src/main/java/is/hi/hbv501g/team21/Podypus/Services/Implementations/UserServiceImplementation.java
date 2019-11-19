@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -57,6 +58,7 @@ public class UserServiceImplementation implements UserService {
             }
         }
         return false;
+        //return "fragments/Login :: noUser"; TODO: ÞARF AÐ SKILA ÞESSU
     }
 
     @Override

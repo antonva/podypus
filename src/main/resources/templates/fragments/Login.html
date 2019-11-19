@@ -25,7 +25,7 @@
 <th:block th:fragment="login">
     <h1>User Login</h1>
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <p>Username: <input placeholder="Username" type="text"  id="username" th:field="*{username}" /></p> <!--username ekki email?-->
+        <p>Username: <input placeholder="Username" type="text"  id="username" th:field="*{username}" /></p>
         <p>Password: <input placeholder="Password" type="password" th:field="*{password}" /></p>
         <p><input type="submit" value="Login" /></p>
     </form>
@@ -37,10 +37,20 @@
 <th:block th:fragment="changePassword">
 <h1>Change User Password</h1>
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <p>Username: <input placeholder="Username" type="text" id="cusername" th:field="*{username}" /></p>
-        <p>E-mail: <input placeholder="E-mail Address" type="text" id="cemail" th:value="*{email}" /></p>
+        <p>Username: <input placeholder="Username" type="text" id="username" th:field="*{username}" /></p>
+        <p>E-mail: <input placeholder="E-mail Address" type="text" id="email" th:value="*{email}" /></p>
         <p><input type="reset" value="Reset" /></p>
     </form>
+</th:block>
+<th:block th:fragment="noUser">
+    <p>There is no user with username, sorry.</p>
+    <button type="submit" class="btn-primary">Try again</button>
+</th:block>
+<th:block th:fragment="userExists">
+    <p>There is already a user signed up with this e-mail address.</p>
+    <a href="/signup"><button>Try Again</button></a>
+    <!--<button type="submit" class="btn-primary" href="/login">Try again</button>-->
+    <button type="submit" class="btn-primary">Change Password</button>
 </th:block>
 </body>
 </html>

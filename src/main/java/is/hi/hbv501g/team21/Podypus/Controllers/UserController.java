@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+
 @Controller
 public class UserController {
 
@@ -32,7 +33,7 @@ public class UserController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
-        return "Login";
+        return "fragments/Login :: signup";
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
@@ -43,13 +44,12 @@ public class UserController {
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
         if (exists == null) {
             userService.save(user);
-            return "Home";
+            return "redirect:/login";
         }
         if (exists != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
         }
-        return "Login";
-        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail.
+        return "fragments/Login :: userExists";
+        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail. Gera þetta í fragment í Login.
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -104,4 +104,3 @@ public class UserController {
     }
 }
 //TODO: logout - button on profile page
-//TODO: get username on user/profile page
