@@ -52,10 +52,10 @@ public class SimpleFeedController {
             model.addAttribute("results", s);
             if (!p.isEmpty()) {
                 Channel px = p.get(0);
-                System.out.println(px.toString());
+                System.out.println("channel string: "+px.toString());
                 if (!p.get(0).getEpisodeList().isEmpty()) {
                     Episode ex = px.getEpisodeList().get(0);
-                    System.out.println(ex.toString());
+                    System.out.println("Episode string: "+ex.toString());
                 }
             }
         }
