@@ -2,6 +2,8 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -9,12 +11,20 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long user_id;
 
     private String username;
     @Email
     private String email;
     private String password;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "User_Channels",
+            joinColumns = { @JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="channel_id")}
+    )
+    Set<Channel> channels = new HashSet<>();
 
     public User() {
     }
@@ -25,10 +35,10 @@ public class User {
         this.password = password;
     }
 
-    public long getId() {return id;}
+    public long getUser_id() {return user_id;}
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() { return this.username; }
