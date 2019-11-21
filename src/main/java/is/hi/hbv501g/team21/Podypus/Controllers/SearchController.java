@@ -3,6 +3,7 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult;
+import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
 import is.hi.hbv501g.team21.Podypus.Services.SearchService;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,11 @@ import java.util.List;
 public class SearchController {
     private SearchService searchService;
     private RssService rssService;
+    private PodcastService podcastService;
 
-    public SearchController(SearchService searchService, RssService rssService) {
+    public SearchController(PodcastService podcastService, SearchService searchService, RssService rssService) {
         this.searchService = searchService;
+        this.podcastService = podcastService;
         this.rssService = rssService;
     }
 
@@ -42,9 +45,11 @@ public class SearchController {
             System.out.println("Error in search.");
         } else {
             s = searchService.searchByTitle(query.getTerm());
-            List<Channel> p = rssService.parseManyFeeds(s.getResults());
-            System.out.println(p.get(0));
-            System.out.println(p.get(0).getEpisodeList().get(0));
+            Channel c = rssService.parseFeed(s.getResults().get(0).getFeedUrl());
+            System.out.println(c);
+            System.out.println(c.getEpisodeList().get(0));
+            podcastService.save(c);
+
 
             mav.addObject("results", s);
         }

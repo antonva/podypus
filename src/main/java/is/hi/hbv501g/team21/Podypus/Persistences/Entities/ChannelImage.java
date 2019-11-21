@@ -1,31 +1,29 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
 
-@Entity
-@Table(name = "images")
+@Embeddable
 public class ChannelImage {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String channelImageUrl;
+    private String channelImageTitle;
 
-    private String url;
-    private String title;
-
-    public String getUrl() {
-        return url;
+    public String getChannelImageUrl() {
+        return channelImageUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    @XmlElement(name="url")
+    public void setChannelImageUrl(String channelImageUrl) {
+        this.channelImageUrl = channelImageUrl;
     }
 
-    public String getTitle() {
-        return title;
+    public String getChannelImageTitle() {
+        return channelImageTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @XmlElement(name="title")
+    public void setChannelImageTitle(String channelImageTitle) {
+        this.channelImageTitle = channelImageTitle;
     }
 }

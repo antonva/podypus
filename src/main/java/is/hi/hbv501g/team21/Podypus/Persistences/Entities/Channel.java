@@ -25,7 +25,10 @@ public class Channel {
     @ManyToMany(mappedBy = "channels")
     private Set<User> users =  new HashSet<>();
 
+    // XML Namespaces hardcoded.
+    @Transient
     private final String atomNs = "http://www.w3.org/2005/Atom";
+    @Transient
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
     private String title;
@@ -34,21 +37,24 @@ public class Channel {
     private String generator;
     private String link;
     private String language;
+    @Column(length = 2048)
     private String copyright;
+    @Column(length = 2048)
     private String docs;
     private String managingEditor;
+    @Column(length = 2048)
     private String description;
     //itunes prefix
+    @Column(length=10485760)
     private String summary;
     private String imageUrl;
     private String explicit;
     private String type;
+    @Column(length = 2048)
     private String keywords;
 
 
-    @OneToOne
     private ChannelOwner owner;
-    @OneToOne
     private ChannelImage image;
 
     @OneToMany(

@@ -1,18 +1,10 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
 
-@Entity
+@Embeddable
 public class EpisodeEnclosure {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String type;
     private String length;

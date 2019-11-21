@@ -35,6 +35,8 @@ public class RssServiceImplementation implements RssService {
                 //unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
                 Rss r = (Rss) unmarshaller.unmarshal(rdr);
 
+                //Save the entities to db
+                
                 return r.channel;
             }
         } catch (Exception e) {

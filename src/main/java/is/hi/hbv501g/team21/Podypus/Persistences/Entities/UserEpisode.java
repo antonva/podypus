@@ -12,8 +12,6 @@ public class UserEpisode {
     private UserEpisodeId id;
 
     private int playbackPosition;
-
-
     private boolean played;
 
     public UserEpisode() {
