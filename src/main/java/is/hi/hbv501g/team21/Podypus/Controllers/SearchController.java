@@ -16,12 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
-
+public class SearchController {
     private SearchService searchService;
     private RssService rssService;
 
 @Controller
-public class SearchController {
+
     public SearchController(SearchService searchService, RssService rssService) {
         this.searchService = searchService;
         this.rssService = rssService;
