@@ -39,6 +39,7 @@ let makePlayer = (event) => {
     var playerDom = document.createElement("div");
     playerDom.setAttribute("th:insert", "fragments/player.html :: player");
     document.body.appendChild(playerDom);
+    location = location;
 }
 
 /* Event Listeners */
