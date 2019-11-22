@@ -20,6 +20,8 @@ import java.util.List;
     private SearchService searchService;
     private RssService rssService;
 
+@Controller
+public class SearchController {
     public SearchController(SearchService searchService, RssService rssService) {
         this.searchService = searchService;
         this.rssService = rssService;
@@ -37,8 +39,7 @@ import java.util.List;
 
         if (result.hasErrors()) {
             //TODO: Better error handling.
-            @Controller
-            public class SearchController {
+
             System.out.println("Error in search.");
         } else {
             s = searchService.searchByTitle(query.getTerm());
