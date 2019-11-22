@@ -1,9 +1,5 @@
 console.log("Podypus is now mining for buttcoins...");
 
-
-
-
-
 let performSearch = (event) => {
     event.preventDefault();
     let queryElem = document.getElementById("searchTxt")
@@ -88,18 +84,12 @@ function makeAudio(url) {
 }
 
 /*Event makes the first element on the page clickable for the player*/
-
 let makePlayer = (event) => {
     event.preventDefault();
     var element = document.getElementById("ply");
     var href = element.getAttribute("href");
 
     makeAudio(href);
-
-    /*var playerDom = document.createElement("div");
-    playerDom.setAttribute("th:insert", "fragments/player.html :: player");
-    document.body.appendChild(playerDom);*/
-
 }
 
 /* Event Listeners */
@@ -107,4 +97,3 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Search event listeners */
     document.getElementById("searchBtn").addEventListener("click", performSearch)
 })
-
