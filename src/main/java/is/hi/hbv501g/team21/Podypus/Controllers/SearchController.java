@@ -17,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
-public class SearchController {
     private SearchService searchService;
     private RssService rssService;
 
@@ -39,6 +37,8 @@ public class SearchController {
 
         if (result.hasErrors()) {
             //TODO: Better error handling.
+            @Controller
+            public class SearchController {
             System.out.println("Error in search.");
         } else {
             s = searchService.searchByTitle(query.getTerm());

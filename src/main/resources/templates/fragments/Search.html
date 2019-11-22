@@ -51,11 +51,11 @@
                         <div th:if="${channel != null}">
                             <div th:each="episode: ${channel.getEpisodeList()}">
                                 <div th:if="${episode.getEnclosure() != null}">
-                                    <a class="card-link btn btn-light"
+                                    <a id="ply" class="card-link btn btn-light"
                                        th:href="${episode.getEnclosure().getUrl()}">Play first episode</a>
                                 </div>
                                 <div th:unless="${episode.getEnclosure() != null}">
-                                    <a class="card-link btn btn-light"
+                                    <a id="ply" class="card-link btn btn-light"
                                        th:href="${episode.getLink()}">Play episode</a>
                                 </div>
                             </div>
