@@ -4,18 +4,23 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
+//@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
-
+    @NotNull
+    @Column(name="username", unique=true)
     private String username;
+    @NotNull
     @Email
     private String email;
+    @NotNull
     private String password;
 
     @ManyToMany(cascade = {CascadeType.ALL})
