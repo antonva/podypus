@@ -54,12 +54,13 @@ public class UserServiceImplementation implements UserService {
         }
         return null;
     }
-    //This is for demonstration purposes only, we will implement e-mail verification step.
+    //This is for demonstration purposes only, for final version an e-mail verification step would be included.
     @Override
     public void resetPassword(String email, String newPassword) {
         User user = userRepository.findByEmail(email);
         if (user != null)
             user.setPassword(newPassword);
+            userRepository.save(user);
         //else eitthvað og villa af því það er enginn notandi með þetta e-mail til
     }
 }

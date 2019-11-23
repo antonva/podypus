@@ -21,12 +21,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    /*@RequestMapping(value="/login", method=RequestMethod.GET)
-    public String loginForm(Model model) {
-        model.addAttribute("user", new User());
-        return "Login";
-    }*/
-
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
         return "fragments/Login :: signup";
@@ -35,7 +29,7 @@ public class UserController {
     @RequestMapping(value="/signup", method = RequestMethod.POST)
     public String signUpPOST(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "Login";
+            return "redirect:/login";
         }
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
         if (exists == null) {
@@ -88,15 +82,23 @@ public class UserController {
         return "/";
     }
     @RequestMapping(value = "/login/changePassword", method = RequestMethod.GET)
-    public String changePasswordGET(User user){
+    //public String changePasswordGET(User user){
+    public String changePasswordGET(Model model){
+        model.addAttribute("user", new User());
+        System.out.println("in changePasswordGET");
         return "fragments/Login :: changePassword";
     }
     @RequestMapping(value = "/login/changePassword", method = RequestMethod.POST)
-    public String changePassword(String email, String newpassword) {
-        User exists = userService.findByEmail(email); //returns a User object with that e-mail address that has been entered.
+    public String changePassword(@ModelAttribute("user") User user) {
+        System.out.println("in changePassword");
+        User exists = userService.findByEmail(user.getEmail()); //returns a User object with that e-mail address that has been entered.
         if (exists != null) {
-            userService.resetPassword(exists.getEmail(), newpassword);
-            return "fragments/Login :: login";
+            System.out.println(exists.getUsername());
+            System.out.println(exists.getEmail());
+            System.out.println(user.getPassword());
+            System.out.println(exists.getPassword());
+            userService.resetPassword(exists.getEmail(), user.getPassword());
+            return "redirect:/login";
         }
         else return "fragments/Login :: notExists";
     }

@@ -36,14 +36,15 @@
 <!--*/-->
 <th:block th:fragment="changePassword">
 <h1>Change User Password</h1>
-    <form action="#" th:action="@{/change}" th:object="${user}" method="post">
-        <p>Username: <input placeholder="Username" type="text" id="username" th:field="*{username}" /></p>
-        <p>E-mail: <input placeholder="E-mail Address" type="text" id="email" th:value="*{email}" /></p>
-        <p><input type="reset" value="Reset" /></p>
+    <form action="#" th:action="@{/login/changePassword}" th:object="${user}" method="post">
+        <!-- <p>Username: <input placeholder="Username" type="text" id="username" th:field="*{username}" /></p> -->
+        <p>E-mail: <input placeholder="E-mail Address" type="text" id="email" th:field="*{email}" /></p>
+        <p>New password: <input placeholder="New password" type="password" id="newPassword" th:field="*{password}" /></p>
+        <p><input type="submit" value="Reset" /></p>
     </form>
 </th:block>
 <th:block th:fragment="noUser">
-    <p>There is no user with username, sorry.</p>
+    <p>There is no user with that username, sorry.</p>
     <button type="submit" class="btn-primary">Try again</button>
 </th:block>
 <th:block th:fragment="userExists">
