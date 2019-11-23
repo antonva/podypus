@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
-import javax.servlet.http.HttpSession;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -48,24 +52,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(@Valid @ModelAttribute User user, BindingResult result, Model model, HttpSession session){
+    public String loginPOST(@Valid User user,
+                            BindingResult result,
+                            Model model,
+                            HttpServletRequest request,
+                            HttpServletResponse response){
         if (result.hasErrors()) {
             return "Login";
         }
 
-        User exists = userService.loginUser(user);
-        if (exists != null) {
-            session.setAttribute("LoggedInUser", exists);
+        boolean success = userService.loginUser(user);
+        if (success) {
+            Cookie c = new Cookie("user", user.getUsername());
+            response.addCookie(c);
             return "redirect:/login/profile";
         }
         return "redirect:/login";
     }
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
-    public String loggedinGET(HttpSession session, Model model) {
-        User sessionUser = (User) session.getAttribute("LoggedInUser");
-        if (sessionUser != null) {
-            model.addAttribute("loggedinuser", sessionUser);
+    public String loggedinGET(Model model, HttpServletRequest request) {
+        Cookie[] clist = request.getCookies();
+        Cookie c = clist[0];
+        if (c.getValue() != null) {
+            model.addAttribute("loggedinuser", c.getValue());
             return "UserProfile";
         }
         return "redirect:/";
@@ -77,9 +87,13 @@ public class UserController {
         return "Users";
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPOST(HttpSession session) {
-        session.invalidate();
-        return "/";
+    public String logoutPOST(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] oldcookie = request.getCookies();
+        Cookie c = oldcookie[0];
+        c.setMaxAge(0);
+        response.addCookie(c);
+
+        return "redirect:/";
     }
     @RequestMapping(value = "/login/changePassword", method = RequestMethod.GET)
     //public String changePasswordGET(User user){

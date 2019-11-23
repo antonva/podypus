@@ -7,15 +7,19 @@ import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImplementation implements UserService {
     private UserRepository userRepository;
+    private List<String> loggedInUsers;
+
 
     @Autowired
     public UserServiceImplementation(UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.loggedInUsers = new ArrayList<>();
     }
 
     @Override
@@ -47,9 +51,9 @@ public class UserServiceImplementation implements UserService {
     public User loginUser(User user) {
         User exists = findByUsername(user.getUsername());
         if (exists != null) {
-            //System.out.println(exists.getUsername());
             if (exists.getPassword().equals(user.getPassword())) {
-                return user;
+                this.loggedInUsers.add(user.getUsername());
+                return exists;
             }
         }
         return null;
@@ -62,5 +66,18 @@ public class UserServiceImplementation implements UserService {
             user.setPassword(newPassword);
             userRepository.save(user);
         //else eitthvað og villa af því það er enginn notandi með þetta e-mail til
+    }
+
+    @Override
+    public void logOutUser(String username) {
+        this.loggedInUsers.remove(this.loggedInUsers.indexOf(username));
+    }
+
+    @Override
+    public boolean isAuthenticated(User user) {
+        if (this.loggedInUsers.indexOf(user.getUsername()) >= 0) {
+            return true;
+        }
+        return false;
     }
 }

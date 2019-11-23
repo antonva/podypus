@@ -13,4 +13,6 @@ public interface UserService {
   User findByEmail(String email);
   User loginUser(User user);
   void resetPassword(String email, String newPassword);
+  void logOutUser(String username);
+  boolean isAuthenticated(User user);
 }
