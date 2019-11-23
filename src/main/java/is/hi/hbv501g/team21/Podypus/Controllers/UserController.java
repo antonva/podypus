@@ -78,6 +78,7 @@ public class UserController {
         }
         return "redirect:/";
     }
+
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(Model model, HttpServletRequest request) {
