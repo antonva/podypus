@@ -1,5 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,29 +53,31 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(Model model){
+    public String loginGET(Model model, HttpServletRequest request){
         model.addAttribute("user", new User());
         return "fragments/Login :: login";
     }
 
-    /*@RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(@Valid User user,
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPOST(@Valid LoginForm loginForm,
                             BindingResult result,
                             Model model,
                             HttpServletRequest request,
-                            HttpServletResponse response){
+                            HttpServletResponse response) {
         if (result.hasErrors()) {
-            return "Login";
+            System.out.println(result.getAllErrors());
+            return "redirect:/";
         }
 
-        boolean success = userService.loginUser(user);
-        if (success) {
-            Cookie c = new Cookie("user", user.getUsername());
+        User loggedInUser = userService.loginUser(loginForm);
+        if (loggedInUser != null) {
+            Cookie c = new Cookie("user", loggedInUser.getUsername());
             response.addCookie(c);
-            return "redirect:/login/profile";
+            return "redirect:/";
         }
-        return "redirect:/login";
-    }*/
+        return "redirect:/";
+    }
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(Model model, HttpServletRequest request) {

@@ -13,34 +13,38 @@ public class Episode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long episode_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Channel channel;
 
     // XML Namespaces hardcoded.
+    @Transient
     private final String atomNs = "http://www.w3.org/2005/Atom\n";
+    @Transient
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
 
     // Episode Sub entitities
-    @OneToOne
     private EpisodeEnclosure enclosure;
-    @OneToOne
     private EpisodeGuid guid;
-    @OneToOne
     private EpisodeImage image;
 
     // Episode data
+    @Column(length = 2048)
     private String title;
     private String pubDate;
     private boolean guidIsPermanent;
     private String link;
+    @Column(length=10485760)
     private String description;
     private String contentEncoded;
     private String duration;
     private String explicit;
+    @Column(length=10485760)
     private String keywords;
+    @Column(length=10485760)
     private String subtitle;
+    @Column(length=10485760)
     private String summary;
     private String episode; // Episode number
     private String episodeType;

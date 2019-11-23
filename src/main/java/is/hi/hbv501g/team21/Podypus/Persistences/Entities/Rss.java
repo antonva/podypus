@@ -5,6 +5,10 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "rss")
 public class Rss {
+
+    public Rss() {
+        this.channel = new Channel();
+    }
     @XmlElement(name = "channel")
     public Channel channel;
 

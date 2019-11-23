@@ -33,7 +33,7 @@
                     <td th:text="${podcast.title}"></td>
                     <td th:text="${podcast.description}"></td>
                     <td th:text="${podcast.rating}"></td>
-                    <td><a th:href="@{/delete/{id}(id=${podcast.id})}">Delete</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${podcast.channel_id})}">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

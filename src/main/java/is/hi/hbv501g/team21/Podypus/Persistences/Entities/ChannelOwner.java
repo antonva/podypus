@@ -3,12 +3,8 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 
-@Entity
-@Table(name = "podcastowners")
+@Embeddable
 public class ChannelOwner {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
     private String name;
     private String email;

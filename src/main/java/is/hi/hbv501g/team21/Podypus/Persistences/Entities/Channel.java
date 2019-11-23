@@ -1,9 +1,12 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entity class for a podcast channel
@@ -17,33 +20,42 @@ public class Channel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    public long getId() {return id;}
+    private long channel_id;
+    public long getChannel_id() {return channel_id;}
 
+    @ManyToMany(mappedBy = "channels")
+    private Set<User> users =  new HashSet<>();
+
+    // XML Namespaces hardcoded.
+    @Transient
     private final String atomNs = "http://www.w3.org/2005/Atom";
+    @Transient
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
+    @NotNull
+    @Column(name="title", unique=true)
     private String title;
     private String pubDate;
     private String lastBuildDate;
     private String generator;
     private String link;
     private String language;
+    @Column(length = 2048)
     private String copyright;
+    @Column(length = 2048)
     private String docs;
     private String managingEditor;
+    @Column(length = 2048)
     private String description;
     //itunes prefix
+    @Column(length=10485760)
     private String summary;
     private String imageUrl;
     private String explicit;
     private String type;
+    @Column(length = 2048)
     private String keywords;
-
-
-    @OneToOne
     private ChannelOwner owner;
-    @OneToOne
     private ChannelImage image;
 
     @OneToMany(
@@ -54,10 +66,10 @@ public class Channel {
     private List<ChannelCategory> category;
 
     @OneToMany(
-            mappedBy = "channel",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JoinColumn(name = "channel_id")
     private List<Episode> episodeList = new ArrayList<>();
 
     public String getTitle() {

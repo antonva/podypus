@@ -1,7 +1,9 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
+import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -18,14 +22,28 @@ import javax.validation.Valid;
 public class HomeController {
 
     private PodcastService podcastService;
+    private UserService userService;
 
     @Autowired
-    public HomeController(PodcastService podcastService) {
+    public HomeController(PodcastService podcastService, UserService userService) {
         this.podcastService = podcastService;
+        this.userService = userService;
     }
 
     @RequestMapping("/")
-    public String Home(Model model) {
+    public String Home(Model model, HttpServletRequest request) {
+        Cookie[] clist = request.getCookies();
+        boolean authenticated = false;
+        if (clist != null && clist.length > 0) {
+            Cookie c  = clist[0];
+            authenticated = userService.isAuthenticated(c.getValue());
+        }
+        User u = new User();
+        u.setEmail("bogus@email.donut.use");
+        u.setUsername("bogus@email.donut.use");
+        u.setPassword("bogus@email.donut.use");
+        model.addAttribute("authenticated", authenticated);
+        model.addAttribute("user", u);
         model.addAttribute("podcasts", podcastService.findAll());
         return "Index";
     }

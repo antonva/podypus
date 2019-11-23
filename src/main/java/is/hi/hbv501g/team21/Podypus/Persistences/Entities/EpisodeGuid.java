@@ -1,18 +1,11 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-@Entity
+@Embeddable
 public class EpisodeGuid {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String isPermaLink;
 
     private String guid;
