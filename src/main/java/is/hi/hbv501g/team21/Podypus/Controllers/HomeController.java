@@ -38,12 +38,7 @@ public class HomeController {
             Cookie c  = clist[0];
             authenticated = userService.isAuthenticated(c.getValue());
         }
-        User u = new User();
-        u.setEmail("bogus@email.donut.use");
-        u.setUsername("bogus@email.donut.use");
-        u.setPassword("bogus@email.donut.use");
         model.addAttribute("authenticated", authenticated);
-        model.addAttribute("user", u);
         model.addAttribute("podcasts", podcastService.findAll());
         return "Index";
     }
