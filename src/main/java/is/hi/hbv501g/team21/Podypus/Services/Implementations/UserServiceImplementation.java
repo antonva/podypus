@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Services.Implementations;
 
 
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Persistences.Repositories.UserRepository;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
@@ -49,15 +50,15 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public boolean loginUser(User user) {
-        User exists = findByUsername(user.getUsername());
+    public User loginUser(LoginForm loginForm) {
+        User exists = findByUsername(loginForm.getUsername());
         if (exists != null) {
-            if (exists.getPassword().equals(user.getPassword())) {
-                this.loggedInUsers.add(user.getUsername());
-                return true;
+            if (exists.getPassword().equals(loginForm.getPassword())) {
+                this.loggedInUsers.add(loginForm.getUsername());
+                return exists;
             }
         }
-        return false;
+        return null;
         //return "fragments/Login :: noUser"; TODO: ÞARF AÐ SKILA ÞESSU
     }
 
@@ -67,8 +68,8 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public boolean isAuthenticated(User user) {
-        if (this.loggedInUsers.indexOf(user.getUsername()) >= 0) {
+    public boolean isAuthenticated(String username) {
+        if (this.loggedInUsers.indexOf(username) >= 0) {
             return true;
         }
         return false;

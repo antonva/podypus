@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,6 +32,8 @@ public class Channel {
     @Transient
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
+    @NotNull
+    @Column(name="title", unique=true)
     private String title;
     private String pubDate;
     private String lastBuildDate;
@@ -52,8 +55,6 @@ public class Channel {
     private String type;
     @Column(length = 2048)
     private String keywords;
-
-
     private ChannelOwner owner;
     private ChannelImage image;
 
@@ -65,10 +66,10 @@ public class Channel {
     private List<ChannelCategory> category;
 
     @OneToMany(
-            mappedBy = "channel",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JoinColumn(name = "channel_id")
     private List<Episode> episodeList = new ArrayList<>();
 
     public String getTitle() {

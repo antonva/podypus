@@ -1,5 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Services;
 
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserService {
   List<User> findAll();
   User findByUsername(String username);
   User findByEmail(String email);
-  boolean loginUser(User user);
+  User loginUser(LoginForm user);
   void logOutUser(String username);
-  boolean isAuthenticated(User user);
+  boolean isAuthenticated(String username);
 }

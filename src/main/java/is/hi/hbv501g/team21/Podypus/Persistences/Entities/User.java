@@ -25,7 +25,7 @@ public class User {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "User_Channels",
+            name = "user_channels",
             joinColumns = { @JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="channel_id")}
     )

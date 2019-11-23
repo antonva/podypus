@@ -13,7 +13,7 @@ public class Episode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long episode_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Channel channel;
