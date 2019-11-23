@@ -251,11 +251,14 @@ public class Channel {
                 "Image Url: " + this.imageUrl + "\n" +
                 "Explicit: " + this.explicit + "\n" +
                 "Summary: " + this.summary + "\n" +
-                "Owner Name: " + this.owner.getName() + "\n" +
-                "Owner Email: " + this.owner.getEmail() + "\n" +
                 //"Image title: " + this.image.getTitle() + "\n" +
                 //"Image url: " + this.image.getUrl() + "\n" +
                 "Type: " + this.type + "\n";
+
+        if (this.getOwner() != null) {
+            s = s + "Owner Name: " + this.owner.getName() + "\n";
+            s = s + "Owner Email: " + this.owner.getEmail() + "\n";
+        }
         if (this.category != null) {
             s = s + "Categories:\n";
             for (ChannelCategory t : this.category) {

@@ -50,10 +50,4 @@ public class PodcastServiceImplementation implements PodcastService {
 
         return podcastRepository.findByTitle(title);
     }
-
-    @Override
-    public boolean saveChannel(User user, Channel channel) {
-        this.podcastRepository.saveChannel(user.getUser_id(), channel.getChannel_id());
-        return false;
-    }
 }

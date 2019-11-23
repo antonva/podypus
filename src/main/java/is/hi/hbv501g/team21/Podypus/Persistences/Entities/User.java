@@ -40,6 +40,14 @@ public class User {
         this.password = password;
     }
 
+    public Set<Channel> getChannels() {
+        return channels;
+    }
+
+    public void setChannels(Channel channel) {
+        this.channels.add(channel);
+    }
+
     public long getUser_id() {return user_id;}
 
     public void setUser_id(long user_id) {

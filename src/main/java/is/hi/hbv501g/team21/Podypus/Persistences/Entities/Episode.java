@@ -193,7 +193,6 @@ public class Episode {
                 "Link: " + this.link + "\n" +
                 //"Description: " + this.description + "\n" +
                 "Duration: " + this.duration + "\n" +
-                "Image Url: " + this.image.getHref()+ "\n" +
                 "Explicit: " + this.explicit + "\n" +
                 //"Owner Name: " + this.owner.getName() + "\n" +
                 //"Owner Email: " + this.owner.getEmail() + "\n" +
@@ -208,6 +207,9 @@ public class Episode {
             s = s + "\nEnclosure url: " +  this.enclosure.getUrl();
             s = s + "\nEnclosure type: " +  this.enclosure.getType();
             s = s + "\nEnclosure length: " +  this.enclosure.getLength();
+        }
+        if (this.image != null) {
+            s = s + "Image Url: " + this.image.getHref() + "\n";
         }
 
         if (this.guid != null) {

@@ -48,9 +48,6 @@ public class SearchController {
             Channel c = rssService.parseFeed(s.getResults().get(0).getFeedUrl());
             System.out.println(c);
             System.out.println(c.getEpisodeList().get(0));
-            podcastService.save(c);
-
-
             mav.addObject("results", s);
         }
         return mav;

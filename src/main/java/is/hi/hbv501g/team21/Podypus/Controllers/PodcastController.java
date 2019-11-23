@@ -4,15 +4,19 @@ import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
 import is.hi.hbv501g.team21.Podypus.Services.SearchService;
+import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +25,16 @@ import java.util.List;
 public class PodcastController {
 
     private RssService rssService;
+    private UserService userService;
     private PodcastService podcastService;
     private List<Channel> p;
 
     @Autowired
     public PodcastController(RssService rssService,
+                             UserService userService,
                              PodcastService podcastService) {
         this.rssService = rssService;
+        this.userService = userService;
         this.podcastService = podcastService;
         this.p = new ArrayList<>();
     }
@@ -38,14 +45,24 @@ public class PodcastController {
         return "Feed";
     }
 
-    @RequestMapping(value = "/subscribe/{nr}", method = RequestMethod.GET)
-    public String addPodcast(@PathVariable("nr") int nr, Model model) {
-        Channel channel = p.get(nr);
-        model.addAttribute("podcast", channel);
-        podcastService.save(channel);
-
-        model.addAttribute("podcasts", podcastService.findAll());
-        return "Home";
+    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+    public @ResponseBody String addPodcast(@Valid @RequestBody SubscribeUrl s, HttpServletRequest request,
+                                                 BindingResult result, Model model) {
+        Cookie[] clist = request.getCookies();
+        if (clist != null && clist.length > 0) {
+            Cookie c  = clist[0];
+            Channel channel = rssService.parseFeed(s.getUrl());
+            if (podcastService.findByTitle(channel.getTitle()).size() > 0) {
+                // TODO handle if podcast channel exists already
+            } else {
+                podcastService.save(channel);
+            }
+            User u = userService.findByUsername(c.getValue());
+            u.setChannels(channel);
+            userService.save(u);
+            return "{\"success\":1}";
+        }
+        return "{\"success\":0}";
     }
 
 }

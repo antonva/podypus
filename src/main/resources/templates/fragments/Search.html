@@ -44,9 +44,8 @@
                         <div class="card-title" th:text="${item.getCollectionName() }">Podcast Name</div>
                         <div class="card-subtitle" th:text="${item.getArtistName() }">Artist Name</div>
                         <div class="card-subtitle" th:text="${item.getReleaseDate() }">Last updated</div>
-                        <a class="card-link btn btn-light" th:href="${item.getFeedUrl()}">RSS</a>
-                        <a class="card-link btn btn-light"
-                           th:href="@{/subscribe/{nr}(nr=${iterStat.index})}">Subscribe</a>
+                        <button class="card-link btn btn-light subscribeBtn" th:href="${item.getFeedUrl() }">Subscribe</button>
+                        <!-- <a class="card-link btn btn-light subscribebtn" th:href="${item.getFeedUrl}">Subscribe</a>-->
                     </div>
                 </div>
             </div>
