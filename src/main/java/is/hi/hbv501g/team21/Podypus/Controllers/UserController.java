@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
@@ -36,13 +37,18 @@ public class UserController {
             return "redirect:/login";
         }
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
+        User uname = userService.findByUsername(user.getUsername());
+        if (uname != null) {
+            return "fragments/Login :: unameExists";
+        }
         if (exists == null) {
             userService.save(user);
             return "redirect:/login";
         }
         if (exists != null) {
+            return "fragments/Login :: userExists";
         }
-        return "fragments/Login :: userExists";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -51,7 +57,7 @@ public class UserController {
         return "fragments/Login :: login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(@Valid User user,
                             BindingResult result,
                             Model model,
@@ -68,7 +74,7 @@ public class UserController {
             return "redirect:/login/profile";
         }
         return "redirect:/login";
-    }
+    }*/
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(Model model, HttpServletRequest request) {
