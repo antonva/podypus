@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
@@ -38,6 +39,7 @@ public class HomeController {
             Cookie c  = clist[0];
             authenticated = userService.isAuthenticated(c.getValue());
         }
+        model.addAttribute("loginform", new LoginForm());
         model.addAttribute("authenticated", authenticated);
         model.addAttribute("podcasts", podcastService.findAll());
         return "Index";

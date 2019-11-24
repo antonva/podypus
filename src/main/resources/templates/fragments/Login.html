@@ -20,12 +20,12 @@
 </th:block>
 
 <!--/*-->
-<!-- @thymesVar id="user" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.User" -->
+<!-- @thymesVar id="loginform" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm" -->
 <!--*/-->
 <th:block th:fragment="login">
     <div>
         <h1>User Login</h1>
-        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/login}" th:object="${loginform}" method="post">
             <p>Username: <input placeholder="Username" type="text"  id="username" th:field="*{username}" /></p>
             <p>Password: <input placeholder="Password" type="password" th:field="*{password}" /></p>
             <p><input type="submit" value="Login" /></p>
