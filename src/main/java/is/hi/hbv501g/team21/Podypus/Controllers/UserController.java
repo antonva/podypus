@@ -44,12 +44,12 @@ public class UserController {
         }
         if (exists == null) {
             userService.save(user);
-            return "redirect:/login";
+            return "redirect:/";
         }
         if (exists != null) {
             return "fragments/Login :: userExists";
         }
-        return "redirect:/login";
+        return "fragments/Login :: login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -122,7 +122,7 @@ public class UserController {
             System.out.println(user.getPassword());
             System.out.println(exists.getPassword());
             userService.resetPassword(exists.getEmail(), user.getPassword());
-            return "redirect:/login";
+            return "redirect:/";
         }
         else return "fragments/Login :: notExists";
     }

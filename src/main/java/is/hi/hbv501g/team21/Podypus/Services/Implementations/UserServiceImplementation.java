@@ -8,6 +8,8 @@ import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +67,7 @@ public class UserServiceImplementation implements UserService {
         User user = userRepository.findByEmail(email);
         if (user != null)
             user.setPassword(newPassword);
-            userRepository.save(user);
-        //else eitthvað og villa af því það er enginn notandi með þetta e-mail til
+        userRepository.save(user);
     }
 
     @Override
@@ -75,8 +76,14 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public boolean isAuthenticated(String username) {
-        if (this.loggedInUsers.indexOf(username) >= 0) {
+    public boolean isAuthenticated(/*String username,*/  HttpServletRequest request) {
+        //if (this.loggedInUsers.indexOf(username) >= 0) {
+            Cookie[] clist = request.getCookies();
+            //boolean authenticated = false;
+            if (clist != null && clist.length > 0) {
+                Cookie c = clist[0];
+                if (this.loggedInUsers.indexOf(c.getValue()) >= 0) {
+            }
             return true;
         }
         return false;

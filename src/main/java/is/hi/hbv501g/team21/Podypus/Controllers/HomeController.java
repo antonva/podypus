@@ -32,12 +32,13 @@ public class HomeController {
 
     @RequestMapping("/")
     public String Home(Model model, HttpServletRequest request) {
-        Cookie[] clist = request.getCookies();
+        boolean authenticated = userService.isAuthenticated(request);
+        /*Cookie[] clist = request.getCookies();
         boolean authenticated = false;
         if (clist != null && clist.length > 0) {
             Cookie c  = clist[0];
             authenticated = userService.isAuthenticated(c.getValue());
-        }
+        }*/
         User u = new User();
         u.setEmail("bogus@email.donut.use");
         u.setUsername("bogus@email.donut.use");
