@@ -12,5 +12,5 @@ public interface PodcastService {
     void delete(Channel channel);
     List<Channel> findAll();
     Optional<Channel> findById(long id);
-    List<Channel> findByTitle(String title);
+    Channel findByTitle(String title);
 }

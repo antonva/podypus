@@ -17,5 +17,40 @@
             </ul>
         </div>
     </th:block>
+
+    <!--/*-->
+    <!-- @thymesVar id="channel" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel" -->
+    <!--*/-->
+    <div th:fragment="channelDetails">
+        <div class="container" th:if="${channel != null}">
+            <div class="media">
+                <!--Image-->
+                <img class="mr-2" th:src="${channel.getImageUrl()}">
+                <!--Title-->
+                <div class="media-body">
+                    <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
+                    <!--Description-->
+                    <div th:text="${channel.getDescription()}">Description</div>
+                    <!--Episode List-->
+                    <ul class="list-unstyled" th:each="episode : ${channel.getEpisodeList()}">
+                        <li class="media mt3">
+                            <!-- Image -->
+                            <th:block th:if="${episode.getImage() != null}">
+                                <img class="mr-3" th:src="${episode.getImage().getHref()}">
+                            </th:block>
+                            <th:block th:unless="${episode.getImage() != null}">
+                                <img class="mr-3" th:src="${channel.getImageUrl()}">
+                            </th:block>
+                            <div class="media-body">
+                                <!-- Title -->
+                                <h5 class="mt-0 mb-1" th:text="${episode.getTitle()}">Episode Title</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </th:block>
 </body>
 </html>

@@ -15,6 +15,6 @@ public interface PodcastRepository extends JpaRepository<Channel, Long> {
     Channel save(Channel channel);
     void delete(Channel channel);
     List<Channel> findAll();
-    List<Channel> findByTitle(String title);
+    Channel findByTitle(String title);
     Optional<Channel> findById(long id);
 }

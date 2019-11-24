@@ -39,12 +39,17 @@ public class PodcastController {
         this.p = new ArrayList<>();
     }
 
-    @RequestMapping(value = "/feed", method = RequestMethod.GET)
-    public String feedHandler(Model model) {
-        model.addAttribute("query", new SearchQuery());
-        return "Feed";
-    }
+    @RequestMapping(value = "/channel", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView channelDetails(@Valid @ModelAttribute String title, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelDetails");
+            mav.addObject("channel", podcastService.findByTitle(title));
+            return mav;
+        }
+        return null;
 
+    }
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody ModelAndView listSubscribedChannels(HttpServletRequest request) {
         boolean authenticated = userService.isAuthenticated(request);
@@ -57,7 +62,7 @@ public class PodcastController {
         return null;
     }
 
-@RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public @ResponseBody String addPodcast(@Valid @RequestBody SubscribeUrl s, HttpServletRequest request,
                                                  BindingResult result, Model model) {
         boolean authenticated = userService.isAuthenticated(request);
@@ -66,7 +71,7 @@ public class PodcastController {
             if (clist != null && clist.length > 0) {
                 Cookie c = clist[0];
                 Channel channel = rssService.parseFeed(s.getUrl());
-                if (podcastService.findByTitle(channel.getTitle()).size() > 0) {
+                if (podcastService.findByTitle(channel.getTitle()) != null) {
                     // TODO handle if podcast channel exists already
                 } else {
                     podcastService.save(channel);

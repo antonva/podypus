@@ -97,9 +97,26 @@ let showSearch = (event) => {
         },
         done: function(res) {
             console.log("DONE")
-        },
+        }
     })
 }
+
+let showChannel = (event) => {
+    event.preventDefault();
+    let title = { "title": event.target.value }
+    $.ajax({
+        type: "GET",
+        data: JSON.stringify(title),
+        dataType: "html",
+        url: "channel",
+        success: function(res) {
+            document.getElementById("podypus-container").innerHTML = res;
+        },
+        error: function(res) {},
+        done: function(res) {}
+    })
+}
+
 /* Event Listeners */
 document.addEventListener('DOMContentLoaded', function () {
     /* Search event listeners */

@@ -46,7 +46,7 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
-    public List<Channel> findByTitle(String title) {
+    public Channel findByTitle(String title) {
 
         return podcastRepository.findByTitle(title);
     }
