@@ -48,19 +48,22 @@ public class PodcastController {
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public @ResponseBody String addPodcast(@Valid @RequestBody SubscribeUrl s, HttpServletRequest request,
                                                  BindingResult result, Model model) {
-        Cookie[] clist = request.getCookies();
-        if (clist != null && clist.length > 0) {
-            Cookie c  = clist[0];
-            Channel channel = rssService.parseFeed(s.getUrl());
-            if (podcastService.findByTitle(channel.getTitle()).size() > 0) {
-                // TODO handle if podcast channel exists already
-            } else {
-                podcastService.save(channel);
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            Cookie[] clist = request.getCookies();
+            if (clist != null && clist.length > 0) {
+                Cookie c = clist[0];
+                Channel channel = rssService.parseFeed(s.getUrl());
+                if (podcastService.findByTitle(channel.getTitle()).size() > 0) {
+                    // TODO handle if podcast channel exists already
+                } else {
+                    podcastService.save(channel);
+                }
+                User u = userService.findByUsername(c.getValue());
+                u.setChannels(channel);
+                userService.save(u);
+                return "{\"success\":1}";
             }
-            User u = userService.findByUsername(c.getValue());
-            u.setChannels(channel);
-            userService.save(u);
-            return "{\"success\":1}";
         }
         return "{\"success\":0}";
     }
