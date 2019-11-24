@@ -1,8 +1,9 @@
 /*Stylesheet for user login tabs*/
-.myTabs {
-
+.nav {
+  justify-content: center;
 }
 
 .tabBar {
-
+  text-align: center;
+  margin-top: 20px;
 }
