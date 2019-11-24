@@ -23,8 +23,32 @@
                 <search th:insert="fragments/Search.html :: search"></search>
                 <searchResults th:insert="fragments/Search.html :: searchResults"></searchResults>
             </div>
-            <div th:unless="${authenticated}">
-                <login th:insert="fragments/Login.html :: login"></login>
+            <div class="myTabs" th:unless="${authenticated}">
+                <!--<login th:insert="fragments/Login.html :: login"></login>-->
+              <div class="tabBar">
+                <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                    <li class="nav-item">
+                        <a class="nav-link active"id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="signup" aria-selected="false">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="changePassword-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <login th:insert="fragments/Login.html :: login"></login>
+                    </div>
+                    <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                        <p th:insert="fragments/Login.html :: signup"></p>
+                    </div>
+                    <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
+                        <p th:insert="fragments/Login.html :: changePassword"></p>
+                    </div>
+                </div>
+              </div>
             </div>
             <!--Delete comment brackets below to see changes-->
             <!--<div th:insert="fragments/player.html :: player"></div>-->
