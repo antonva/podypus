@@ -2,7 +2,9 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 
@@ -23,13 +25,17 @@ public class User {
     @NotNull
     private String password;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<UserEpisode> episodes;
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "user_channels",
             joinColumns = { @JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="channel_id")}
     )
-    Set<Channel> channels = new HashSet<>();
+    private Set<Channel> channels = new HashSet<>();
 
     public User() {
     }
@@ -68,5 +74,23 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserEpisode> getEpisodes() {
+        return episodes;
+    }
+
+    public void addEpisode(Episode episode) {
+        System.out.println(this.getUser_id());
+        System.out.println(episode.getEpisode_id());
+        UserEpisode ue = new UserEpisode();
+        ue.setEpisode(episode);
+        ue.setUser(this);
+        ue.setPlayed(false);
+        ue.setPlaybackPosition(0);
+        ue.userEpisodeId = new UserEpisodeId();
+        ue.userEpisodeId.setEpisodeId(episode.getEpisode_id());
+        ue.userEpisodeId.setUserId(this.getUser_id());
+        this.episodes.add(ue);
     }
 }

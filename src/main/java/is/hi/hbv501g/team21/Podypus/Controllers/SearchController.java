@@ -47,6 +47,7 @@ public class SearchController {
         } else {
             s = searchService.searchByTitle(query.getTerm());
             Channel c = rssService.parseFeed(s.getResults().get(0).getFeedUrl());
+            //TODO: Remove these for production
             System.out.println(c);
             System.out.println(c.getEpisodeList().get(0));
             mav.addObject("results", s);

@@ -84,6 +84,9 @@ public class PodcastController {
                 }
                 User u = userService.findByUsername(c.getValue());
                 u.setChannels(channel);
+                for (Episode episode: channel.getEpisodeList()) {
+                    u.addEpisode(episode);
+                }
                 userService.save(u);
                 return "{\"success\":1}";
             }

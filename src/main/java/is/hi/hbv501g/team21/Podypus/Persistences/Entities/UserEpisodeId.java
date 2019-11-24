@@ -7,19 +7,15 @@ import java.util.Objects;
 
 @Embeddable
 public class UserEpisodeId implements Serializable {
+
+
     @Column(name = "user_id")
     private Long userId;
     @Column(name = "episode_id")
     private Long episodeId;
 
 
-    public UserEpisodeId() {
-    }
-
-    public UserEpisodeId(Long userId, Long episodeId) {
-        this.userId = userId;
-        this.episodeId = episodeId;
-    }
+    public UserEpisodeId() { }
 
     public Long getUserId() {
         return userId;
@@ -27,6 +23,14 @@ public class UserEpisodeId implements Serializable {
 
     public Long getEpisodeId() {
         return episodeId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setEpisodeId(Long episodeId) {
+        this.episodeId = episodeId;
     }
 
     @Override

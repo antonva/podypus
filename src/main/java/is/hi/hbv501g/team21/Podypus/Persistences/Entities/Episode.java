@@ -2,6 +2,10 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Entity class for a podcast episode
@@ -15,8 +19,13 @@ public class Episode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long episode_id;
 
+    // Podypus data
     @ManyToOne(fetch = FetchType.LAZY)
     private Channel channel;
+
+    @OneToMany(mappedBy = "episode", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<UserEpisode> userEpisodes;
+
 
     // XML Namespaces hardcoded.
     @Transient
@@ -219,4 +228,7 @@ public class Episode {
         return s;
     }
 
+    public Long getEpisode_id() {
+        return episode_id;
+    }
 }
