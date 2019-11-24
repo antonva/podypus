@@ -8,9 +8,10 @@ import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -59,7 +60,14 @@ public class UserServiceImplementation implements UserService {
             }
         }
         return null;
-        //return "fragments/Login :: noUser"; TODO: ÞARF AÐ SKILA ÞESSU
+    }
+    //This is for demonstration purposes only, for final version an e-mail verification step would be included.
+    @Override
+    public void resetPassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user != null)
+            user.setPassword(newPassword);
+        userRepository.save(user);
     }
 
     @Override
@@ -68,8 +76,14 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public boolean isAuthenticated(String username) {
-        if (this.loggedInUsers.indexOf(username) >= 0) {
+    public boolean isAuthenticated(/*String username,*/  HttpServletRequest request) {
+        //if (this.loggedInUsers.indexOf(username) >= 0) {
+            Cookie[] clist = request.getCookies();
+            //boolean authenticated = false;
+            if (clist != null && clist.length > 0) {
+                Cookie c = clist[0];
+                if (this.loggedInUsers.indexOf(c.getValue()) >= 0) {
+            }
             return true;
         }
         return false;

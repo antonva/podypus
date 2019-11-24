@@ -33,12 +33,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String Home(Model model, HttpServletRequest request) {
-        Cookie[] clist = request.getCookies();
-        boolean authenticated = false;
-        if (clist != null && clist.length > 0) {
-            Cookie c  = clist[0];
-            authenticated = userService.isAuthenticated(c.getValue());
-        }
+        boolean authenticated = userService.isAuthenticated(request);
         model.addAttribute("loginform", new LoginForm());
         model.addAttribute("authenticated", authenticated);
         model.addAttribute("podcasts", podcastService.findAll());

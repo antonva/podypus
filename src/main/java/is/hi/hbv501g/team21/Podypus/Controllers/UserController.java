@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
@@ -26,12 +27,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    /*@RequestMapping(value="/login", method=RequestMethod.GET)
-    public String loginForm(Model model) {
-        model.addAttribute("user", new User());
-        return "Login";
-    }*/
-
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpGET(User user){
         return "fragments/Login :: signup";
@@ -40,17 +35,21 @@ public class UserController {
     @RequestMapping(value="/signup", method = RequestMethod.POST)
     public String signUpPOST(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "Login";
-        }
-        User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
-        if (exists == null) {
-            userService.save(user);
             return "redirect:/login";
         }
-        if (exists != null) {
+        User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
+        User uname = userService.findByUsername(user.getUsername());
+        if (uname != null) {
+            return "fragments/Login :: unameExists";
         }
-        return "fragments/Login :: userExists";
-        //TODO birta villuskilaboð um að það sé til notandi með þetta e-mail. Gera þetta í fragment í Login.
+        if (exists == null) {
+            userService.save(user);
+            return "redirect:/";
+        }
+        if (exists != null) {
+            return "fragments/Login :: userExists";
+        }
+        return "fragments/Login :: login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -59,12 +58,13 @@ public class UserController {
         return "fragments/Login :: login";
     }
 
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(@Valid LoginForm loginForm,
                             BindingResult result,
                             Model model,
                             HttpServletRequest request,
-                            HttpServletResponse response){
+                            HttpServletResponse response) {
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
             return "redirect:/";
@@ -78,6 +78,7 @@ public class UserController {
         }
         return "redirect:/";
     }
+
     //birta profile fyrir notanda sem er loggaður inn
     @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
     public String loggedinGET(Model model, HttpServletRequest request) {
@@ -104,5 +105,26 @@ public class UserController {
 
         return "redirect:/";
     }
+    @RequestMapping(value = "/login/changePassword", method = RequestMethod.GET)
+    //public String changePasswordGET(User user){
+    public String changePasswordGET(Model model){
+        model.addAttribute("user", new User());
+        System.out.println("in changePasswordGET");
+        return "fragments/Login :: changePassword";
+    }
+    @RequestMapping(value = "/login/changePassword", method = RequestMethod.POST)
+    public String changePassword(@ModelAttribute("user") User user) {
+        System.out.println("in changePassword");
+        User exists = userService.findByEmail(user.getEmail()); //returns a User object with that e-mail address that has been entered.
+        if (exists != null) {
+            System.out.println(exists.getUsername());
+            System.out.println(exists.getEmail());
+            System.out.println(user.getPassword());
+            System.out.println(exists.getPassword());
+            userService.resetPassword(exists.getEmail(), user.getPassword());
+            return "redirect:/";
+        }
+        else return "fragments/Login :: notExists";
+    }
 }
-//TODO: logout - button on profile page
+
