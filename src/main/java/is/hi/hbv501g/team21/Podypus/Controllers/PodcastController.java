@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.ChannelId;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
 import is.hi.hbv501g.team21.Podypus.Services.SearchService;
@@ -20,6 +21,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PodcastController {
@@ -39,13 +41,17 @@ public class PodcastController {
         this.p = new ArrayList<>();
     }
 
-    @RequestMapping(value = "/channel", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView channelDetails(@Valid @ModelAttribute String title, HttpServletRequest request) {
+    @RequestMapping(value = "/channel", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView channelDetails(@Valid @RequestBody ChannelId channel_id, HttpServletRequest request) {
         boolean authenticated = userService.isAuthenticated(request);
+        System.out.println(channel_id.getChannel_id());
         if (authenticated) {
             ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelDetails");
-            mav.addObject("channel", podcastService.findByTitle(title));
-            return mav;
+            Optional<Channel> ou = podcastService.findById(channel_id.getChannel_id());
+            if (ou.isPresent()) {
+                mav.addObject("channel", ou.get());
+                return mav;
+            }
         }
         return null;
 

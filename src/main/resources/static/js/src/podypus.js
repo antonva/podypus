@@ -69,6 +69,10 @@ let showSubscriptions = (event) => {
         url: "list",
         success: function(res) {
             document.getElementById("podypus-container").innerHTML = res;
+            let subscribeBtns = document.getElementsByClassName("podypus-channel")
+            for (let i = 0; i < subscribeBtns.length; i++) {
+                subscribeBtns.item(i).addEventListener("click", showChannel);
+            }
         },
         error: function(res) {
             console.log("ERROR")
@@ -103,16 +107,22 @@ let showSearch = (event) => {
 
 let showChannel = (event) => {
     event.preventDefault();
-    let title = { "title": event.target.value }
+    let channel_id = { "channel_id": event.target.dataset['channelId']};
+    console.log(channel_id)
     $.ajax({
-        type: "GET",
-        data: JSON.stringify(title),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(channel_id),
         dataType: "html",
         url: "channel",
         success: function(res) {
+            console.log(res)
             document.getElementById("podypus-container").innerHTML = res;
         },
-        error: function(res) {},
+        error: function(res) {
+            console.log("ERROR");
+            console.log(res);
+        },
         done: function(res) {}
     })
 }

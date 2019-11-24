@@ -255,6 +255,10 @@ public class Channel {
                 //"Image url: " + this.image.getUrl() + "\n" +
                 "Type: " + this.type + "\n";
 
+        if (this.getImage() != null) {
+            s = s + "Image Title: " + this.getImage().getChannelImageTitle() + "\n";
+            s = s + "Image Url: " + this.getImage().getChannelImageUrl() + "\n";
+        }
         if (this.getOwner() != null) {
             s = s + "Owner Name: " + this.owner.getName() + "\n";
             s = s + "Owner Email: " + this.owner.getEmail() + "\n";
