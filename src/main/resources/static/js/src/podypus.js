@@ -12,7 +12,7 @@ let performSearch = (event) => {
         data : JSON.stringify(termobj),
         success: function(res) {
             $("searchresults").html(res);
-            document.getElementById("ply").addEventListener("click", makePlayer);
+            addListeners();
         },
         error: function(err) {
             console.log("ERROR");
@@ -25,6 +25,15 @@ let performSearch = (event) => {
     })
 
     /* Stop site navigation*/
+}
+
+/*Takes all fields with id ply from backend and adds listeners to all of them*/
+function addListeners() {
+    var elements = document.querySelectorAll("[id='ply']");
+    for(var i = 0; i < elements.length; i++){
+        elements[i].addEventListener("click", makePlayer);
+        elements[i].href = elements[i].getAttribute("href");
+    }
 }
 
 /*Creates the player container in html*/
@@ -86,10 +95,7 @@ function makeAudio(url) {
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
     event.preventDefault();
-    var element = document.getElementById("ply");
-    var href = element.getAttribute("href");
-
-    makeAudio(href);
+    makeAudio(event.currentTarget.href);
 }
 
 /* Event Listeners */
