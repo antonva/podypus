@@ -7,7 +7,11 @@
     <title>Podypus - a podcast player</title>
 </head>
 <body>
-    <div th:fragment="search">
+    <th:block th:fragment="search">
+        <div id="search-bar" th:insert="fragments/Search.html :: searchBar"/>
+        <div id="search-results" th:insert="fragments/Search.html :: searchResults"/>
+    </th:block>
+    <th:block th:fragment="searchBar">
         <div class="container">
             <br/>
             <div class="row justify-content-center">
@@ -29,7 +33,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </th:block>
 
     <!--/*-->
     <!-- @thymesVar id="results" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult" -->

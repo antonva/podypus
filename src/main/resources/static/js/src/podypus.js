@@ -38,7 +38,8 @@ let performSearch = (event) => {
         url: "search",
         data : JSON.stringify(termobj),
         success: function(res) {
-            $("searchresults").html(res);
+            console.log(res)
+            document.getElementById("search-results").innerHTML = res;
             let subscribeBtns = document.getElementsByClassName("subscribeBtn")
             for (let i = 0; i < subscribeBtns.length; i++) {
                 subscribeBtns.item(i).addEventListener("click", subscribeToChannel);
@@ -57,9 +58,52 @@ let performSearch = (event) => {
     /* Stop site navigation*/
 }
 
+/* Replaces the podypus-container div contents with a list of subscribed channels.
+   All events on subscribed channels need to be registered here.
+ */
+let showSubscriptions = (event) => {
+    event.preventDefault();
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "list",
+        success: function(res) {
+            document.getElementById("podypus-container").innerHTML = res;
+        },
+        error: function(res) {
+            console.log("ERROR")
+        },
+        done: function(res) {
+            console.log("DONE")
+        },
+    })
+}
+
+/* Replaces the podypus-container div contents with a search view
+   All events on the search view need to be registered here.
+ */
+let showSearch = (event) => {
+    event.preventDefault();
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "search",
+        success: function(res) {
+            document.getElementById("podypus-container").innerHTML = res;
+            document.getElementById("searchBtn").addEventListener("click", performSearch)
+        },
+        error: function(res) {
+            console.log("ERROR")
+        },
+        done: function(res) {
+            console.log("DONE")
+        },
+    })
+}
 /* Event Listeners */
 document.addEventListener('DOMContentLoaded', function () {
     /* Search event listeners */
-    document.getElementById("searchBtn").addEventListener("click", performSearch)
+    document.getElementById("nav-channels").addEventListener("click", showSubscriptions)
+    document.getElementById("nav-search").addEventListener("click", showSearch)
 })
 

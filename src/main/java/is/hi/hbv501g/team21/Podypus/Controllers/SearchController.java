@@ -31,8 +31,9 @@ public class SearchController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchForPodcast(Model model) {
-        return "fragments/Search";
+    public @ResponseBody ModelAndView searchForPodcast(Model model) {
+        ModelAndView mav = new ModelAndView("fragments/Search :: search");
+        return mav;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)

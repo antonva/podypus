@@ -45,7 +45,19 @@ public class PodcastController {
         return "Feed";
     }
 
-    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView listSubscribedChannels(HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelList");
+            User u  = userService.findByUsername(request.getCookies()[0].getValue());
+            mav.addObject("chanlist", u.getChannels().toArray());
+            return mav;
+        }
+        return null;
+    }
+
+@RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public @ResponseBody String addPodcast(@Valid @RequestBody SubscribeUrl s, HttpServletRequest request,
                                                  BindingResult result, Model model) {
         boolean authenticated = userService.isAuthenticated(request);

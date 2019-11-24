@@ -19,13 +19,13 @@
         <th:block>
             <!--Insert fragments into html-->
             <nav th:insert="fragments/Nav.html" :: navbar></nav>
-            <div th:if="${authenticated}">
+            <div id="podypus-container" th:if="${authenticated}">
                 <search th:insert="fragments/Search.html :: search"></search>
-                <searchResults th:insert="fragments/Search.html :: searchResults"></searchResults>
             </div>
             <div th:unless="${authenticated}">
                 <login th:insert="fragments/Login.html :: login"></login>
             </div>
+            <div id="podypus-player"></div>
             <!--Delete comment brackets below to see changes-->
             <!--<div th:insert="fragments/player.html :: player"></div>-->
         </th:block>
