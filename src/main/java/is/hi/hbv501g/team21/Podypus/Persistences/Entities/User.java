@@ -81,8 +81,6 @@ public class User {
     }
 
     public void addEpisode(Episode episode) {
-        System.out.println(this.getUser_id());
-        System.out.println(episode.getEpisode_id());
         UserEpisode ue = new UserEpisode();
         ue.setEpisode(episode);
         ue.setUser(this);

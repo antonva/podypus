@@ -33,9 +33,12 @@ public class Episode {
     @Transient
     private final String itunesNs = "http://www.itunes.com/dtds/podcast-1.0.dtd" ;
 
-    // Episode Sub entitities
+    // Embedded episode entitities
+    @Embedded
     private EpisodeEnclosure enclosure;
+    @Embedded
     private EpisodeGuid guid;
+    @Embedded
     private EpisodeImage image;
 
     // Episode data

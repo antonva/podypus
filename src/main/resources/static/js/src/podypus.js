@@ -1,8 +1,6 @@
 console.log("Podypus is now mining for buttcoins...");
 
-
-
-
+/* Subscribe to the channel with the corresponding href */
 let subscribeToChannel = (event) => {
     event.preventDefault();
     let url =  { url: event.target.getAttribute("href") };
@@ -27,6 +25,8 @@ let subscribeToChannel = (event) => {
     })
 }
 
+
+/* Send a POST request to the podypus server */
 let performSearch = (event) => {
     event.preventDefault();
     var queryElem = document.getElementById("searchTxt")
@@ -54,8 +54,6 @@ let performSearch = (event) => {
         }
 
     })
-
-    /* Stop site navigation*/
 }
 
 /* Replaces the podypus-container div contents with a list of subscribed channels.
@@ -107,7 +105,7 @@ let showSearch = (event) => {
 
 let showChannel = (event) => {
     event.preventDefault();
-    let channel_id = { "channel_id": event.target.dataset['channelId']};
+    let channel_id = {"channel_id": event.target.dataset['channelId']};
     console.log(channel_id)
     $.ajax({
         type: "POST",
@@ -115,16 +113,93 @@ let showChannel = (event) => {
         data: JSON.stringify(channel_id),
         dataType: "html",
         url: "channel",
-        success: function(res) {
+        success: function (res) {
             console.log(res)
             document.getElementById("podypus-container").innerHTML = res;
+            addEpisodeListeners();
         },
-        error: function(res) {
+        error: function (res) {
             console.log("ERROR");
             console.log(res);
         },
-        done: function(res) {}
+        done: function (res) {
+        }
     })
+}
+
+/*Takes all fields with id ply from backend and adds listeners to all of them*/
+function addEpisodeListeners() {
+    var elements = document.getElementsByClassName("podypus-episode");
+    for(var i = 0; i < elements.length; i++){
+        elements.item(i).addEventListener("click", makePlayer);
+    }
+}
+
+/*Creates the player container in html*/
+/*
+              <div class="playerContent">
+                <div class="left"></div>
+                <div class="right">
+                    <div class="top">
+                        <h2>demosong</h2>
+                        <p>demo artist</p>
+                    </div>
+                </div>
+                <div id="mediaPlayerBox" class="bottom">
+                    <audio id="mediaPlayer" name="media" _autoplay="false" controls=""><source type="audio/mpeg"></audio>
+                </div>
+            </div>
+*/
+function makeAudio(url) {
+    console.log(url)
+    var container = document.createElement("div");
+    container.setAttribute("class", "playerContent");
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "left");
+    container.appendChild(div);
+
+    var right = document.createElement("div");
+    right.setAttribute("class", "right");
+
+    var top = document.createElement("div")
+    top.setAttribute("class", "top");
+    var h2 = document.createElement("h2");
+    h2.innerHTML = "demosong";
+    top.appendChild(h2);
+    var p = document.createElement("p");
+    p.innerHTML = "demotext";
+    top.appendChild(p);
+    right.appendChild(top);
+    container.appendChild(right);
+
+    var bottom = document.createElement("div");
+    bottom.setAttribute("id", "mediaPlayerBox");
+    bottom.setAttribute("class", "bottom");
+
+    var audio = document.createElement("audio");
+    audio.setAttribute("id", "mediaPlayer");
+    audio.setAttribute("name", "media");
+    audio.setAttribute("_autoplay", "false");
+    audio.setAttribute("controls", "");
+    audio.setAttribute("src", url);
+    var src = document.createElement("src");
+    src.setAttribute("type", "audio/mpeg");
+    audio.appendChild(src);
+    bottom.appendChild(audio);
+    container.appendChild(bottom);
+
+    let playerNode = document.getElementById("podypus-player");
+    while(playerNode.firstChild) {
+        playerNode.removeChild(playerNode.firstChild);
+    }
+    playerNode.appendChild(container);
+}
+
+/*Event makes the first element on the page clickable for the player*/
+let makePlayer = (event) => {
+    event.preventDefault();
+    makeAudio(event.currentTarget.dataset['episodeUrl']);
 }
 
 /* Event Listeners */

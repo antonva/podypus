@@ -40,24 +40,47 @@
                     <div th:text="${channel.getDescription()}">Description</div>
                     <!--Episode List-->
                     <ul class="list-unstyled" th:each="episode : ${channel.getEpisodeList()}">
-                        <li class="media mt3">
-                            <!-- Image -->
-                            <th:block th:if="${episode.getImage() != null}">
-                                <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${episode.getImage().getHref()}">
-                            </th:block>
-                            <th:block th:unless="${episode.getImage() != null}">
-                                <th:block th:if="${channel.getImageUrl() != null}">
-                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl()}">
+                        <th:block th:if="${episode.getEnclosure() != null}">
+                            <li class="media mt3 podypus-episode" th:attr="data-episode-url=${episode.getEnclosure().getUrl()}"></p>
+                                <!-- Image -->
+                                <th:block th:if="${episode.getImage() != null}">
+                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${episode.getImage().getHref()}">
                                 </th:block>
-                                <th:block th:unless="${channel.getImageUrl() != null}">
-                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
+                                <th:block th:unless="${episode.getImage() != null}">
+                                    <th:block th:if="${channel.getImageUrl() != null}">
+                                        <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl()}">
+                                    </th:block>
+                                    <th:block th:unless="${channel.getImageUrl() != null}">
+                                        <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
+                                    </th:block>
                                 </th:block>
-                            </th:block>
-                            <div class="media-body">
-                                <!-- Title -->
-                                <h5 class="mt-0 mb-1" th:text="${episode.getTitle()}">Episode Title</h5>
-                            </div>
-                        </li>
+                                <div class="media-body">
+                                    <!-- Title -->
+                                    <h5 class="mt-0 mb-1" th:text="${episode.getTitle()}">Episode Title</h5>
+                                </div>
+                            </li>
+                        </th:block>
+                        <th:block th:unless="${episode.getEnclosure() != null}">
+                            <li class="media mt3 podypus-episode" th:attr="data-url=${episode.getLink()}"></p>
+                                <!-- Image -->
+                                <th:block th:if="${episode.getImage() != null}">
+                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${episode.getImage().getHref()}">
+                                </th:block>
+                                <th:block th:unless="${episode.getImage() != null}">
+                                    <th:block th:if="${channel.getImageUrl() != null}">
+                                        <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl()}">
+                                    </th:block>
+                                    <th:block th:unless="${channel.getImageUrl() != null}">
+                                        <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
+                                    </th:block>
+                                </th:block>
+                                <div class="media-body">
+                                    <!-- Title -->
+                                    <h5 class="mt-0 mb-1" th:text="${episode.getTitle()}">Episode Title</h5>
+                                </div>
+                            </li>
+
+                        </th:block>
                     </ul>
                 </div>
 

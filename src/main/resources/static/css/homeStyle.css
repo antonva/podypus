@@ -8,3 +8,17 @@
     outline: none;
     box-shadow: none;
 }
+
+#podypus-player {
+    position: fixed;
+    height: 80px;
+    background-color: red;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+body {
+    margin-bottom: 80px;
+}
