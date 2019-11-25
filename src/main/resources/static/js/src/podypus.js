@@ -29,8 +29,8 @@ let subscribeToChannel = (event) => {
 
 let performSearch = (event) => {
     event.preventDefault();
-    let queryElem = document.getElementById("searchTxt")
-    let termobj = { term: queryElem.value }
+    var queryElem = document.getElementById("searchTxt")
+    var termobj = { term: queryElem.value }
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",

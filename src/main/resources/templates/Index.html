@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="/static/css/navbarStyle.css"/>
         <link rel="stylesheet" href="/static/css/homeStyle.css"/>
         <!--Js-->
-        <script type="text/javascript" src="/static/js/src/podypus.js"></script>
-        <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/src/podypus.js"></script>
         <title>Podypus - a podcast player</title>
     </head>
     <body>
@@ -22,8 +22,26 @@
             <div id="podypus-container" th:if="${authenticated}">
                 <search th:insert="fragments/Search.html :: search"></search>
             </div>
-            <div th:unless="${authenticated}">
-                <login th:insert="fragments/Login.html :: login"></login>
+            <div class="myTabs" th:unless="${authenticated}">
+                <!--<login th:insert="fragments/Login.html :: login"></login>-->
+              <div class="tabBar">
+                <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#login">Login</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#signup">Signup</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#changePassword">Change Password</a> </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="login">
+                        <login th:insert="fragments/Login.html :: login"></login>
+                    </div>
+                    <div class="tab-pane" id="signup">
+                        <signup th:insert="fragments/Login.html :: signup"></signup>
+                    </div>
+                    <div class="tab-pane" id="changePassword">
+                        <changepass th:insert="fragments/Login.html :: changePassword"></changepass>
+                    </div>
+                </div>
+              </div>
             </div>
             <div id="podypus-player"></div>
             <!--Delete comment brackets below to see changes-->
