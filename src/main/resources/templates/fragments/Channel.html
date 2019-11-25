@@ -4,6 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/channelStyle.css"/>
     <title>Podypus - a podcast player</title>
 </head>
 <body>
@@ -37,7 +38,7 @@
                 <div class="media-body">
                     <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
                     <!--Description-->
-                    <div th:text="${channel.getDescription()}">Description</div>
+                    <div class="desc" th:text="${channel.getDescription()}">Description</div>
                     <!--Episode List-->
                     <ul class="list-unstyled" th:each="episode : ${channel.getEpisodeList()}">
                         <th:block th:if="${episode.getEnclosure() != null}">
