@@ -38,7 +38,6 @@ let performSearch = (event) => {
         url: "search",
         data : JSON.stringify(termobj),
         success: function(res) {
-            console.log(res)
             document.getElementById("search-results").innerHTML = res;
             let subscribeBtns = document.getElementsByClassName("subscribeBtn")
             for (let i = 0; i < subscribeBtns.length; i++) {
@@ -106,7 +105,6 @@ let showSearch = (event) => {
 let showChannel = (event) => {
     event.preventDefault();
     let channel_id = {"channel_id": event.target.dataset['channelId']};
-    console.log(channel_id)
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -151,7 +149,6 @@ function addEpisodeListeners() {
             </div>
 */
 function makeAudio(url) {
-    console.log(url)
     var container = document.createElement("div");
     container.setAttribute("class", "playerContent");
 
