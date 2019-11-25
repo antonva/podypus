@@ -35,6 +35,7 @@ public class HomeController {
     public String Home(Model model, HttpServletRequest request) {
         boolean authenticated = userService.isAuthenticated(request);
         model.addAttribute("loginform", new LoginForm());
+        model.addAttribute("user", new User());
         model.addAttribute("authenticated", authenticated);
         model.addAttribute("podcasts", podcastService.findAll());
         return "Index";

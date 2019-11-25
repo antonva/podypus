@@ -1,8 +1,31 @@
 /*Stylesheet for user login tabs*/
-.myTabs {
-
+.nav {
+  justify-content: center;
 }
 
 .tabBar {
+  text-align: center;
+  margin-top: 20px;
+  color: black;
+}
 
+.tabBar li:hover {
+  background-color: #ddd;
+  text-decoration-color: black;
+  color: black;
+  border-radius: 5px;
+}
+
+.nav-item a.nav-link {
+  color: black;
+  font-size: 18px;
+}
+
+.nav-item a.nav-link.active {
+  background-color: #4B818D;
+  color: white;
+}
+.tab-content {
+  margin-top: 20px;
+  padding: 10px;
 }

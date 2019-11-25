@@ -76,15 +76,15 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public boolean isAuthenticated(/*String username,*/  HttpServletRequest request) {
-        //if (this.loggedInUsers.indexOf(username) >= 0) {
-            Cookie[] clist = request.getCookies();
-            //boolean authenticated = false;
-            if (clist != null && clist.length > 0) {
-                Cookie c = clist[0];
-                if (this.loggedInUsers.indexOf(c.getValue()) >= 0) {
+    public boolean isAuthenticated(HttpServletRequest request) {
+        Cookie[] clist = request.getCookies();
+        if (clist != null && clist.length > 0) {
+            Cookie c = clist[0];
+            if (this.loggedInUsers.indexOf(c.getValue()) >= 0) {
+                return true;
+            } else if (userRepository.findByUsername(c.getValue()) != null) {
+                return true;
             }
-            return true;
         }
         return false;
     }
