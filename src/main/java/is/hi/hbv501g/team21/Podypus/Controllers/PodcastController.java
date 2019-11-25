@@ -77,15 +77,20 @@ public class PodcastController {
             if (clist != null && clist.length > 0) {
                 Cookie c = clist[0];
                 Channel channel = rssService.parseFeed(s.getUrl());
-                if (podcastService.findByTitle(channel.getTitle()) != null) {
-                    // TODO handle if podcast channel exists already
+                Channel existingChannel = podcastService.findByTitle(channel.getTitle());
+                User u = userService.findByUsername(c.getValue());
+                // Handle Existing Podcasts
+                if ( existingChannel != null) {
+                    u.setChannels(existingChannel);
+                    for (Episode episode: existingChannel.getEpisodeList()) {
+                        u.addEpisode(episode);
+                    }
                 } else {
                     podcastService.save(channel);
-                }
-                User u = userService.findByUsername(c.getValue());
-                u.setChannels(channel);
-                for (Episode episode: channel.getEpisodeList()) {
-                    u.addEpisode(episode);
+                    u.setChannels(channel);
+                    for (Episode episode: channel.getEpisodeList()) {
+                        u.addEpisode(episode);
+                    }
                 }
                 userService.save(u);
                 return "{\"success\":1}";

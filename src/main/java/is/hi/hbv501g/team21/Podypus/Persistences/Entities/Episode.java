@@ -2,10 +2,9 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Entity class for a podcast episode
@@ -22,6 +21,7 @@ public class Episode {
     // Podypus data
     @ManyToOne(fetch = FetchType.LAZY)
     private Channel channel;
+
 
     @OneToMany(mappedBy = "episode", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<UserEpisode> userEpisodes;
@@ -198,6 +198,14 @@ public class Episode {
         this.enclosure = enclosure;
     }
 
+    /* Turn Pubdate string into ISO representation for HTML */
+    public String getIsoPubDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z");
+        Date pd = sdf.parse(this.getPubDate());
+        SimpleDateFormat iso = new SimpleDateFormat("yyyy-MM-dd");
+        return iso.format(pd);
+    }
+
     @Override
     public String toString() {
         String s = "Title: " + this.title + "\n" +
@@ -229,6 +237,14 @@ public class Episode {
             s = s + "\nguid: " +  this.guid.getGuid();
         }
         return s;
+    }
+
+    public Set<UserEpisode> getUserEpisodes() {
+        return userEpisodes;
+    }
+
+    public void setUserEpisodes(Set<UserEpisode> userEpisodes) {
+        this.userEpisodes = userEpisodes;
     }
 
     public Long getEpisode_id() {

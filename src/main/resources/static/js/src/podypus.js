@@ -102,6 +102,7 @@ let showSearch = (event) => {
     })
 }
 
+/* Render channel contents incl. episode list */
 let showChannel = (event) => {
     event.preventDefault();
     let channel_id = {"channel_id": event.target.dataset['channelId']};
@@ -148,7 +149,7 @@ function addEpisodeListeners() {
                 </div>
             </div>
 */
-function makeAudio(url) {
+function makeAudio(url, title, episode_id, image_url) {
     var container = document.createElement("div");
     container.setAttribute("class", "playerContent");
 
@@ -161,12 +162,13 @@ function makeAudio(url) {
 
     var top = document.createElement("div")
     top.setAttribute("class", "top");
-    var h2 = document.createElement("h2");
-    h2.innerHTML = "demosong";
-    top.appendChild(h2);
-    var p = document.createElement("p");
-    p.innerHTML = "demotext";
-    top.appendChild(p);
+    var titleElement = document.createElement("h3");
+    titleElement.innerHTML = title;
+    top.appendChild(titleElement);
+    var sp = document.createElement("span");
+    sp.className = "podypus-scrolling-description"
+    sp.innerHTML = "demotext";
+    top.appendChild(sp);
     right.appendChild(top);
     container.appendChild(right);
 
@@ -177,7 +179,7 @@ function makeAudio(url) {
     var audio = document.createElement("audio");
     audio.setAttribute("id", "mediaPlayer");
     audio.setAttribute("name", "media");
-    audio.setAttribute("_autoplay", "false");
+    audio.setAttribute("autoplay", "true");
     audio.setAttribute("controls", "");
     audio.setAttribute("src", url);
     var src = document.createElement("src");
@@ -191,18 +193,24 @@ function makeAudio(url) {
         playerNode.removeChild(playerNode.firstChild);
     }
     playerNode.appendChild(container);
+
 }
 
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
     event.preventDefault();
-    makeAudio(event.currentTarget.dataset['episodeUrl']);
+    url = event.currentTarget.dataset['episodeUrl'];
+    title = event.currentTarget.dataset['episodeTitle'];
+    image_url = event.currentTarget.dataset['episodeImageUrl'];
+    id = event.currentTarget.dataset['episodeId'];
+    //pos = event.currentTarget.dataset['playbackPosition']
+    makeAudio(url, title, id, image_url);
 }
 
 /* Event Listeners */
 document.addEventListener('DOMContentLoaded', function () {
     /* Search event listeners */
-    document.getElementById("nav-channels").addEventListener("click", showSubscriptions)
-    document.getElementById("nav-search").addEventListener("click", showSearch)
+    document.getElementById("nav-channels").addEventListener("click", showSubscriptions);
+    document.getElementById("nav-search").addEventListener("click", showSearch);
 })
 
