@@ -5,15 +5,30 @@
         <meta charset="UTF-8">
         <title>Podypus - a podcast player</title>
         <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/static/css/navbarStyle.css"/>
     </head>
     <body>
-        <div th:fragments="navbar">
-            <nav class="myNav navbar navbar-expand-sm navbar-dark">
-                <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                </ul>
-            </nav>
+        <!--/*@thymesVar id="authenticated" type="user"*/-->
+        <div th:if="${authenticated}">
+            <div th:fragments="navbar">
+                <nav class="myNav navbar navbar-expand-sm navbar-dark">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div th:unless="${authenticated}">
+            <div th:fragments="navbar">
+                <nav class="myNav navbar navbar-expand-sm navbar-dark">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </body>
 </html>

@@ -32,7 +32,7 @@
             <p>Password: <input placeholder="Password" type="password" th:field="*{password}" /></p>
             <p><input type="submit" value="Login" /></p>
         </form>
-        <span>Don't have an account? <a href="/signup">Register here!</a></span>
+        <!--<span>Don't have an account? <a href="/signup">Register here!</a></span>-->
     </div>
 </th:block>
 
@@ -53,18 +53,18 @@
 </th:block>
 <th:block th:fragment="userExists">
     <p>There is already a user signed up with this e-mail address.</p>
-    <a href="/signup"><button>Try Again</button></a>
+    <a href="/"><button>Try Again</button></a>
     <!--<button type="submit" class="btn-primary" href="/login">Try again</button>-->
-    <a href="login/changePassword"><button>Change Password</button></a>
+    <a href="/"><button>Change Password</button></a>
     <!--<button type="submit" class="btn-primary">Change Password</button>-->
 </th:block>
 <th:block th:fragment="notExists">
     <p>There is no user connected to that e-mail address.</p>
-    <a href="/login/changePassword"><button>Try Again</button></a>
+    <a href="/"><button>Try Again</button></a>
 </th:block>
 <th:block th:fragment="unameExists">
     <p>There is already a user signed up with this username.</p>
-    <a href="/signup"><button>Try Again</button></a>
+    <a href="/"><button>Try Again</button></a>
 </th:block>
 </body>
 </html>

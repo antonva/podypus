@@ -4,9 +4,16 @@
 }
 
 .btn {
-    color: black;
+    color: white;
     background-color: #78BAAC;
+    margin: 5px;
+    border-color: lightslategray;
+    box-shadow: none;
+}
 
+.btn:focus {
+    background-color: #78BAAC;
+    outline: none;
 }
 
 .btn:hover {
