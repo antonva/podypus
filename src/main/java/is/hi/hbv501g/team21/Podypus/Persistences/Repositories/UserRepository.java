@@ -2,6 +2,7 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Repositories;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.UserEpisode;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAll();
     User findByUsername(String username);
     User findByEmail(String email);
+    @Query("SELECT ue FROM UserEpisode ue WHERE ue.episode.episode_id = ?1 and ue.user.user_id = ?2")
+    UserEpisode findByEpisodeId(Long episode_id, Long user_id);
 }

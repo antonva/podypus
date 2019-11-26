@@ -1,7 +1,8 @@
 package is.hi.hbv501g.team21.Podypus.Services.Implementations;
 
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
+import is.hi.hbv501g.team21.Podypus.Persistences.Entities.UserEpisode;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Persistences.Repositories.UserRepository;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
@@ -87,5 +88,25 @@ public class UserServiceImplementation implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public User getUserFromCookie(HttpServletRequest request) {
+        Cookie[] clist = request.getCookies();
+        if (clist != null && clist.length > 0) {
+            Cookie c = clist[0];
+            if (this.loggedInUsers.indexOf(c.getValue()) >= 0 || userRepository.findByUsername(c.getValue()) != null) {
+                return userRepository.findByUsername(c.getValue());
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public UserEpisode getUserEpisodeById(User u, Long episode_id) {
+        UserEpisode ue = userRepository.findByEpisodeId(episode_id, u.getUser_id());
+        System.out.println(ue.getPlaybackPosition());
+        System.out.println(ue.isPlayed());
+        return ue;
     }
 }

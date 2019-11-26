@@ -1,5 +1,32 @@
 console.log("Podypus is now mining for buttcoins...");
 
+let updatePlaybackPos = (event) => {
+    event.preventDefault();
+    let obj = {
+        "id": event.currentTarget.dataset['episodeId'],
+        "pos": 0,
+    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        url: "update-playback-pos",
+        data : JSON.stringify(obj),
+        success: function(res) {
+            console.log("SUCCESS")
+            console.log(res)
+        },
+        error: function(res) {
+            console.log("error")
+            console.log(res)
+        },
+        done: function(res) {
+            console.log("DONE")
+            console.log(res)
+        },
+    })
+}
+
 /* Subscribe to the channel with the corresponding href */
 let subscribeToChannel = (event) => {
     event.preventDefault();
@@ -12,7 +39,6 @@ let subscribeToChannel = (event) => {
         data : JSON.stringify(url),
         success: function(res) {
             console.log("SUCCESS")
-            console.log(res)
         },
         error: function(res) {
             console.log("error")
@@ -113,7 +139,6 @@ let showChannel = (event) => {
         dataType: "html",
         url: "channel",
         success: function (res) {
-            console.log(res)
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
         },
@@ -198,6 +223,7 @@ function makeAudio(url, title, episode_id, image_url) {
 
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
+    updatePlaybackPos(event);
     event.preventDefault();
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];

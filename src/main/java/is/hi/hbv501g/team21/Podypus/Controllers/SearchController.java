@@ -1,7 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchQuery;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.SearchQuery;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.SearchResult;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class SearchController {
