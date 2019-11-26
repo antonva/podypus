@@ -14,8 +14,12 @@
     <th:block th:fragment="channelList">
         <div class="container">
             <ul th:each="chan : ${chanlist}" class="list-group">
-                <li th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
-                    class="list-group-item podypus-channel"></li>
+                <li class="media">
+                    <img class="img mr-3" th:src="${chan.getImage().getChannelImageUrl()}">
+                    <div th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
+                            class="media-body list-group-item list-group-item-action podypus-channel">
+                    </div>
+                </li>
             </ul>
         </div>
     </th:block>
