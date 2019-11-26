@@ -103,8 +103,22 @@ public class PodcastController {
         if (authenticated) {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
-                userService.getUserEpisodeById(u, e.getId());
+                podcastService.updatePlaybackPosition(u, e.getId());
                 return "{\"success\":1}";
+            }
+        }
+        return "{\"success\":0}";
+    }
+
+    /* Update the playback position on a specific episode id */
+    @RequestMapping(value = "/get-playback-pos", method = RequestMethod.POST)
+    public @ResponseBody String getPlaybackPosition(@Valid @RequestBody EpisodeWrapper e, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            User u = userService.getUserFromCookie(request);
+            if (u != null) {
+                int pos = podcastService.getPlaybackPosition(u, e.getId());
+                return "{\"success\": 1, \"pos\": " + pos + "}";
             }
         }
         return "{\"success\":0}";

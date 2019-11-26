@@ -19,5 +19,4 @@ public interface UserService {
   void logOutUser(String username);
   boolean isAuthenticated(/*String username,*/ HttpServletRequest request);
   User getUserFromCookie(HttpServletRequest request);
-  UserEpisode getUserEpisodeById(User u, Long episode_id);
   }

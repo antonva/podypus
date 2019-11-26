@@ -102,11 +102,4 @@ public class UserServiceImplementation implements UserService {
         return null;
     }
 
-    @Override
-    public UserEpisode getUserEpisodeById(User u, Long episode_id) {
-        UserEpisode ue = userRepository.findByEpisodeId(episode_id, u.getUser_id());
-        System.out.println(ue.getPlaybackPosition());
-        System.out.println(ue.isPlayed());
-        return ue;
-    }
 }
