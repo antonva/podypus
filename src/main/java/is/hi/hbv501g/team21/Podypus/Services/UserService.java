@@ -16,5 +16,5 @@ public interface UserService {
   void resetPassword(String email, String newPassword);
   User loginUser(LoginForm user);
   void logOutUser(String username);
-  boolean isAuthenticated(/*String username,*/ HttpServletRequest request);
+  boolean isAuthenticated(HttpServletRequest request);
 }

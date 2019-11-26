@@ -22,10 +22,10 @@
             <!--Insert fragments into html-->
             <nav th:insert="fragments/Nav.html" :: navbar></nav>
             <div id="podypus-container" th:if="${authenticated}">
-                <search th:insert="fragments/Search.html :: search"></search>
+                <!--<search th:insert="fragments/Search.html :: search"></search>-->
+                <div th:insert="fragments/Channel.html :: channelList"></div>
             </div>
             <div class="myTabs" th:unless="${authenticated}">
-                <!--<login th:insert="fragments/Login.html :: login"></login>-->
               <div class="tabBar">
                 <ul class="nav nav-pills" id="myTab" role="tablist" >
                     <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#login">Login</a> </li>

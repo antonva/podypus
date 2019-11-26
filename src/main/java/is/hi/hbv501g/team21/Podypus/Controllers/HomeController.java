@@ -37,7 +37,8 @@ public class HomeController {
         model.addAttribute("loginform", new LoginForm());
         model.addAttribute("user", new User());
         model.addAttribute("authenticated", authenticated);
-        model.addAttribute("podcasts", podcastService.findAll());
+        //model.addAttribute("podcasts", podcastService.findAll());
+        model.addAttribute("chanlist", podcastService.findAll());
         return "Index";
     }
 
