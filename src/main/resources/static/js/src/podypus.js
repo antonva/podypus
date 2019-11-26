@@ -162,6 +162,7 @@ let showChannel = (event) => {
         success: function (res) {
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
+            $('#table_episode').DataTable();
         },
         error: function (res) {
             console.log("ERROR");
