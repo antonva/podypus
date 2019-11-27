@@ -27,7 +27,6 @@
                         <!--Title and info-->
                         <div class="card-body">
                             <div class="card-title" th:text="${chan.getTitle()}">Podcast Name</div>
-                            <div class="card-subtitle" th:text="${chan.getPubDate()}">Last updated</div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +54,11 @@
                 <div class="media-body">
                     <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
                     <!--Description-->
-                    <div th:text="${channel.getDescription()}">Description</div>
+                    <div th:text="${channel.getDescription()}" class="description">Description</div>
+                    <!--Played Checkbox-->
+                    <div class="checkbox-Played">
+                        <input type="checkbox" id="playedCheck"> Filter out played episodes
+                    </div>
                     <!--Episode List-->
                     <table id="table_episode" class="table table-striped">
                         <thead>

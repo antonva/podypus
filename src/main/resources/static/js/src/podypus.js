@@ -165,15 +165,15 @@ let showChannel = (event) => {
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
             let episodeTable = $('#table_episode').DataTable({ // Stillingar á töflu
-                scrollY: 380,
+                scrollY: 400,
                 paging: false,
                 order: [[3, 'desc']] // Raða eftir release date
             });
-            $('#playedCheck').change(function() { // Check box til að filtera út óspilað
+            $('#playedCheck').change(function() { // Check box til að filtera út spilað
                 if (this.checked) {
                     $.fn.dataTable.ext.search.push(
                         function(settings, data, dataIndex) {
-                            return $(episodeTable.row(dataIndex).node()).attr('data-episode-played') == false;
+                            return $(episodeTable.row(dataIndex).node()).attr('data-episode-played') === 'false';
                         }
                     );
                     episodeTable.draw();
