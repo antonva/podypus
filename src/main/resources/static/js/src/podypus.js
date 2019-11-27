@@ -1,9 +1,13 @@
 console.log("Podypus is now mining for buttcoins...");
 
 let updatePlaybackPos = (event) => {
+    if (event.currentTarget.ended) {
+        console.log("ended")
+    }
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
         "pos": event.currentTarget.currentTime,
+        "ended": event.currentTarget.ended
     }
     $.ajax({
         type: "POST",
@@ -12,6 +16,7 @@ let updatePlaybackPos = (event) => {
         url: "update-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
+            console.log(res)
         },
         error: function(res) {
             console.log("error")
@@ -243,7 +248,7 @@ function makeAudio(url, title, episode_id, image_url) {
     audio.controls = true;
     audio.id = "mediaPlayer";
     audio.currentTime = getPlaybackPos(episode_id);
-    audio.setAttribute("name", "media");
+    //audio.setAttribute("name", "media");
     audio.setAttribute("data-episode-id", episode_id);
 
     audio.addEventListener("timeupdate", updatePlaybackPos);
@@ -270,9 +275,10 @@ function makeAudio(url, title, episode_id, image_url) {
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
     event.preventDefault();
+    console.log(event.currentTarget);
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];
-    image_url = event.currentTarget.dataset['episodeImageUrl'];
+    image_url = event.currentTarget
     id = event.currentTarget.dataset['episodeId'];
     makeAudio(url, title, id, image_url);
 }
