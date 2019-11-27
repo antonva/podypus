@@ -21,6 +21,7 @@
 
 body {
     margin-bottom: 80px;
+    background-image: url("static/img/podypus.png");
 }
 
 .description {

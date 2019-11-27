@@ -17,7 +17,7 @@
     </th:block>
     <th:block th:unless="${chanlist.size() < 1}">
         <div class="container" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);" th:if="${chanlist != null}">
-            <div class="card" th:each="chan : ${chanlist}" th:attr="data-channel-id=${chan.getChannel_id()}">
+            <div class="card podypus-channel" th:each="chan : ${chanlist}" th:attr="data-channel-id=${chan.getChannel_id()}">
                 <th:block th:if="${chan.getImageUrl() != null}">
                     <img class="card-img-top" th:src="${chan.getImageUrl().getImageHref()}"/>
                 </th:block>

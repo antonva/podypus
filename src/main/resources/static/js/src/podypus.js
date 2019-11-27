@@ -154,7 +154,7 @@ let showSearch = (event) => {
 /* Render channel contents incl. episode list */
 let showChannel = (event) => {
     event.preventDefault();
-    let channel_id = {"channel_id": event.target.dataset['channelId']};
+    let channel_id = {"channel_id": event.currentTarget.dataset['channelId']};
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
