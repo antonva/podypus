@@ -2,7 +2,17 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Wrappers;
 
 public class EpisodeWrapper {
     private Long id;
-    private int pos;
+    private float pos;
+
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
+
+    private boolean ended;
 
     public Long getId() {
         return id;
@@ -12,11 +22,11 @@ public class EpisodeWrapper {
         this.id = id;
     }
 
-    public int getPos() {
+    public float getPos() {
         return pos;
     }
 
-    public void setPos(int pos) {
+    public void setPos(float pos) {
         this.pos = pos;
     }
 

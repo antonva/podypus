@@ -1,0 +1,25 @@
+                   List of relations
+ Schema |           Name           |   Type   |  Owner  
+--------+--------------------------+----------+---------
+ public | channel_category         | table    | notandi
+ public | channel_category_id_seq  | sequence | notandi
+ public | channels                 | table    | notandi
+ public | channels_channel_id_seq  | sequence | notandi
+ public | episode_enclosure        | table    | notandi
+ public | episode_enclosure_id_seq | sequence | notandi
+ public | episode_guid             | table    | notandi
+ public | episode_guid_id_seq      | sequence | notandi
+ public | episode_image            | table    | notandi
+ public | episode_image_id_seq     | sequence | notandi
+ public | episodes                 | table    | notandi
+ public | episodes_episode_id_seq  | sequence | notandi
+ public | images                   | table    | notandi
+ public | images_id_seq            | sequence | notandi
+ public | podcastowners            | table    | notandi
+ public | podcastowners_id_seq     | sequence | notandi
+ public | user_channels            | table    | notandi
+ public | user_episodes            | table    | notandi
+ public | users                    | table    | notandi
+ public | users_user_id_seq        | sequence | notandi
+(20 rows)
+

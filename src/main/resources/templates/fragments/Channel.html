@@ -11,27 +11,9 @@
 <!--*/-->
 <th:block th:fragment="channelList">
     <div class="container">
-        <ul class="list-group" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);">
-            <li th:each="chan : ${chanlist}">
-                <div th:attr="data-channel-id=${chan.getChannel_id()}" class="list-group-item podypus-channel">
-                    <div class="card">
-                        <!--Image-->
-                        <th:block th:if="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
-                            <img class="card-img-top" th:src="${chan.getImageUrl()}"
-                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
-                        </th:block>
-                        <th:block th:unless="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
-                            <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"
-                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
-                        </th:block>
-                        <!--Title and info-->
-                        <div class="card-body" th:attr="data-channel-id=${chan.getChannel_id()}">
-                            <div class="card-title" th:text="${chan.getTitle()}"
-                            th:attr="data-channel-id=${chan.getChannel_id()}">Podcast Name</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+        <ul th:each="chan : ${chanlist}" class="list-group">
+            <li th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
+                class="list-group-item podypus-channel"></li>
         </ul>
     </div>
 </th:block>
@@ -54,11 +36,7 @@
                 <div class="media-body">
                     <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
                     <!--Description-->
-                    <div th:text="${channel.getDescription()}" class="description">Description</div>
-                    <!--Played Checkbox-->
-                    <div class="checkbox-Played">
-                        <input type="checkbox" id="playedCheck"> Filter out played episodes
-                    </div>
+                    <div th:text="${channel.getDescription()}">Description</div>
                     <!--Episode List-->
                     <table id="table_episode" class="table table-striped">
                         <thead>
@@ -67,7 +45,7 @@
                                 <th scope="col">Playback Position</th>
                                 <th scope="col">Duration</th>
                                 <th scope="col">Release Date</th>
-                                <th scope="col">Played?</th>
+                                <th scope="col">Has been played</th>
                                 <th scope="col">Download Link</th>
                             </tr>
                         </thead>
@@ -79,8 +57,6 @@
                                     data-episode-url=${ue.getEpisode().getEnclosure().getUrl()},
                                     data-episode-title=${ue.getEpisode().getTitle()},
                                     data-episode-id=${ue.getEpisode().getEpisode_id()},
-                                    data-episode-played=${ue.isPlayed()},
-                                    data-episode-image-url=${ue.getEpisode().getImage().getHref()}
                                     ">
                                         <!-- Image -->
                                         <td>

@@ -50,7 +50,7 @@ public class Channel {
     //itunes prefix
     @Column(length=10485760)
     private String summary;
-    private String imageUrl;
+    private ChannelItunesImage imageUrl;
     private String explicit;
     private String type;
     @Column(length = 2048)
@@ -162,12 +162,12 @@ public class Channel {
         this.summary = summary;
     }
 
-    public String getImageUrl() {
+    public ChannelItunesImage getImageUrl() {
         return imageUrl;
     }
 
     @XmlElement(namespace = itunesNs, name = "image")
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(ChannelItunesImage imageUrl) {
         this.imageUrl = imageUrl;
     }
 

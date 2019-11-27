@@ -109,7 +109,7 @@ public class Episode {
     }
 
     @XmlElement(namespace = itunesNs, name="image")
-    public void setImageUrl(EpisodeImage image) {
+    public void setImage(EpisodeImage image) {
         this.image = image;
     }
 
@@ -245,6 +245,10 @@ public class Episode {
 
     public void setUserEpisodes(Set<UserEpisode> userEpisodes) {
         this.userEpisodes = userEpisodes;
+    }
+
+    public Channel getChannel() {
+        return channel;
     }
 
     public Long getEpisode_id() {
