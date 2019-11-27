@@ -25,7 +25,13 @@
             <!--Insert fragments into html-->
             <nav th:insert="fragments/Nav.html" :: navbar></nav>
             <div id="podypus-container" th:if="${authenticated}">
-                <search th:insert="fragments/Channel.html :: channelList"></search>
+                <chanlist th:insert="fragments/Channel.html :: channelList"></chanlist>
+                <script>
+                    let subscribeBtns = document.getElementsByClassName("podypus-channel");
+                    for (let i = 0; i < subscribeBtns.length; i++) {
+                        subscribeBtns.item(i).addEventListener("click", showChannel);
+                    }
+                </script>
             </div>
             <div class="myTabs" th:unless="${authenticated}">
                 <!--<login th:insert="fragments/Login.html :: login"></login>-->

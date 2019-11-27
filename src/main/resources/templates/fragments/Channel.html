@@ -7,33 +7,29 @@
 </head>
 <body>
 <!--/*-->
-<!-- @thymesVar id="chanlist" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel[]" -->
+<!-- @thymesVar id="chanlist" type="java.util.List<is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel>" -->
 <!--*/-->
 <th:block th:fragment="channelList">
-    <div class="container">
-        <ul class="list-group" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);">
-            <li th:each="chan : ${chanlist}">
-                <div th:attr="data-channel-id=${chan.getChannel_id()}" class="list-group-item podypus-channel">
-                    <div class="card">
-                        <!--Image-->
-                        <th:block th:if="${chan.getImageUrl() != null}">
-                            <img class="card-img-top" th:src="${chan.getImageUrl().getImageHref()}"
-                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
-                        </th:block>
-                        <th:block th:unless="${chan.getImageUrl() != null}">
-                            <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"
-                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
-                        </th:block>
-                        <!--Title and info-->
-                        <div class="card-body" th:attr="data-channel-id=${chan.getChannel_id()}">
-                            <div class="card-title" th:text="${chan.getTitle()}"
-                                 th:attr="data-channel-id=${chan.getChannel_id()}">Podcast Name</div>
-                        </div>
-                    </div>
+    <th:block th:if="${chanlist.size() < 1}">
+        <div class="container">
+            <h1 class="text-center align-middle" style="color: #78BAAC;">You haven't added any podcasts yet. Try our search in the navbar above.</h1>
+        </div>
+    </th:block>
+    <th:block th:unless="${chanlist.size() < 1}">
+        <div class="container" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);" th:if="${chanlist != null}">
+            <div class="card" th:each="chan : ${chanlist}" th:attr="data-channel-id=${chan.getChannel_id()}">
+                <th:block th:if="${chan.getImageUrl() != null}">
+                    <img class="card-img-top" th:src="${chan.getImageUrl().getImageHref()}"/>
+                </th:block>
+                <th:block th:unless="${chan.getImageUrl() != null}">
+                    <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"/>
+                </th:block>
+                <div class="card-body">
+                    <div class="card-title" th:text="${chan.getTitle()}">Podcast Name</div>
                 </div>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </div>
+    </th:block>
 </th:block>
 
     <!--/*-->

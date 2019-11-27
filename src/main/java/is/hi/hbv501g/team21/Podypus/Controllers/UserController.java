@@ -109,7 +109,6 @@ public class UserController {
     //public String changePasswordGET(User user){
     public String changePasswordGET(Model model){
         model.addAttribute("user", new User());
-        System.out.println("in changePasswordGET");
         return "fragments/Login :: changePassword";
     }
     @RequestMapping(value = "/login/changePassword", method = RequestMethod.POST)
@@ -117,10 +116,6 @@ public class UserController {
         System.out.println("in changePassword");
         User exists = userService.findByEmail(user.getEmail()); //returns a User object with that e-mail address that has been entered.
         if (exists != null) {
-            System.out.println(exists.getUsername());
-            System.out.println(exists.getEmail());
-            System.out.println(user.getPassword());
-            System.out.println(exists.getPassword());
             userService.resetPassword(exists.getEmail(), user.getPassword());
             return "redirect:/";
         }

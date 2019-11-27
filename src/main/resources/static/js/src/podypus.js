@@ -1,9 +1,4 @@
-console.log("Podypus is now mining for buttcoins...");
-
 let updatePlaybackPos = (event) => {
-    if (event.currentTarget.ended) {
-        console.log("ended")
-    }
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
         "pos": event.currentTarget.currentTime,
@@ -16,7 +11,6 @@ let updatePlaybackPos = (event) => {
         url: "update-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
-            console.log(res)
         },
         error: function(res) {
             console.log("error")
@@ -32,7 +26,7 @@ let updatePlaybackPos = (event) => {
 let getPlaybackPos = (id) => {
     let obj = {
         "id": id
-    }
+    };
     let pos = 0;
 
     $.ajax({
@@ -46,16 +40,17 @@ let getPlaybackPos = (id) => {
             pos = res.pos;
         },
         error: function(res) {
-            console.log("error")
+            console.log("error");
             console.log(res)
         },
         done: function(res) {
-            console.log("DONE")
+            console.log("DONE");
             console.log(res)
         },
-    })
+    });
     return pos;
-}
+};
+
 /* Subscribe to the channel with the corresponding href */
 let subscribeToChannel = (event) => {
     event.preventDefault();
@@ -83,8 +78,8 @@ let subscribeToChannel = (event) => {
 /* Perform an AJAX search on podypus server */
 let performSearch = (event) => {
     event.preventDefault();
-    var queryElem = document.getElementById("searchTxt")
-    var termobj = { term: queryElem.value }
+    var queryElem = document.getElementById("searchTxt");
+    var termobj = { term: queryElem.value };
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -107,7 +102,7 @@ let performSearch = (event) => {
         }
 
     })
-}
+};
 
 /* Replaces the podypus-container div contents with a list of subscribed channels.
    All events on subscribed channels need to be registered here.
@@ -248,7 +243,7 @@ function makeAudio(url, title, episode_id, image_url) {
     audio.controls = true;
     audio.id = "mediaPlayer";
     audio.currentTime = getPlaybackPos(episode_id);
-    //audio.setAttribute("name", "media");
+    audio.setAttribute("name", "media");
     audio.setAttribute("data-episode-id", episode_id);
 
     audio.addEventListener("timeupdate", updatePlaybackPos);
@@ -275,7 +270,6 @@ function makeAudio(url, title, episode_id, image_url) {
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
     event.preventDefault();
-    console.log(event.currentTarget);
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];
     id = event.currentTarget.dataset['episodeId'];
