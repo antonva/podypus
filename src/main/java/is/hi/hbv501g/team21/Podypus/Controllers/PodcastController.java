@@ -45,7 +45,9 @@ public class PodcastController {
         boolean authenticated = userService.isAuthenticated(request);
         if (authenticated) {
             User u  = userService.findByUsername(request.getCookies()[0].getValue());
-            model.addAttribute("chanlist", u.getChannels().toArray());
+            List<Channel> lc = new ArrayList<>();
+            lc.addAll(u.getChannels());
+            model.addAttribute("chanlist", lc);
         }
         model.addAttribute("loginform", new LoginForm());
         model.addAttribute("user", new User());
@@ -77,7 +79,9 @@ public class PodcastController {
         if (authenticated) {
             ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelList");
             User u  = userService.findByUsername(request.getCookies()[0].getValue());
-            mav.addObject("chanlist", u.getChannels().toArray());
+            List<Channel> lc = new ArrayList<>();
+            lc.addAll(u.getChannels());
+            mav.addObject("chanlist", lc);
             return mav;
         }
         return null;
