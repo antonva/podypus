@@ -278,8 +278,8 @@ let makePlayer = (event) => {
     console.log(event.currentTarget);
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];
-    image_url = event.currentTarget
     id = event.currentTarget.dataset['episodeId'];
+    image_url = document.getElementById('podypus-episode-img-' + id).src;
     makeAudio(url, title, id, image_url);
 }
 

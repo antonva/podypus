@@ -79,20 +79,19 @@
                                     data-episode-url=${ue.getEpisode().getEnclosure().getUrl()},
                                     data-episode-title=${ue.getEpisode().getTitle()},
                                     data-episode-id=${ue.getEpisode().getEpisode_id()},
-                                    data-episode-played=${ue.isPlayed()},
-                                    data-episode-image-url=${ue.getEpisode().getImage().getHref()}
+                                    data-episode-played=${ue.isPlayed()}
                                     ">
                                         <!-- Image -->
                                         <td>
                                             <th:block th:if="${ue.getEpisode().getImage() != null}">
-                                                <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${ue.getEpisode().getImage().getHref()}">
+                                                <img th:attr="id='podypus-episode-img-' + ${ue.getEpisode().getEpisode_id()}" class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${ue.getEpisode().getImage().getHref()}">
                                             </th:block>
                                             <th:block th:unless="${ue.getEpisode().getImage() != null}">
                                                 <th:block th:if="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl().getImageHref()}">
+                                                    <img th:attr="id='podypus-episode-img-' + ${ue.getEpisode().getEpisode_id()}" class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl().getImageHref()}">
                                                 </th:block>
                                                 <th:block th:unless="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
+                                                    <img th:attr="id='podypus-episode-img-' + ${ue.getEpisode().getEpisode_id()}" class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
                                                 </th:block>
                                             </th:block>
                                             <!-- Title -->
