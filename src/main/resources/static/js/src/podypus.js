@@ -27,12 +27,16 @@ let updatePlaybackPos = (event) => {
 }
 
 let getPlaybackPos = (event) => {
-    $.get("get-playback-position")
+    let obj = {"id":1063};
+    //let obj = {
+    //    "id": event.currentTarget.dataset['episodeId'],
+    //}
+
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: "update-playback-pos",
+        url: "get-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
             console.log("SUCCESS")
@@ -73,7 +77,7 @@ let subscribeToChannel = (event) => {
 }
 
 
-/* Send a POST request to the podypus server */
+/* Perform an AJAX search on podypus server */
 let performSearch = (event) => {
     event.preventDefault();
     var queryElem = document.getElementById("searchTxt")
@@ -177,6 +181,7 @@ let showChannel = (event) => {
 function addEpisodeListeners() {
     var elements = document.getElementsByClassName("podypus-episode");
     for(var i = 0; i < elements.length; i++){
+        getPlaybackPos(elements.item(i));
         elements.item(i).addEventListener("click", makePlayer);
     }
 }

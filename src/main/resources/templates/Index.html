@@ -10,14 +10,10 @@
         <link rel="stylesheet" href="/static/css/navbarStyle.css"/>
         <link rel="stylesheet" href="/static/css/homeStyle.css"/>
         <link rel="stylesheet" href="/static/css/userStyle.css"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
         <!--Js-->
         <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/static/js/src/podypus.js"></script>
-        <script type="text/javascript" src="/webjars/datatables/1.10.19/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" src="/webjars/datatables/1.10.19/js/dataTables.dataTables.js"></script>
-        <script type="text/javascript" src="/webjars/datatables/1.10.19/js/dataTables.bootstrap4.js"></script>
         <title>Podypus - a podcast player</title>
     </head>
     <body>
@@ -25,9 +21,7 @@
             <!--Insert fragments into html-->
             <nav th:insert="fragments/Nav.html" :: navbar></nav>
             <div id="podypus-container" th:if="${authenticated}">
-                <!--Brotni searchbar-->
-                <!--<search th:insert="fragments/Search.html :: search"></search>-->
-                <p>Þú ert inskráður</p>
+                <search th:insert="fragments/Channel.html :: channelList"></search>
             </div>
             <div class="myTabs" th:unless="${authenticated}">
                 <!--<login th:insert="fragments/Login.html :: login"></login>-->

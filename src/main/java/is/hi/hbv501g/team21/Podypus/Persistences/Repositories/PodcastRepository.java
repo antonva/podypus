@@ -18,6 +18,15 @@ public interface PodcastRepository extends JpaRepository<Channel, Long> {
     List<Channel> findAll();
     Channel findByTitle(String title);
     Optional<Channel> findById(long id);
-    @Query("SELECT ue FROM UserEpisode ue WHERE ue.episode.episode_id = ?1 and ue.user.user_id = ?2")
+    @Query("SELECT ue FROM UserEpisode ue WHERE ue.episode.episode_id = ?1 AND ue.user.user_id = ?2")
     UserEpisode findByEpisodeId(Long episode_id, Long user_id);
+
+    @Query("SELECT ue FROM UserEpisode ue WHERE ue.channel.channel_id = ?1 AND ue.user.user_id = ?2")
+    List<UserEpisode> findByChannelId(Long channel_id, Long user_id);
+
+    @Query(
+            value = "SELECT channel_id FROM episodes WHERE episode_id = ?1",
+            nativeQuery = true
+    )
+    Long findChannelIdByEpisodeId(Long episode_id);
 }
