@@ -1,9 +1,13 @@
 console.log("Podypus is now mining for buttcoins...");
 
 let updatePlaybackPos = (event) => {
+    if (event.currentTarget.ended) {
+        console.log("ended")
+    }
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
-        "pos": 0,
+        "pos": event.currentTarget.currentTime,
+        "ended": event.currentTarget.ended
     }
     $.ajax({
         type: "POST",
@@ -12,7 +16,6 @@ let updatePlaybackPos = (event) => {
         url: "update-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
-            console.log("SUCCESS")
             console.log(res)
         },
         error: function(res) {
@@ -26,17 +29,21 @@ let updatePlaybackPos = (event) => {
     })
 }
 
-let getPlaybackPos = (event) => {
-    $.get("get-playback-position")
+let getPlaybackPos = (id) => {
+    let obj = {
+        "id": id
+    }
+    let pos = 0;
+
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: "update-playback-pos",
+        async: false,//Terrible hack, don't try this at home kids
+        url: "get-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
-            console.log("SUCCESS")
-            console.log(res)
+            pos = res.pos;
         },
         error: function(res) {
             console.log("error")
@@ -47,6 +54,7 @@ let getPlaybackPos = (event) => {
             console.log(res)
         },
     })
+    return pos;
 }
 /* Subscribe to the channel with the corresponding href */
 let subscribeToChannel = (event) => {
@@ -59,7 +67,6 @@ let subscribeToChannel = (event) => {
         url: "subscribe",
         data : JSON.stringify(url),
         success: function(res) {
-            console.log("SUCCESS")
         },
         error: function(res) {
             console.log("error")
@@ -73,7 +80,7 @@ let subscribeToChannel = (event) => {
 }
 
 
-/* Send a POST request to the podypus server */
+/* Perform an AJAX search on podypus server */
 let performSearch = (event) => {
     event.preventDefault();
     var queryElem = document.getElementById("searchTxt")
@@ -162,11 +169,27 @@ let showChannel = (event) => {
         success: function (res) {
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
-            $('#table_episode').DataTable();
+            let episodeTable = $('#table_episode').DataTable({ // Stillingar á töflu
+                scrollY: 380,
+                paging: false,
+                order: [[3, 'desc']] // Raða eftir release date
+            });
+            $('#playedCheck').change(function() { // Check box til að filtera út spilað
+                if (this.checked) {
+                    $.fn.dataTable.ext.search.push(
+                        function(settings, data, dataIndex) {
+                            return $(episodeTable.row(dataIndex).node()).attr('data-episode-played') === 'false';
+                        }
+                    );
+                    episodeTable.draw();
+                } else {
+                    $.fn.dataTable.ext.search.pop();
+                    episodeTable.draw();
+                }
+            });
         },
         error: function (res) {
             console.log("ERROR");
-            console.log(res);
         },
         done: function (res) {
         }
@@ -220,12 +243,16 @@ function makeAudio(url, title, episode_id, image_url) {
     bottom.setAttribute("id", "mediaPlayerBox");
     bottom.setAttribute("class", "bottom");
 
-    var audio = document.createElement("audio");
-    audio.setAttribute("id", "mediaPlayer");
-    audio.setAttribute("name", "media");
-    audio.setAttribute("autoplay", "true");
-    audio.setAttribute("controls", "");
-    audio.setAttribute("src", url);
+    var audio = new Audio(url);
+    audio.autoplay = true;
+    audio.controls = true;
+    audio.id = "mediaPlayer";
+    audio.currentTime = getPlaybackPos(episode_id);
+    //audio.setAttribute("name", "media");
+    audio.setAttribute("data-episode-id", episode_id);
+
+    audio.addEventListener("timeupdate", updatePlaybackPos);
+
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
     audio.appendChild(src);
@@ -239,7 +266,6 @@ function makeAudio(url, title, episode_id, image_url) {
 
     playerNode.appendChild(container);
 
-    console.log(image_url);
     if(image_url != undefined) {
         var el = document.getElementById("imageHolder");
         el.style.backgroundImage = "url(" + image_url + ")";
@@ -248,11 +274,11 @@ function makeAudio(url, title, episode_id, image_url) {
 
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
-    updatePlaybackPos(event);
     event.preventDefault();
+    console.log(event.currentTarget);
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];
-    image_url = event.currentTarget.dataset['episodeImageUrl'];
+    image_url = event.currentTarget
     id = event.currentTarget.dataset['episodeId'];
     makeAudio(url, title, id, image_url);
 }
