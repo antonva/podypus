@@ -239,7 +239,6 @@ function makeAudio(url, title, episode_id, image_url) {
 
     playerNode.appendChild(container);
 
-    console.log(image_url);
     if(image_url != undefined) {
         var el = document.getElementById("imageHolder");
         el.style.backgroundImage = "url(" + image_url + ")";
