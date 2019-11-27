@@ -2,99 +2,125 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>Podypus - a podcast player</title>
 </head>
 <body>
-    <!--/*-->
-    <!-- @thymesVar id="chanlist" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel[]" -->
-    <!--*/-->
-    <th:block th:fragment="channelList">
-        <div class="container">
-            <ul th:each="chan : ${chanlist}" class="list-group">
-                <li th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
-                    class="list-group-item podypus-channel"></li>
-            </ul>
-        </div>
-    </th:block>
+<!--/*-->
+<!-- @thymesVar id="chanlist" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel[]" -->
+<!--*/-->
+<th:block th:fragment="channelList">
+    <div class="container">
+        <ul class="list-group" style="width:80%; display: grid; grid-template-columns: repeat(5, 1fr);">
+            <li th:each="chan : ${chanlist}">
+                <div th:attr="data-channel-id=${chan.getChannel_id()}" class="list-group-item podypus-channel">
+                    <div class="card">
+                        <!--Image-->
+                        <th:block th:if="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
+                            <img class="card-img-top" th:src="${chan.getImageUrl()}"
+                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
+                        </th:block>
+                        <th:block th:unless="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
+                            <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"
+                                 th:attr="data-channel-id=${chan.getChannel_id()}"/>
+                        </th:block>
+                        <!--Title and info-->
+                        <div class="card-body">
+                            <div class="card-title" th:text="${chan.getTitle()}">Podcast Name</div>
+                            <div class="card-subtitle" th:text="${chan.getPubDate()}">Last updated</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</th:block>
 
-    <!--/*-->
-    <!-- @thymesVar id="channel" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel" -->
-    <!-- @thymesVar id="usereps" type="java.util.List<is.hi.hbv501g.team21.Podypus.Persistences.Entities.UserEpisode>" -->
-    <!--*/-->
-    <th:block th:fragment="channelDetails">
-        <div class="container" th:if="${channel != null}">
-            <div class="media">
-                <!--Image-->
-                <th:block th:if="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
-                    <img class="mr-5 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImageUrl()}">
-                    <div th:text="${channel.getImageUrl().length()}">len</div>
-                </th:block>
-                <th:block th:unless="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
-                    <img class="mr-4 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImage().getChannelImageUrl()}">
-                </th:block>
-                <!--Title-->
-                <div class="media-body">
-                    <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
-                    <!--Description-->
-                    <div th:text="${channel.getDescription()}">Description</div>
-                    <!--Episode List-->
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Playback Position</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Release Date</th>
-                                <th scope="col">Has been played</th>
-                                <th scope="col">Download Link</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <th:block th:each="ue : ${usereps}">
-                                <!-- Ignore episodes with no valid links -->
-                                <th:block th:if="${ue.getEpisode().getEnclosure() != null}">
-                                    <tr class="podypus-episode" th:attr="
+<!--/*-->
+<!-- @thymesVar id="channel" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel" -->
+<!-- @thymesVar id="usereps" type="java.util.List<is.hi.hbv501g.team21.Podypus.Persistences.Entities.UserEpisode>" -->
+<!--*/-->
+<th:block th:fragment="channelDetails">
+    <div class="container" th:if="${channel != null}">
+        <div class="media">
+            <!--Image-->
+            <th:block th:if="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
+                <img class="mr-5 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImageUrl()}">
+                <div th:text="${channel.getImageUrl().length()}">len</div>
+            </th:block>
+            <th:block th:unless="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
+                <img class="mr-4 img-fluid" style="height: 256px;width: 256px;"
+                     th:src="${channel.getImage().getChannelImageUrl()}">
+            </th:block>
+            <!--Title-->
+            <div class="media-body">
+                <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
+                <!--Description-->
+                <div class="description" th:text="${channel.getDescription()}">Description</div>
+                <!--PlayedCheckbox-->
+                <div class="checkbox-Played">
+                    <input type="checkbox" id="playedCheck"> Show only played<br>
+                </div>
+                <!--Episode List-->
+                <table class="table table-striped" id="table_episode" style="z-index: 1">
+                    <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Playback Position</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Played?</th>
+                        <th scope="col">Download Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="ue : ${usereps}">
+                        <!-- Ignore episodes with no valid links -->
+                        <th:block th:if="${ue.getEpisode().getEnclosure() != null}">
+                            <tr class="podypus-episode" th:attr="
                                     data-episode-url=${ue.getEpisode().getEnclosure().getUrl()},
                                     data-episode-title=${ue.getEpisode().getTitle()},
-                                    data-episode-id=${ue.getEpisode().getEpisode_id()}
+                                    data-episode-id=${ue.getEpisode().getEpisode_id()},
+                                    data-episode-played=${ue.isPlayed()}
                                     ">
-                                        <!-- Image -->
-                                        <td>
-                                            <th:block th:if="${ue.getEpisode().getImage() != null}">
-                                                <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${ue.getEpisode().getImage().getHref()}">
-                                            </th:block>
-                                            <th:block th:unless="${ue.getEpisode().getImage() != null}">
-                                                <th:block th:if="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl()}">
-                                                </th:block>
-                                                <th:block th:unless="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
-                                                </th:block>
-                                            </th:block>
-                                            <!-- Title -->
-                                            <span th:text="${ue.getEpisode().getTitle()}">Episode Title</span>
-                                        </td>
-                                        <!-- Playback Position -->
-                                        <td th:text="${ue.getPlaybackPosition()}">Playback Position</td>
-                                        <!-- Duration -->
-                                        <td th:text="${ue.getEpisode().getDuration()}">Episode Length </td>
-                                        <!-- Release Date-->
-                                        <td th:text="${ue.getEpisode().getIsoPubDate()}">Episode Release Date</td>
-                                        <!-- Is played -->
-                                        <td th:text="${ue.isPlayed()}">Is Played</td>
-                                        <!-- Download Link -->
-                                        <td><a th:href="${ue.getEpisode().getEnclosure().getUrl()}">Download</a></td>
-                                    </tr>
-                                </th:block>
-                            </th:block>
-                        </tbody>
-                    </table>
-                </div>
-
+                                <!-- Image -->
+                                <td>
+                                    <th:block th:if="${ue.getEpisode().getImage() != null}">
+                                        <img class="mr-3 img-fluid" style="height: 64px;width: 64px;"
+                                             th:src="${ue.getEpisode().getImage().getHref()}">
+                                    </th:block>
+                                    <th:block th:unless="${ue.getEpisode().getImage() != null}">
+                                        <th:block th:if="${channel.getImageUrl() != null}">
+                                            <img class="mr-3 img-fluid" style="height: 64px;width: 64px;"
+                                                 th:src="${channel.getImageUrl()}">
+                                        </th:block>
+                                        <th:block th:unless="${channel.getImageUrl() != null}">
+                                            <img class="mr-3 img-fluid" style="height: 64px;width: 64px;"
+                                                 th:src="${channel.getImage().getChannelImageUrl()}">
+                                        </th:block>
+                                    </th:block>
+                                    <!-- Title -->
+                                    <span th:text="${ue.getEpisode().getTitle()}">Episode Title</span>
+                                </td>
+                                <!-- Playback Position -->
+                                <td th:text="${ue.getPlaybackPosition()}">Playback Position</td>
+                                <!-- Duration -->
+                                <td th:text="${ue.getEpisode().getDuration()}">Episode Length</td>
+                                <!-- Release Date-->
+                                <td th:text="${ue.getEpisode().getIsoPubDate()}">Episode Release Date</td>
+                                <!-- Is played -->
+                                <td th:text="${ue.isPlayed()}">Is Played</td>
+                                <!-- Download Link -->
+                                <td><a th:href="${ue.getEpisode().getEnclosure().getUrl()}">Download</a></td>
+                            </tr>
+                        </th:block>
+                    </th:block>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </th:block>
+    </div>
+</th:block>
 </body>
 </html>

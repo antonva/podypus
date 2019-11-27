@@ -166,7 +166,24 @@ let showChannel = (event) => {
         success: function (res) {
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
-            $('#table_episode').DataTable();
+            let episodeTable = $('#table_episode').DataTable({ // Stillingar á töflu
+                scrollY: 380,
+                paging: false,
+                order: [[3, 'desc']] // Raða eftir release date
+            });
+            $('#playedCheck').change(function() { // Check box til að filtera út óspilað
+                if (this.checked) {
+                    $.fn.dataTable.ext.search.push(
+                        function(settings, data, dataIndex) {
+                            return $(episodeTable.row(dataIndex).node()).attr('data-episode-played') == false;
+                        }
+                    );
+                    episodeTable.draw();
+                } else {
+                    $.fn.dataTable.ext.search.pop();
+                    episodeTable.draw();
+                }
+            });
         },
         error: function (res) {
             console.log("ERROR");
