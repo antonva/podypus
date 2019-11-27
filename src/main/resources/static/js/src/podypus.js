@@ -11,6 +11,7 @@ let updatePlaybackPos = (event) => {
         url: "update-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
+
         },
         error: function(res) {
             console.log("error")
@@ -215,6 +216,7 @@ function addEpisodeListeners() {
             </div>
 */
 function makeAudio(url, title, episode_id, image_url) {
+    var bool = false;
     var container = document.createElement("div");
     container.setAttribute("class", "playerContent");
 
@@ -248,10 +250,30 @@ function makeAudio(url, title, episode_id, image_url) {
 
     audio.addEventListener("timeupdate", updatePlaybackPos);
 
+    var sleepInput = document.createElement("input");
+    sleepInput.setAttribute("type", "number");
+    sleepInput.setAttribute("class", "sleepVar");
+    sleepInput.setAttribute("name", "sleepVar");
+    sleepInput.placeholder = "Sleep(min)";
+
+    var checkSleep = document.createElement("input");
+    checkSleep.setAttribute("type", "checkbox");
+    checkSleep.setAttribute("class", "boolSleep");
+    checkSleep.setAttribute("name", "sleepBool");
+    checkSleep.setAttribute("id", "checkSleep")
+
+    checkSleep.addEventListener("change", (event) => {
+        if(event.target.checked) {sleepInput.addEventListener("input", setSleep);}
+        else{sleepInput.removeEventListener("input", setSleep);}
+    });
+    //sleepInput.addEventListener("input", setSleep);
+
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
     audio.appendChild(src);
     bottom.appendChild(audio);
+    bottom.appendChild(checkSleep);
+    bottom.appendChild(sleepInput);
     container.appendChild(bottom);
 
     let playerNode = document.getElementById("podypus-player");
@@ -264,6 +286,19 @@ function makeAudio(url, title, episode_id, image_url) {
     if(image_url != undefined) {
         var el = document.getElementById("imageHolder");
         el.style.backgroundImage = "url(" + image_url + ")";
+    }
+}
+
+let setSleep = (event) => {
+    /*Set sleep timer*/
+    var value = event.currentTarget.value;
+    if(value < 1) return;
+    else {
+        var timer = setInterval(() => {
+            document.getElementById("mediaPlayer").pause();
+            clearInterval(timer);
+            document.getElementById("checkSleep").checked = false;
+        }, value*60*1000)
     }
 }
 
