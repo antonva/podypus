@@ -37,7 +37,7 @@
 }
 
 .playerContent .bottom .sleepVar {
-    margin-left:1em;
+    margin-left:0.5em;
     margin-top: 1em;
     width: 4em;
     height: 3em;
@@ -45,6 +45,12 @@
     -moz-border-radius: 40px;
     border-radius: 40px;
     text-align: center;
+}
+
+.playerContent .bottom .boolSleep {
+    height: 5em;
+    width: 1.1em;
+    margin-left: 2em;
 }
 
 .playerContent .bottom audio {

@@ -259,8 +259,8 @@ function makeAudio(url, title, episode_id, image_url) {
     src.setAttribute("type", "audio/mpeg");
     audio.appendChild(src);
     bottom.appendChild(audio);
-    bottom.appendChild(sleepInput);
     bottom.appendChild(checkSleep);
+    bottom.appendChild(sleepInput);
     container.appendChild(bottom);
 
     let playerNode = document.getElementById("podypus-player");
