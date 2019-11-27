@@ -1,6 +1,6 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
-import is.hi.hbv501g.team21.Podypus.Persistences.Entities.LoginForm;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

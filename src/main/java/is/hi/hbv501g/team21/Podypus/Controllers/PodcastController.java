@@ -2,12 +2,12 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.ChannelId;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.EpisodeWrapper;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.SubscribeUrl;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
-import is.hi.hbv501g.team21.Podypus.Services.SearchService;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class PodcastController {
@@ -44,7 +43,6 @@ public class PodcastController {
     @RequestMapping(value = "/channel", method = RequestMethod.POST)
     public @ResponseBody ModelAndView channelDetails(@Valid @RequestBody ChannelId channel_id, HttpServletRequest request) {
         boolean authenticated = userService.isAuthenticated(request);
-        System.out.println(channel_id.getChannel_id());
         if (authenticated) {
             ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelDetails");
             Optional<Channel> ou = podcastService.findById(channel_id.getChannel_id());
@@ -70,15 +68,14 @@ public class PodcastController {
 
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public @ResponseBody String addPodcast(@Valid @RequestBody SubscribeUrl s, HttpServletRequest request,
-                                                 BindingResult result, Model model) {
+                                           BindingResult result, Model model) {
         boolean authenticated = userService.isAuthenticated(request);
         if (authenticated) {
             Cookie[] clist = request.getCookies();
-            if (clist != null && clist.length > 0) {
-                Cookie c = clist[0];
+            User u = userService.getUserFromCookie(request);
+            if (u != null) {
                 Channel channel = rssService.parseFeed(s.getUrl());
                 Channel existingChannel = podcastService.findByTitle(channel.getTitle());
-                User u = userService.findByUsername(c.getValue());
                 // Handle Existing Podcasts
                 if ( existingChannel != null) {
                     u.setChannels(existingChannel);
@@ -99,4 +96,31 @@ public class PodcastController {
         return "{\"success\":0}";
     }
 
+    /* Update the playback position on a specific episode id */
+    @RequestMapping(value = "/update-playback-pos", method = RequestMethod.POST)
+    public @ResponseBody String updatePlaybackPosition(@Valid @RequestBody EpisodeWrapper e, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            User u = userService.getUserFromCookie(request);
+            if (u != null) {
+                podcastService.updatePlaybackPosition(u, e.getId());
+                return "{\"success\":1}";
+            }
+        }
+        return "{\"success\":0}";
+    }
+
+    /* Update the playback position on a specific episode id */
+    @RequestMapping(value = "/get-playback-pos", method = RequestMethod.POST)
+    public @ResponseBody String getPlaybackPosition(@Valid @RequestBody EpisodeWrapper e, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            User u = userService.getUserFromCookie(request);
+            if (u != null) {
+                int pos = podcastService.getPlaybackPosition(u, e.getId());
+                return "{\"success\": 1, \"pos\": " + pos + "}";
+            }
+        }
+        return "{\"success\":0}";
+    }
 }
