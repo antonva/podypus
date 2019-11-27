@@ -20,6 +20,11 @@ public class UserEpisode implements Serializable {
     @JoinColumn(name = "episode_id")
     private Episode episode;
 
+    @ManyToOne
+    @MapsId("channel_id")
+    @JoinColumn(name = "channel_id")
+    private Channel channel;
+
     private int playbackPosition;
     private boolean played;
 

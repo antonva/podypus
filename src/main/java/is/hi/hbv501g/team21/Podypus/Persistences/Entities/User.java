@@ -80,7 +80,7 @@ public class User {
         return episodes;
     }
 
-    public void addEpisode(Episode episode) {
+    public void addEpisode(Episode episode, Channel channel) {
         UserEpisode ue = new UserEpisode();
         ue.setEpisode(episode);
         ue.setUser(this);
@@ -89,6 +89,7 @@ public class User {
         ue.userEpisodeId = new UserEpisodeId();
         ue.userEpisodeId.setEpisodeId(episode.getEpisode_id());
         ue.userEpisodeId.setUserId(this.getUser_id());
+        ue.userEpisodeId.setChannelId(channel.getChannel_id());
         this.episodes.add(ue);
     }
 }

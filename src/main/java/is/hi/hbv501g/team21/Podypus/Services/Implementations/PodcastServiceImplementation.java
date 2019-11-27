@@ -53,6 +53,11 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
+    public List<UserEpisode> getUserEpisodesByChannelId(User u, Long c) {
+        return podcastRepository.findByChannelId(c, u.getUser_id());
+    }
+
+    @Override
     public UserEpisode getUserEpisodeById(User u, Long episode_id) {
         return podcastRepository.findByEpisodeId(episode_id, u.getUser_id());
     }
@@ -72,6 +77,9 @@ public class PodcastServiceImplementation implements PodcastService {
     @Override
     public int getPlaybackPosition(User u, Long episode_id) {
         UserEpisode ue = this.getUserEpisodeById(u, episode_id);
-        return ue.getPlaybackPosition();
+        Long c_id = podcastRepository.findChannelIdByEpisodeId((long) 325);
+        List<UserEpisode> userEpisodes = podcastRepository.findByChannelId(c_id, u.getUser_id());
+        //return ue.getPlaybackPosition();
+        return 0;
     }
 }
