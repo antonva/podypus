@@ -3,6 +3,7 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.ChannelId;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.EpisodeWrapper;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.SubscribeUrl;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -37,6 +38,19 @@ public class PodcastController {
         this.userService = userService;
         this.podcastService = podcastService;
         this.p = new ArrayList<>();
+    }
+
+    @RequestMapping("/")
+    public String Home(Model model, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            User u  = userService.findByUsername(request.getCookies()[0].getValue());
+            model.addAttribute("chanlist", u.getChannels().toArray());
+        }
+        model.addAttribute("loginform", new LoginForm());
+        model.addAttribute("user", new User());
+        model.addAttribute("authenticated", authenticated);
+        return "Index";
     }
 
     @RequestMapping(value = "/channel", method = RequestMethod.POST)
