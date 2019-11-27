@@ -173,7 +173,7 @@ let showChannel = (event) => {
     })
 }
 
-/*Takes all fields with id ply from backend and adds listeners to all of them*/
+/*Takes all fields with class name podypus-episode in the Index.html->fragments/Search.html and adds listeners*/
 function addEpisodeListeners() {
     var elements = document.getElementsByClassName("podypus-episode");
     for(var i = 0; i < elements.length; i++){
@@ -202,6 +202,7 @@ function makeAudio(url, title, episode_id, image_url) {
 
     var div = document.createElement("div");
     div.setAttribute("class", "left");
+    div.setAttribute("id", "imageHolder");
     container.appendChild(div);
 
     var right = document.createElement("div");
@@ -212,10 +213,6 @@ function makeAudio(url, title, episode_id, image_url) {
     var titleElement = document.createElement("h3");
     titleElement.innerHTML = title;
     top.appendChild(titleElement);
-    var sp = document.createElement("span");
-    sp.className = "podypus-scrolling-description"
-    sp.innerHTML = "demotext";
-    top.appendChild(sp);
     right.appendChild(top);
     container.appendChild(right);
 
@@ -239,8 +236,14 @@ function makeAudio(url, title, episode_id, image_url) {
     while(playerNode.firstChild) {
         playerNode.removeChild(playerNode.firstChild);
     }
+
     playerNode.appendChild(container);
 
+    console.log(image_url);
+    if(image_url != undefined) {
+        var el = document.getElementById("imageHolder");
+        el.style.backgroundImage = "url(" + image_url + ")";
+    }
 }
 
 /*Event makes the first element on the page clickable for the player*/
@@ -251,7 +254,6 @@ let makePlayer = (event) => {
     title = event.currentTarget.dataset['episodeTitle'];
     image_url = event.currentTarget.dataset['episodeImageUrl'];
     id = event.currentTarget.dataset['episodeId'];
-    //pos = event.currentTarget.dataset['playbackPosition']
     makeAudio(url, title, id, image_url);
 }
 
