@@ -54,7 +54,8 @@
                                 <tr class="podypus-episode" th:attr="
                                     data-episode-url=${episode.getEnclosure().getUrl()},
                                     data-episode-title=${episode.getTitle()},
-                                    data-episode-id=${episode.getEpisode_id()}
+                                    data-episode-id=${episode.getEpisode_id()},
+                                    data-episode-image-url=${episode.getImage().getHref()}
                                     ">
                                         <!-- Image -->
                                         <td>

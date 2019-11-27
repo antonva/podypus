@@ -155,6 +155,7 @@ function makeAudio(url, title, episode_id, image_url) {
 
     var div = document.createElement("div");
     div.setAttribute("class", "left");
+    div.setAttribute("id", "imageHolder");
     container.appendChild(div);
 
     var right = document.createElement("div");
@@ -188,8 +189,14 @@ function makeAudio(url, title, episode_id, image_url) {
     while(playerNode.firstChild) {
         playerNode.removeChild(playerNode.firstChild);
     }
+
     playerNode.appendChild(container);
 
+    console.log(image_url);
+    if(image_url != undefined) {
+        var el = document.getElementById("imageHolder");
+        el.style.backgroundImage = "url(" + image_url + ")";
+    }
 }
 
 /*Event makes the first element on the page clickable for the player*/
