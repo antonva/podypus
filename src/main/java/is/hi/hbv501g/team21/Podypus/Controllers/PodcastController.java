@@ -20,7 +20,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class PodcastController {
@@ -121,7 +120,7 @@ public class PodcastController {
         if (authenticated) {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
-                int pos = podcastService.getPlaybackPosition(u, e.getId());
+                float pos = podcastService.getPlaybackPosition(u, e.getId());
                 return "{\"success\": 1, \"pos\": " + pos + "}";
             }
         }

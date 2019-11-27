@@ -1,4 +1,3 @@
-<!--Search bar fragment html-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -58,7 +57,8 @@
                                     <tr class="podypus-episode" th:attr="
                                     data-episode-url=${ue.getEpisode().getEnclosure().getUrl()},
                                     data-episode-title=${ue.getEpisode().getTitle()},
-                                    data-episode-id=${ue.getEpisode().getEpisode_id()}
+                                    data-episode-id=${ue.getEpisode().getEpisode_id()},
+                                    data-episode-image-url=${ue.getEpisode().getImage().getHref()}
                                     ">
                                         <!-- Image -->
                                         <td>

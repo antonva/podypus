@@ -25,7 +25,7 @@ public class UserEpisode implements Serializable {
     @JoinColumn(name = "channel_id")
     private Channel channel;
 
-    private int playbackPosition;
+    private float playbackPosition;
     private boolean played;
 
     public UserEpisode() {}
@@ -46,11 +46,11 @@ public class UserEpisode implements Serializable {
         this.episode = episode;
     }
 
-    public int getPlaybackPosition() {
+    public float getPlaybackPosition() {
         return playbackPosition;
     }
 
-    public void setPlaybackPosition(int playbackPosition) {
+    public void setPlaybackPosition(float playbackPosition) {
         this.playbackPosition = playbackPosition;
     }
 

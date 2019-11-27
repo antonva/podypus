@@ -73,7 +73,7 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
-    public void updatePlaybackPosition(User u, Long episode_id, int pos) {
+    public void updatePlaybackPosition(User u, Long episode_id, float pos) {
         UserEpisode ue = this.getUserEpisodeById(u, episode_id);
         ue.setPlaybackPosition(pos);
         userEpisodeRepository.save(ue);
@@ -81,11 +81,8 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
-    public int getPlaybackPosition(User u, Long episode_id) {
+    public float getPlaybackPosition(User u, Long episode_id) {
         UserEpisode ue = this.getUserEpisodeById(u, episode_id);
-        Long c_id = podcastRepository.findChannelIdByEpisodeId((long) 325);
-        List<UserEpisode> userEpisodes = podcastRepository.findByChannelId(c_id, u.getUser_id());
-        //return ue.getPlaybackPosition();
-        return 0;
+        return ue.getPlaybackPosition();
     }
 }
