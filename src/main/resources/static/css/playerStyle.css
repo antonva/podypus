@@ -36,6 +36,17 @@
     flex-grow: 1;
 }
 
+.playerContent .bottom .sleepVar {
+    margin-left:1em;
+    margin-top: 1em;
+    width: 4em;
+    height: 3em;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    text-align: center;
+}
+
 .playerContent .bottom audio {
     height: 4.2em;
     width: 50em;
