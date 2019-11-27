@@ -16,12 +16,12 @@
                 <div th:attr="data-channel-id=${chan.getChannel_id()}" class="list-group-item podypus-channel">
                     <div class="card">
                         <!--Image-->
-                        <th:block th:if="${channel.getImageUrl() != null}">
-                            <img class="card-img-top" th:src="${channel.getImageUrl().getImageHref()}"
+                        <th:block th:if="${chan.getImageUrl() != null}">
+                            <img class="card-img-top" th:src="${chan.getImageUrl().getImageHref()}"
                                  th:attr="data-channel-id=${chan.getChannel_id()}"/>
                         </th:block>
-                        <th:block th:unless="${channel.getImageUrl() != null}">
-                            <img class="card-img-top" th:src="${channel.getImage().getChannelImageUrl()}"
+                        <th:block th:unless="${chan.getImageUrl() != null}">
+                            <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"
                                  th:attr="data-channel-id=${chan.getChannel_id()}"/>
                         </th:block>
                         <!--Title and info-->
