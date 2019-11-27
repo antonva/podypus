@@ -29,3 +29,18 @@
   margin-top: 20px;
   padding: 10px;
 }
+input {
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid lightslategray;
+    padding: 5px;
+}
+
+.btn {
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    padding: 5px;
+}

@@ -1,13 +1,13 @@
 /*The style guide for the navbar*/
 .myNav{
     background: #78BAAC;
+    margin-bottom: 20px;
 }
 
 .btn {
     color: white;
     background-color: #78BAAC;
     margin: 5px;
-    border-color: lightslategray;
     box-shadow: none;
 }
 

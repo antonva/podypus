@@ -12,7 +12,7 @@
 #podypus-player {
     position: fixed;
     height: 80px;
-    background-color: red;
+    background-color: #78BAAC;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -21,4 +21,28 @@
 
 body {
     margin-bottom: 80px;
+    background-image: url("static/img/podypus.png");
+}
+
+.description {
+    height: 120px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.checkbox-Played {
+    display: table;
+    top: 50px;
+    position: relative;
+    z-index: 2;
+}
+div.container {
+    margin-top: 30px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+.text-center {
+    margin-top: 10px;
 }

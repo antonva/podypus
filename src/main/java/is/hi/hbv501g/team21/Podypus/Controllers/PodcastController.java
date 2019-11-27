@@ -3,6 +3,7 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.*;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.ChannelId;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.EpisodeWrapper;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.SubscribeUrl;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import is.hi.hbv501g.team21.Podypus.Services.RssService;
@@ -39,6 +40,21 @@ public class PodcastController {
         this.p = new ArrayList<>();
     }
 
+    @RequestMapping("/")
+    public String Home(Model model, HttpServletRequest request) {
+        boolean authenticated = userService.isAuthenticated(request);
+        if (authenticated) {
+            User u  = userService.findByUsername(request.getCookies()[0].getValue());
+            List<Channel> lc = new ArrayList<>();
+            lc.addAll(u.getChannels());
+            model.addAttribute("chanlist", lc);
+        }
+        model.addAttribute("loginform", new LoginForm());
+        model.addAttribute("user", new User());
+        model.addAttribute("authenticated", authenticated);
+        return "Index";
+    }
+
     @RequestMapping(value = "/channel", method = RequestMethod.POST)
     public @ResponseBody ModelAndView channelDetails(@Valid @RequestBody ChannelId channel_id, HttpServletRequest request) {
         boolean authenticated = userService.isAuthenticated(request);
@@ -63,7 +79,9 @@ public class PodcastController {
         if (authenticated) {
             ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelList");
             User u  = userService.findByUsername(request.getCookies()[0].getValue());
-            mav.addObject("chanlist", u.getChannels().toArray());
+            List<Channel> lc = new ArrayList<>();
+            lc.addAll(u.getChannels());
+            mav.addObject("chanlist", lc);
             return mav;
         }
         return null;
@@ -108,7 +126,6 @@ public class PodcastController {
             if (u != null) {
                 podcastService.updatePlaybackPosition(u, e.getId(), e.getPos());
                 if (e.isEnded()) {
-                    System.out.println("show fin");
                     podcastService.setUserEpisodePlayed(u, e.getId());
                     podcastService.updatePlaybackPosition(u, e.getId(), 0);
                 }

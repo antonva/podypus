@@ -32,11 +32,7 @@ public class RssServiceImplementation implements RssService {
                 StringReader rdr = new StringReader(response.getBody());
                 JAXBContext ctx = JAXBContext.newInstance(Rss.class);
                 Unmarshaller unmarshaller = ctx.createUnmarshaller();
-                //unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
                 Rss r = (Rss) unmarshaller.unmarshal(rdr);
-
-                //Save the entities to db
-                
                 return r.channel;
             }
         } catch (Exception e) {
