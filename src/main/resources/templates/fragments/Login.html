@@ -16,7 +16,7 @@
             <p>Username: <input placeholder="Choose username" type="text" name="username" th:value="*{username}" /></p>
             <p>Password: <input placeholder="Password" type="password" name="password" th:value="*{password}" /></p>
             <p>E-mail: <input placeholder="E-mail Address" type="text" th:field="*{email}" /></p>
-            <p><input type="submit" value="Sign up" /></p>
+            <p><input class="btn" type="submit" value="Sign up" /></p>
         </form>
     </div>
 </th:block>
@@ -30,7 +30,7 @@
         <form action="#" th:action="@{/login}" th:object="${loginform}" method="post">
             <p>Username: <input placeholder="Username" type="text"  id="username" th:field="*{username}" /></p>
             <p>Password: <input placeholder="Password" type="password" th:field="*{password}" /></p>
-            <p><input type="submit" value="Login" /></p>
+            <p><input class="btn"  type="submit" value="Login" /></p>
         </form>
         <!--<span>Don't have an account? <a href="/signup">Register here!</a></span>-->
     </div>
@@ -44,7 +44,7 @@
     <form action="#" th:action="@{/login/changePassword}" th:object="${user}" method="post">
         <p>E-mail: <input placeholder="E-mail Address" type="text" id="email" th:field="*{email}" /></p>
         <p>New password: <input placeholder="New password" type="password" id="newPassword" th:field="*{password}" /></p>
-        <p><input type="submit" value="Reset" /></p>
+        <p><input class="btn"  type="submit" value="Reset" /></p>
     </form>
 </th:block>
 <th:block th:fragment="noUser">

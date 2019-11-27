@@ -54,7 +54,7 @@
                 <div class="media-body">
                     <h5 class="mt-0" th:text="${channel.getTitle()}">Title</h5>
                     <!--Description-->
-                    <div th:text="${channel.getDescription()}" class="description">Description</div>
+                    <div th:utext="${channel.getDescription()}" class="description">Description</div>
                     <!--Played Checkbox-->
                     <div class="checkbox-Played">
                         <input type="checkbox" id="playedCheck"> Filter out played episodes
