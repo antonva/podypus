@@ -67,9 +67,10 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
-    public void toggleUserEpisodePlayed(User u, Long episode_id) {
+    public void setUserEpisodePlayed(User u, Long episode_id) {
         UserEpisode ue = this.getUserEpisodeById(u, episode_id);
-        ue.setPlayed(!ue.isPlayed());
+        ue.setPlayed(true);
+        userEpisodeRepository.save(ue);
     }
 
     @Override

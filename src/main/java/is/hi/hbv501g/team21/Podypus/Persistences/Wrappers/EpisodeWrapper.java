@@ -4,6 +4,16 @@ public class EpisodeWrapper {
     private Long id;
     private float pos;
 
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
+
+    private boolean ended;
+
     public Long getId() {
         return id;
     }
