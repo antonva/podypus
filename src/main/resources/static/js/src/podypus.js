@@ -3,7 +3,7 @@ console.log("Podypus is now mining for buttcoins...");
 let updatePlaybackPos = (event) => {
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
-        "pos": 0,
+        "pos": 120,
     }
     $.ajax({
         type: "POST",

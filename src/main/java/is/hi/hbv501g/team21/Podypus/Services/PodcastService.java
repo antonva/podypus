@@ -15,7 +15,7 @@ public interface PodcastService {
     Channel findByTitle(String title);
     UserEpisode getUserEpisodeById(User u, Long episode_id);
     void toggleUserEpisodePlayed(User u, Long episode_id);
-    void updatePlaybackPosition(User u, Long episode_id);
+    void updatePlaybackPosition(User u, Long episode_id, int pos);
     int getPlaybackPosition(User u, Long episode_id);
     List<UserEpisode> getUserEpisodesByChannelId(User u, Long c);
 }

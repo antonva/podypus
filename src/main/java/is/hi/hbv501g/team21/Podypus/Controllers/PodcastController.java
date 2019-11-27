@@ -107,7 +107,7 @@ public class PodcastController {
         if (authenticated) {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
-                podcastService.updatePlaybackPosition(u, e.getId());
+                podcastService.updatePlaybackPosition(u, e.getId(), e.getPos());
                 return "{\"success\":1}";
             }
         }

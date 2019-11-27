@@ -4,6 +4,7 @@ import is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.UserEpisode;
 import is.hi.hbv501g.team21.Podypus.Persistences.Repositories.PodcastRepository;
+import is.hi.hbv501g.team21.Podypus.Persistences.Repositories.UserEpisodeRepository;
 import is.hi.hbv501g.team21.Podypus.Services.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,15 @@ import java.util.Optional;
 @Service
 public class PodcastServiceImplementation implements PodcastService {
 
-        private PodcastRepository podcastRepository;
+    private PodcastRepository podcastRepository;
+    private UserEpisodeRepository userEpisodeRepository;
 
     @Autowired
-    public PodcastServiceImplementation(PodcastRepository podcastRepository) {
+    public PodcastServiceImplementation(PodcastRepository podcastRepository,
+                                        UserEpisodeRepository userEpisodeRepository) {
 
         this.podcastRepository = podcastRepository;
+        this.userEpisodeRepository = userEpisodeRepository;
     }
 
     @Override
@@ -69,8 +73,10 @@ public class PodcastServiceImplementation implements PodcastService {
     }
 
     @Override
-    public void updatePlaybackPosition(User u, Long episode_id) {
+    public void updatePlaybackPosition(User u, Long episode_id, int pos) {
         UserEpisode ue = this.getUserEpisodeById(u, episode_id);
+        ue.setPlaybackPosition(pos);
+        userEpisodeRepository.save(ue);
 
     }
 
