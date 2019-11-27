@@ -20,7 +20,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class PodcastController {
@@ -45,9 +44,13 @@ public class PodcastController {
         boolean authenticated = userService.isAuthenticated(request);
         if (authenticated) {
             ModelAndView mav = new ModelAndView("fragments/Channel.html :: channelDetails");
-            Optional<Channel> ou = podcastService.findById(channel_id.getChannel_id());
-            if (ou.isPresent()) {
-                mav.addObject("channel", ou.get());
+            User u = userService.getUserFromCookie(request);
+            List<UserEpisode> ue = podcastService.getUserEpisodesByChannelId(u, channel_id.getChannel_id());
+            Optional<Channel> oc = podcastService.findById(channel_id.getChannel_id());
+            if (oc.isPresent()) {
+
+                mav.addObject("channel",oc.get());
+                mav.addObject("usereps",ue);
                 return mav;
             }
         }
@@ -80,13 +83,13 @@ public class PodcastController {
                 if ( existingChannel != null) {
                     u.setChannels(existingChannel);
                     for (Episode episode: existingChannel.getEpisodeList()) {
-                        u.addEpisode(episode);
+                        u.addEpisode(episode, existingChannel);
                     }
                 } else {
                     podcastService.save(channel);
                     u.setChannels(channel);
                     for (Episode episode: channel.getEpisodeList()) {
-                        u.addEpisode(episode);
+                        u.addEpisode(episode, channel);
                     }
                 }
                 userService.save(u);
@@ -103,7 +106,7 @@ public class PodcastController {
         if (authenticated) {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
-                podcastService.updatePlaybackPosition(u, e.getId());
+                podcastService.updatePlaybackPosition(u, e.getId(), e.getPos());
                 return "{\"success\":1}";
             }
         }
@@ -117,7 +120,7 @@ public class PodcastController {
         if (authenticated) {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
-                int pos = podcastService.getPlaybackPosition(u, e.getId());
+                float pos = podcastService.getPlaybackPosition(u, e.getId());
                 return "{\"success\": 1, \"pos\": " + pos + "}";
             }
         }

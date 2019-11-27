@@ -247,6 +247,10 @@ public class Episode {
         this.userEpisodes = userEpisodes;
     }
 
+    public Channel getChannel() {
+        return channel;
+    }
+
     public Long getEpisode_id() {
         return episode_id;
     }
