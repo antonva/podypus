@@ -16,17 +16,18 @@
                 <div th:attr="data-channel-id=${chan.getChannel_id()}" class="list-group-item podypus-channel">
                     <div class="card">
                         <!--Image-->
-                        <th:block th:if="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
-                            <img class="card-img-top" th:src="${chan.getImageUrl()}"
+                        <th:block th:if="${channel.getImageUrl() != null}">
+                            <img class="card-img-top" th:src="${channel.getImageUrl().getImageHref()}"
                                  th:attr="data-channel-id=${chan.getChannel_id()}"/>
                         </th:block>
-                        <th:block th:unless="${chan.getImageUrl() != null and chan.getImageUrl().length() > 0}">
-                            <img class="card-img-top" th:src="${chan.getImage().getChannelImageUrl()}"
+                        <th:block th:unless="${channel.getImageUrl() != null}">
+                            <img class="card-img-top" th:src="${channel.getImage().getChannelImageUrl()}"
                                  th:attr="data-channel-id=${chan.getChannel_id()}"/>
                         </th:block>
                         <!--Title and info-->
-                        <div class="card-body">
-                            <div class="card-title" th:text="${chan.getTitle()}">Podcast Name</div>
+                        <div class="card-body" th:attr="data-channel-id=${chan.getChannel_id()}">
+                            <div class="card-title" th:text="${chan.getTitle()}"
+                                 th:attr="data-channel-id=${chan.getChannel_id()}">Podcast Name</div>
                         </div>
                     </div>
                 </div>
