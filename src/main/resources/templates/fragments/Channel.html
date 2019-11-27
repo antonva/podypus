@@ -26,11 +26,10 @@
         <div class="container" th:if="${channel != null}">
             <div class="media">
                 <!--Image-->
-                <th:block th:if="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
-                    <img class="mr-5 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImageUrl()}">
-                    <div th:text="${channel.getImageUrl().length()}">len</div>
+                <th:block th:if="${channel.getImageUrl() != null}">
+                    <img class="mr-5 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImageUrl().getImageHref()}">
                 </th:block>
-                <th:block th:unless="${channel.getImageUrl() != null and channel.getImageUrl().length() > 0}">
+                <th:block th:unless="${channel.getImageUrl() != null}">
                     <img class="mr-4 img-fluid" style="height: 256px;width: 256px;" th:src="${channel.getImage().getChannelImageUrl()}">
                 </th:block>
                 <!--Title-->
@@ -58,19 +57,18 @@
                                     data-episode-url=${ue.getEpisode().getEnclosure().getUrl()},
                                     data-episode-title=${ue.getEpisode().getTitle()},
                                     data-episode-id=${ue.getEpisode().getEpisode_id()},
-                                    data-episode-image-url=${ue.getEpisode().getImage().getHref()}
                                     ">
                                         <!-- Image -->
                                         <td>
                                             <th:block th:if="${ue.getEpisode().getImage() != null}">
-                                                <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${ue.getEpisode().getImage().getHref()}">
+                                                <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${ue.getEpisode().getImage().getHref()}">
                                             </th:block>
                                             <th:block th:unless="${ue.getEpisode().getImage() != null}">
                                                 <th:block th:if="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl()}">
+                                                    <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImageUrl().getImageHref()}">
                                                 </th:block>
                                                 <th:block th:unless="${channel.getImageUrl() != null}">
-                                                    <img class="mr-3 img-fluid" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
+                                                    <img class="mr-3 img-fluid podypus-episode-image" style="height: 64px;width: 64px;" th:src="${channel.getImage().getChannelImageUrl()}">
                                                 </th:block>
                                             </th:block>
                                             <!-- Title -->

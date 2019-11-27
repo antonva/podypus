@@ -109,7 +109,7 @@ public class Episode {
     }
 
     @XmlElement(namespace = itunesNs, name="image")
-    public void setImageUrl(EpisodeImage image) {
+    public void setImage(EpisodeImage image) {
         this.image = image;
     }
 

@@ -107,6 +107,11 @@ public class PodcastController {
             User u = userService.getUserFromCookie(request);
             if (u != null) {
                 podcastService.updatePlaybackPosition(u, e.getId(), e.getPos());
+                if (e.isEnded()) {
+                    System.out.println("show fin");
+                    podcastService.setUserEpisodePlayed(u, e.getId());
+                    podcastService.updatePlaybackPosition(u, e.getId(), 0);
+                }
                 return "{\"success\":1}";
             }
         }
