@@ -170,7 +170,7 @@ let showChannel = (event) => {
             document.getElementById("podypus-container").innerHTML = res;
             addEpisodeListeners();
             let episodeTable = $('#table_episode').DataTable({ // Stillingar á töflu
-                scrollY: 400,
+                scrollY: 380,
                 paging: false,
                 order: [[3, 'desc']] // Raða eftir release date
             });
