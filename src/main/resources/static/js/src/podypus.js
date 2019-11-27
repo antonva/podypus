@@ -1,3 +1,4 @@
+//Keep SQL database informed on the playback position of the player client side.
 let updatePlaybackPos = (event) => {
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
@@ -200,21 +201,7 @@ function addEpisodeListeners() {
     }
 }
 
-/*Creates the player container in html*/
-/*
-              <div class="playerContent">
-                <div class="left"></div>
-                <div class="right">
-                    <div class="top">
-                        <h2>demosong</h2>
-                        <p>demo artist</p>
-                    </div>
-                </div>
-                <div id="mediaPlayerBox" class="bottom">
-                    <audio id="mediaPlayer" name="media" _autoplay="false" controls=""><source type="audio/mpeg"></audio>
-                </div>
-            </div>
-*/
+/*Creates the audio player container in html document*/
 function makeAudio(url, title, episode_id, image_url) {
     var bool = false;
     var container = document.createElement("div");
@@ -262,11 +249,11 @@ function makeAudio(url, title, episode_id, image_url) {
     checkSleep.setAttribute("name", "sleepBool");
     checkSleep.setAttribute("id", "checkSleep")
 
+    /*Check if user wants to use sleep timer otherwise remove*/
     checkSleep.addEventListener("change", (event) => {
         if(event.target.checked) {sleepInput.addEventListener("input", setSleep);}
         else{sleepInput.removeEventListener("input", setSleep);}
     });
-    //sleepInput.addEventListener("input", setSleep);
 
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
@@ -283,6 +270,7 @@ function makeAudio(url, title, episode_id, image_url) {
 
     playerNode.appendChild(container);
 
+    /*Set image if its available otherwise use CSS fallback background defined in the css*/
     if(image_url != undefined) {
         var el = document.getElementById("imageHolder");
         el.style.backgroundImage = "url(" + image_url + ")";
@@ -290,7 +278,7 @@ function makeAudio(url, title, episode_id, image_url) {
 }
 
 let setSleep = (event) => {
-    /*Set sleep timer*/
+    /*Set sleep timer then clear intervals and checkbox*/
     var value = event.currentTarget.value;
     if(value < 1) return;
     else {
