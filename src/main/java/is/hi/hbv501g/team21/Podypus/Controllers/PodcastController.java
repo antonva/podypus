@@ -108,7 +108,6 @@ public class PodcastController {
             if (u != null) {
                 podcastService.updatePlaybackPosition(u, e.getId(), e.getPos());
                 if (e.isEnded()) {
-                    System.out.println("show fin");
                     podcastService.setUserEpisodePlayed(u, e.getId());
                     podcastService.updatePlaybackPosition(u, e.getId(), 0);
                 }
