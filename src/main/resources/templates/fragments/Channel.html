@@ -2,22 +2,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <title>Podypus - a podcast player</title>
 </head>
 <body>
-    <!--/*-->
-    <!-- @thymesVar id="chanlist" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel[]" -->
-    <!--*/-->
-    <th:block th:fragment="channelList">
-        <div class="container">
-            <ul th:each="chan : ${chanlist}" class="list-group">
-                <li th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
-                    class="list-group-item podypus-channel"></li>
-            </ul>
-        </div>
-    </th:block>
+<!--/*-->
+<!-- @thymesVar id="chanlist" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel[]" -->
+<!--*/-->
+<th:block th:fragment="channelList">
+    <div class="container">
+        <ul th:each="chan : ${chanlist}" class="list-group">
+            <li th:text="${chan.getTitle()}" th:attr="data-channel-id=${chan.getChannel_id()} "
+                class="list-group-item podypus-channel"></li>
+        </ul>
+    </div>
+</th:block>
 
     <!--/*-->
     <!-- @thymesVar id="channel" type="is.hi.hbv501g.team21.Podypus.Persistences.Entities.Channel" -->
@@ -40,7 +40,7 @@
                     <!--Description-->
                     <div th:text="${channel.getDescription()}">Description</div>
                     <!--Episode List-->
-                    <table class="table table-striped">
+                    <table id="table_episode" class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Title</th>
@@ -92,9 +92,9 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
-    </th:block>
+    </div>
+</th:block>
 </body>
 </html>
