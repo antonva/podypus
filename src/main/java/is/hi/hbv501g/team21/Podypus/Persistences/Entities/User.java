@@ -2,9 +2,7 @@ package is.hi.hbv501g.team21.Podypus.Persistences.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 

@@ -3,7 +3,7 @@ console.log("Podypus is now mining for buttcoins...");
 let updatePlaybackPos = (event) => {
     let obj = {
         "id": event.currentTarget.dataset['episodeId'],
-        "pos": 0,
+        "pos": event.currentTarget.currentTime,
     }
     $.ajax({
         type: "POST",
@@ -12,8 +12,6 @@ let updatePlaybackPos = (event) => {
         url: "update-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
-            console.log("SUCCESS")
-            console.log(res)
         },
         error: function(res) {
             console.log("error")
@@ -26,21 +24,21 @@ let updatePlaybackPos = (event) => {
     })
 }
 
-let getPlaybackPos = (event) => {
-    let obj = {"id":1063};
-    //let obj = {
-    //    "id": event.currentTarget.dataset['episodeId'],
-    //}
+let getPlaybackPos = (id) => {
+    let obj = {
+        "id": id
+    }
+    let pos = 0;
 
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
+        async: false,//Terrible hack, don't try this at home kids
         url: "get-playback-pos",
         data : JSON.stringify(obj),
         success: function(res) {
-            console.log("SUCCESS")
-            console.log(res)
+            pos = res.pos;
         },
         error: function(res) {
             console.log("error")
@@ -51,6 +49,7 @@ let getPlaybackPos = (event) => {
             console.log(res)
         },
     })
+    return pos;
 }
 /* Subscribe to the channel with the corresponding href */
 let subscribeToChannel = (event) => {
@@ -63,7 +62,6 @@ let subscribeToChannel = (event) => {
         url: "subscribe",
         data : JSON.stringify(url),
         success: function(res) {
-            console.log("SUCCESS")
         },
         error: function(res) {
             console.log("error")
@@ -187,7 +185,6 @@ let showChannel = (event) => {
         },
         error: function (res) {
             console.log("ERROR");
-            console.log(res);
         },
         done: function (res) {
         }
@@ -198,7 +195,6 @@ let showChannel = (event) => {
 function addEpisodeListeners() {
     var elements = document.getElementsByClassName("podypus-episode");
     for(var i = 0; i < elements.length; i++){
-        getPlaybackPos(elements.item(i));
         elements.item(i).addEventListener("click", makePlayer);
     }
 }
@@ -242,12 +238,16 @@ function makeAudio(url, title, episode_id, image_url) {
     bottom.setAttribute("id", "mediaPlayerBox");
     bottom.setAttribute("class", "bottom");
 
-    var audio = document.createElement("audio");
-    audio.setAttribute("id", "mediaPlayer");
+    var audio = new Audio(url);
+    audio.autoplay = true;
+    audio.controls = true;
+    audio.id = "mediaPlayer";
+    audio.currentTime = getPlaybackPos(episode_id);
     audio.setAttribute("name", "media");
-    audio.setAttribute("autoplay", "true");
-    audio.setAttribute("controls", "");
-    audio.setAttribute("src", url);
+    audio.setAttribute("data-episode-id", episode_id);
+
+    audio.addEventListener("timeupdate", updatePlaybackPos);
+
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
     audio.appendChild(src);
@@ -261,7 +261,6 @@ function makeAudio(url, title, episode_id, image_url) {
 
     playerNode.appendChild(container);
 
-    console.log(image_url);
     if(image_url != undefined) {
         var el = document.getElementById("imageHolder");
         el.style.backgroundImage = "url(" + image_url + ")";
@@ -270,7 +269,6 @@ function makeAudio(url, title, episode_id, image_url) {
 
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
-    updatePlaybackPos(event);
     event.preventDefault();
     url = event.currentTarget.dataset['episodeUrl'];
     title = event.currentTarget.dataset['episodeTitle'];
