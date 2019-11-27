@@ -20,12 +20,13 @@
 }
 
 body {
-    margin-bottom: 80px;
+    margin-bottom: 4px;
     background-image: url("../img/podypus.png");
     background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: bottom;
-    background-size: auto;
+    background-position-x: 99%;
+    background-position-y: 250%;
+    background-size: 10em;
+
 }
 
 .description {
