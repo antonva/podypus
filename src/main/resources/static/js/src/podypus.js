@@ -236,7 +236,13 @@ function makeAudio(url, title, episode_id, image_url) {
     audio.setAttribute("data-episode-id", episode_id);
 
     audio.addEventListener("timeupdate", updatePlaybackPos);
-
+    /*
+    * PLease ignore the commented code in this release
+    * This is the sleep feature. It had some unnoticed bugs that will
+    be fixed in the next release. So it will not be included in this release here
+    * Sorry for the untidy code but we want it to be included.
+     */
+    /*
     var sleepInput = document.createElement("input");
     sleepInput.setAttribute("type", "number");
     sleepInput.setAttribute("class", "sleepVar");
@@ -247,13 +253,13 @@ function makeAudio(url, title, episode_id, image_url) {
     checkSleep.setAttribute("type", "checkbox");
     checkSleep.setAttribute("class", "boolSleep");
     checkSleep.setAttribute("name", "sleepBool");
-    checkSleep.setAttribute("id", "checkSleep")
+    checkSleep.setAttribute("id", "checkSleep")*/
 
-    /*Check if user wants to use sleep timer otherwise remove*/
+    /*Check if user wants to use sleep timer otherwise remove
     checkSleep.addEventListener("change", (event) => {
         if(event.target.checked) {sleepInput.addEventListener("input", setSleep);}
         else{sleepInput.removeEventListener("input", setSleep);}
-    });
+    });*/
 
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
@@ -277,8 +283,9 @@ function makeAudio(url, title, episode_id, image_url) {
     }
 }
 
+/*
 let setSleep = (event) => {
-    /*Set sleep timer then clear intervals and checkbox*/
+    Set sleep timer then clear intervals and checkbox
     var value = event.currentTarget.value;
     if(value < 1) return;
     else {
@@ -288,7 +295,7 @@ let setSleep = (event) => {
             document.getElementById("checkSleep").checked = false;
         }, value*60*1000)
     }
-}
+}*/
 
 /*Event makes the first element on the page clickable for the player*/
 let makePlayer = (event) => {
