@@ -55,5 +55,5 @@
 
 .playerContent .bottom audio {
     height: 4.2em;
-    width: 50em;
+    width: 85em; /*Used to be 50em with respect to the sleep input placeholder*/
 }

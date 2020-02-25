@@ -237,7 +237,7 @@ function makeAudio(url, title, episode_id, image_url) {
 
     audio.addEventListener("timeupdate", updatePlaybackPos);
 
-    var sleepInput = document.createElement("input");
+    /*var sleepInput = document.createElement("input");
     sleepInput.setAttribute("type", "number");
     sleepInput.setAttribute("class", "sleepVar");
     sleepInput.setAttribute("name", "sleepVar");
@@ -247,20 +247,20 @@ function makeAudio(url, title, episode_id, image_url) {
     checkSleep.setAttribute("type", "checkbox");
     checkSleep.setAttribute("class", "boolSleep");
     checkSleep.setAttribute("name", "sleepBool");
-    checkSleep.setAttribute("id", "checkSleep")
+    checkSleep.setAttribute("id", "checkSleep")*/
 
     /*Check if user wants to use sleep timer otherwise remove*/
-    checkSleep.addEventListener("change", (event) => {
+    /*checkSleep.addEventListener("change", (event) => {
         if(event.target.checked) {sleepInput.addEventListener("input", setSleep);}
         else{sleepInput.removeEventListener("input", setSleep);}
-    });
+    });*/ /*Commented out for háskóladagar showcase*/
 
     var src = document.createElement("src");
     src.setAttribute("type", "audio/mpeg");
     audio.appendChild(src);
     bottom.appendChild(audio);
-    bottom.appendChild(checkSleep);
-    bottom.appendChild(sleepInput);
+    //bottom.appendChild(checkSleep);
+    //bottom.appendChild(sleepInput);
     container.appendChild(bottom);
 
     let playerNode = document.getElementById("podypus-player");
