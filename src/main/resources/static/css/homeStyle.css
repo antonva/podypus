@@ -19,12 +19,15 @@
     margin-bottom: 0px;
 }
 
-margin-bottom: 4px;
-background-image: url("../img/podypus.png");
-background-repeat: no-repeat;
-background-position-x: 99%;
-background-position-y: 46.1em;
-background-size: 10em;
+body {
+    background-image: url("../img/podypus.png");
+    background-position: top calc(5vw + 65vh) right;
+    background-attachment: fixed;
+    background-size: 10%;
+    background-repeat: no-repeat;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
 
 .description {
