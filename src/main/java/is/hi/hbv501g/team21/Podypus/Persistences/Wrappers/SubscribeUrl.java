@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Wrappers;
 
 public class SubscribeUrl {
+    private String username;
     private String url;
 
     public String getUrl() {
@@ -9,5 +10,13 @@ public class SubscribeUrl {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

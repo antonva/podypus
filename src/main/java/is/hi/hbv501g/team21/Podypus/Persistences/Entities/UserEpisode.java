@@ -61,4 +61,8 @@ public class UserEpisode implements Serializable {
     public void setPlayed(boolean played) {
         this.played = played;
     }
+
+    public Channel getChannel() {
+        return channel;
+    }
 }

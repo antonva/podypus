@@ -2,19 +2,14 @@ package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import is.hi.hbv501g.team21.Podypus.Persistences.Entities.User;
 import is.hi.hbv501g.team21.Podypus.Services.UserService;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import java.net.URISyntaxException;
 
 
 @Controller
@@ -27,90 +22,44 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signUpGET(User user){
-        return "fragments/Login :: signup";
-    }
-
-    @RequestMapping(value="/signup", method = RequestMethod.POST)
-    public String signUpPOST(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/login";
-        }
+    @PostMapping("/signup")
+    public ResponseEntity<String> signup(@RequestBody User user) {
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
         User uname = userService.findByUsername(user.getUsername());
         if (uname != null) {
-            return "fragments/Login :: unameExists";
+            return ResponseEntity.badRequest().body("{'error': 'user exists'}\n");
         }
         if (exists == null) {
             userService.save(user);
-            return "redirect:/";
+            return ResponseEntity.ok().body("{'ok': 'signup successful'}\n");
         }
         if (exists != null) {
-            return "fragments/Login :: userExists";
+            return ResponseEntity.badRequest().body("{'error': 'user exists'}\n");
         }
-        return "fragments/Login :: login";
+        return ResponseEntity.badRequest().body("{'error': 'something went wrong'}\n");
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(Model model, HttpServletRequest request){
-        model.addAttribute("user", new User());
-        return "fragments/Login :: login";
-    }
-
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(@Valid LoginForm loginForm,
-                            BindingResult result,
-                            Model model,
-                            HttpServletRequest request,
-                            HttpServletResponse response) {
-        if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
-            return "redirect:/";
-        }
-
-        User loggedInUser = userService.loginUser(loginForm);
-        if (loggedInUser != null) {
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginForm lf) throws URISyntaxException {
+        System.out.println(lf.getUsername());
+        User loggedInUser = userService.loginUser(lf);
+        if (loggedInUser == null) {
+            return ResponseEntity.badRequest().body("{'error': 'user does not exist or wrong password'}\n");
+        } else {
             Cookie c = new Cookie("user", loggedInUser.getUsername());
-            response.addCookie(c);
-            return "redirect:/";
+            //response.addCookie(c);
+            return ResponseEntity.ok(loggedInUser.getUsername());
+
         }
-        return "redirect:/";
     }
 
-    //birta profile fyrir notanda sem er loggaður inn
-    @RequestMapping(value = "/login/profile", method = RequestMethod.GET)
-    public String loggedinGET(Model model, HttpServletRequest request) {
-        Cookie[] clist = request.getCookies();
-        Cookie c = clist[0];
-        if (c.getValue() != null) {
-            model.addAttribute("loggedinuser", c.getValue());
-            return "UserProfile";
-        }
-        return "redirect:/";
+    //TODO:
+    @GetMapping(value = "/logout")
+    public ResponseEntity<String> logout() {
+        return ResponseEntity.badRequest().body("{'error': 'not implemented yet'}\n");
     }
-    //aðferð til að testa signup
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String usersGET(Model model){
-        model.addAttribute("users", userService.findAll());
-        return "Users";
-    }
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPOST(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] oldcookie = request.getCookies();
-        Cookie c = oldcookie[0];
-        c.setMaxAge(0);
-        response.addCookie(c);
 
-        return "redirect:/";
-    }
-    @RequestMapping(value = "/login/changePassword", method = RequestMethod.GET)
-    //public String changePasswordGET(User user){
-    public String changePasswordGET(Model model){
-        model.addAttribute("user", new User());
-        return "fragments/Login :: changePassword";
-    }
+    //TODO:
     @RequestMapping(value = "/login/changePassword", method = RequestMethod.POST)
     public String changePassword(@ModelAttribute("user") User user) {
         System.out.println("in changePassword");

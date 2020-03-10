@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Persistences.Wrappers;
 
 public class EpisodeWrapper {
+    private String username;
     private Long id;
     private float pos;
 
@@ -30,4 +31,11 @@ public class EpisodeWrapper {
         this.pos = pos;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
