@@ -35,6 +35,15 @@ public class ChannelResponse {
         this.managingEditor= c.getManagingEditor();
         this.description = c.getDescription();
         this.summary = c.getSummary();
+        if (c.getImage().getChannelImageUrl() == null) {
+            if (c.getImageUrl().getImageHref() == null) {
+                this.imageUrl = "podypus";
+            } else {
+                this.imageUrl = c.getImageUrl().getImageHref();
+            }
+        } else {
+            this.imageUrl = c.getImage().getChannelImageUrl();
+        }
         this.imageUrl = c.getImageUrl().getImageHref();
         this.explicit = c.getExplicit();
         this.type = c.getType();
