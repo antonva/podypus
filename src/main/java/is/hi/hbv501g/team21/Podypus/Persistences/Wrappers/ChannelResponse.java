@@ -44,7 +44,6 @@ public class ChannelResponse {
         } else {
             this.imageUrl = c.getImage().getChannelImageUrl();
         }
-        this.imageUrl = c.getImageUrl().getImageHref();
         this.explicit = c.getExplicit();
         this.type = c.getType();
         this.keywords = c.getKeywords();
