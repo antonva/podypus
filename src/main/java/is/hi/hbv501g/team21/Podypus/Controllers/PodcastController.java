@@ -37,7 +37,7 @@ public class PodcastController {
     }
 
     // Returns the user's episodes for a specified channel id
-    @GetMapping("/episodes")
+    @PostMapping("/episodes")
     public  ResponseEntity<Map<Long, EpisodeResponse>> channel(@RequestBody ChannelId channel_id) {
         boolean authenticated = userService.isAuthenticated(channel_id.getUsername());
         if (authenticated) {
@@ -57,20 +57,19 @@ public class PodcastController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/subscriptions")
-    public ResponseEntity<Map<String,ChannelResponse>> listSubscribedChannels(@RequestBody String user) {
+    @PostMapping("/subscriptions")
+    public ResponseEntity<List<ChannelResponse>> listSubscribedChannels(@RequestBody String user) {
         System.out.println(user);
         boolean authenticated = userService.isAuthenticated(user);
         if (authenticated) {
             User u  = userService.findByUsername(user);
-            Map<String,ChannelResponse> m = new HashMap<String,ChannelResponse>();
-            List<Channel> lc = new ArrayList<>();
+            List<ChannelResponse> lc = new ArrayList<>();
             //TODO: Refactor to simpler channel list without UserEpisodes et al
             //TODO: I.e. make it more json/android friendly
             for (Channel c: u.getChannels()) {
-                m.put(c.getTitle(), new ChannelResponse(c));
+                lc.add(new ChannelResponse(c));
             }
-            return ResponseEntity.ok().body(m);
+            return ResponseEntity.ok().body(lc);
         }
         return ResponseEntity.badRequest().build();
     }
@@ -122,7 +121,7 @@ public class PodcastController {
     }
 
     /* Get the playback position on a specific episode id */
-    @GetMapping("/get-playback-pos")
+    @PostMapping("/get-playback-pos")
     public ResponseEntity<String> getPlaybackPosition(@Valid @RequestBody EpisodeWrapper e){
         boolean authenticated = userService.isAuthenticated(e.getUsername());
         if (authenticated) {

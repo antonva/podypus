@@ -26,7 +26,7 @@ public class SearchController {
         this.rssService = rssService;
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<SearchResult> searchForPodcast(@Valid @RequestBody SearchQuery query, BindingResult result, Model model) {
         SearchResult s = new SearchResult();
 

@@ -1,6 +1,7 @@
 package is.hi.hbv501g.team21.Podypus.Controllers;
 
 import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.LoginForm;
+import is.hi.hbv501g.team21.Podypus.Persistences.Wrappers.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,15 +23,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody User user) {
+    @PostMapping("/register")
+    public ResponseEntity<String> signup(@RequestBody UserWrapper user) {
         User exists = userService.findByEmail(user.getEmail()); //skilar user object fyrir notanda sem er nú þegar til
         User uname = userService.findByUsername(user.getUsername());
         if (uname != null) {
             return ResponseEntity.badRequest().body("{'error': 'user exists'}\n");
         }
         if (exists == null) {
-            userService.save(user);
+            User u = new User(user.getUsername(), user.getEmail(), user.getPassword());
+            userService.save(u);
             return ResponseEntity.ok().body("{'ok': 'signup successful'}\n");
         }
         if (exists != null) {
