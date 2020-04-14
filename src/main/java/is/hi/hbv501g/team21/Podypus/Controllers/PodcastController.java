@@ -42,13 +42,13 @@ public class PodcastController {
         boolean authenticated = userService.isAuthenticated(channel_id.getUsername());
         if (authenticated) {
             User u = userService.findByUsername(channel_id.getUsername());
-            List<UserEpisode> ue = podcastService.getUserEpisodesByChannelId(u, channel_id.getChannel_id());
             Optional<Channel> oc = podcastService.findById(channel_id.getChannel_id());
+            List<EpisodeResponse> ue = new ArrayList<>();
             Map<Long, EpisodeResponse> m = new HashMap<Long, EpisodeResponse>();
             if (oc.isPresent()) {
-                //TODO: Create and return a json object with ue and oc here
-                for (UserEpisode e: ue) {
-                    m.put(e.getEpisode().getEpisode_id(), new EpisodeResponse(e));
+                for (UserEpisode e: podcastService.getUserEpisodesByChannelId(u, channel_id.getChannel_id())) {
+                    System.out.println(e.getEpisode().getTitle());
+                    ue.add(new EpisodeResponse(e));
                 }
                 return ResponseEntity.ok().body(m);
             }
