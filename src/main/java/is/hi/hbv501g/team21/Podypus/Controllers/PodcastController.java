@@ -38,7 +38,7 @@ public class PodcastController {
 
     // Returns the user's episodes for a specified channel id
     @PostMapping("/episodes")
-    public  ResponseEntity<Map<Long, EpisodeResponse>> channel(@RequestBody ChannelId channel_id) {
+    public  ResponseEntity<List<EpisodeResponse>> channel(@RequestBody ChannelId channel_id) {
         boolean authenticated = userService.isAuthenticated(channel_id.getUsername());
         if (authenticated) {
             User u = userService.findByUsername(channel_id.getUsername());
@@ -50,7 +50,7 @@ public class PodcastController {
                     System.out.println(e.getEpisode().getTitle());
                     ue.add(new EpisodeResponse(e));
                 }
-                return ResponseEntity.ok().body(m);
+                return ResponseEntity.ok().body(ue);
             }
         }
         //TODO: Return a bogus error message
